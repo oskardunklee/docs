@@ -1,58 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Light mode gradients -->
-    <linearGradient id="lightBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="glassBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#3b82f6"/>
       <stop offset="100%" style="stop-color:#8b5cf6"/>
     </linearGradient>
-    <linearGradient id="lightShine" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="glassShine" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:rgba(255,255,255,0.8)"/>
       <stop offset="50%" style="stop-color:rgba(255,255,255,0.2)"/>
       <stop offset="100%" style="stop-color:rgba(255,255,255,0.1)"/>
     </linearGradient>
-    <filter id="lightShadow">
+    <filter id="softShadow5">
       <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="rgba(59, 130, 246, 0.25)"/>
     </filter>
-    
-    <!-- Dark mode gradients -->
-    <linearGradient id="darkBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1e293b"/>
-      <stop offset="100%" style="stop-color:#0f172a"/>
-    </linearGradient>
-    <linearGradient id="darkShine" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:rgba(148,163,184,0.3)"/>
-      <stop offset="50%" style="stop-color:rgba(148,163,184,0.1)"/>
-      <stop offset="100%" style="stop-color:rgba(148,163,184,0.05)"/>
-    </linearGradient>
-    <filter id="darkShadow">
-      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="rgba(0, 0, 0, 0.4)"/>
-    </filter>
-    
-    <style>
-      .light { display: block; }
-      .dark { display: none; }
-      @media (prefers-color-scheme: dark) {
-        .light { display: none; }
-        .dark { display: block; }
-      }
-    </style>
   </defs>
   
-  <!-- Light mode version -->
-  <g class="light">
-    <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#lightBgGrad)" filter="url(#lightShadow)"/>
-    <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#lightShine)" opacity="0.6"/>
-    <rect x="19" y="19" width="4" height="26" rx="2" fill="white" opacity="0.95"/>
-    <rect x="27" y="19" width="4" height="26" rx="2" fill="white" opacity="0.95"/>
-    <path d="M35 21 L35 43 L47 32 Z" fill="white" opacity="0.95"/>
-  </g>
+  <!-- Background gradient -->
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#glassBgGrad)" filter="url(#softShadow5)"/>
   
-  <!-- Dark mode version -->
-  <g class="dark">
-    <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#darkBgGrad)" filter="url(#darkShadow)"/>
-    <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#darkShine)" opacity="0.6"/>
-    <rect x="19" y="19" width="4" height="26" rx="2" fill="#e2e8f0" opacity="0.95"/>
-    <rect x="27" y="19" width="4" height="26" rx="2" fill="#e2e8f0" opacity="0.95"/>
-    <path d="M35 21 L35 43 L47 32 Z" fill="#e2e8f0" opacity="0.95"/>
-  </g>
+  <!-- Glass shine overlay -->
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#glassShine)" opacity="0.6"/>
+  
+  <!-- Logo elements -->
+  <rect x="19" y="19" width="4" height="26" rx="2" fill="white" opacity="0.95"/>
+  <rect x="27" y="19" width="4" height="26" rx="2" fill="white" opacity="0.95"/>
+  <path d="M35 21 L35 43 L47 32 Z" fill="white" opacity="0.95"/>
 </svg>
