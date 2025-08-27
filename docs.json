@@ -56,16 +56,11 @@
             ]
           },
           {
-            "group": "Using Stanna",
+            "group": "Core Concepts",
             "pages": [
-              "product/clients",
-              "product/segments",
-              "product/tags",
-              "product/tasks",
-              "product/upcoming-events",
-              "product/stakeholders",
-              "product/next-best-actions",
-              "product/score-attribution"
+              "pages/workspaces",
+              "pages/health-score",
+              "pages/sentiment"
             ]
           }
         ]
@@ -82,12 +77,7 @@
           {
             "group": "Integrations",
             "pages": [
-              "integrations/overview",
-              "integrations/google-workspace",
-              "integrations/gmail",
-              "integrations/slack",
-              "integrations/hubspot",
-              "integrations/intercom"
+              "integrations/overview"
             ]
           },
         ]

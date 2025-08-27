@@ -1,0 +1,30 @@
+<svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="200" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  
+  <!-- Header -->
+  <rect x="0" y="0" width="400" height="40" fill="#0ea5e9"/>
+  <text x="20" y="25" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Acme Corp - Client Profile</text>
+  
+  <!-- Health Score -->
+  <circle cx="60" cy="80" r="25" fill="#22c55e"/>
+  <text x="52" y="86" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">92</text>
+  
+  <!-- Client Info -->
+  <text x="100" y="65" fill="#1f2937" font-family="Arial, sans-serif" font-size="12" font-weight="bold">MRR: $15,000</text>
+  <text x="100" y="80" fill="#6b7280" font-family="Arial, sans-serif" font-size="10">Renewal: March 15, 2025</text>
+  <text x="100" y="95" fill="#6b7280" font-family="Arial, sans-serif" font-size="10">CSM: Sarah Johnson</text>
+  
+  <!-- Recent Interactions -->
+  <text x="20" y="125" fill="#1f2937" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Recent Interactions</text>
+  
+  <rect x="20" y="135" width="360" height="20" fill="#ecfccb"/>
+  <circle cx="30" cy="145" r="3" fill="#22c55e"/>
+  <text x="40" y="149" fill="#1f2937" font-family="Arial, sans-serif" font-size="9">Email: Positive feedback on new features</text>
+  <text x="320" y="149" fill="#6b7280" font-family="Arial, sans-serif" font-size="8">2 days ago</text>
+  
+  <rect x="20" y="160" width="360" height="20" fill="#fef3c7"/>
+  <circle cx="30" cy="170" r="3" fill="#eab308"/>
+  <text x="40" y="174" fill="#1f2937" font-family="Arial, sans-serif" font-size="9">Support: Question about billing</text>
+  <text x="320" y="174" fill="#6b7280" font-family="Arial, sans-serif" font-size="8">5 days ago</text>
+</svg>
