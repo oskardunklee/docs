@@ -43,7 +43,7 @@
               "getting-started/first-login",
               "getting-started/dashboard-overview"
             ]
-          },
+          }
         ]
       },
       {
@@ -79,7 +79,7 @@
             "pages": [
               "integrations/overview"
             ]
-          },
+          }
         ]
       },
       {
