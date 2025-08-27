@@ -1,0 +1,270 @@
+---
+title: 'Integrations Overview'
+description: 'Connect Stanna with your existing tools for seamless data flow'
+---
+
+## Available Integrations
+
+Stanna integrates with your existing customer success stack to provide a unified view of client relationships.
+
+<CardGroup cols={2}>
+  <Card title="HubSpot" icon="hubspot" href="/integrations/hubspot">
+    Sync contacts, companies, deals, and activities from your CRM
+  </Card>
+  
+  <Card title="Intercom" icon="intercom" href="/integrations/intercom">
+    Import conversations, contacts, and support ticket data
+  </Card>
+  
+  <Card title="Google Workspace" icon="google" href="/integrations/google">
+    Connect Gmail and Calendar for comprehensive interaction tracking
+  </Card>
+  
+  <Card title="CSV Import" icon="file-csv" href="/features/client-management#import-clients">
+    Upload client data manually via spreadsheet templates
+  </Card>
+</CardGroup>
+
+## How Integrations Work
+
+### Data Sync Process
+1. **Initial Connection**: Authenticate with your external tool
+2. **Permission Setup**: Grant Stanna access to relevant data
+3. **Historical Import**: Sync existing data (up to 2 years)
+4. **Ongoing Sync**: Automatic updates every 15-30 minutes
+5. **Real-time Updates**: Critical events sync immediately
+
+### Data Mapping
+<Info>
+Stanna automatically maps common fields but allows customization for unique setups.
+</Info>
+
+**Standard field mapping**:
+- **Company Name** → Client Name
+- **Domain/Website** → Client Domain  
+- **Deal Value** → MRR Amount
+- **Close Date** → Renewal Date
+- **Contact Owner** → CSM Owner
+
+## Integration Benefits by Role
+
+<Tabs>
+  <Tab title="CS Professional">
+    **Automated data entry**:
+    - Client interactions appear automatically
+    - Tasks created from email threads
+    - Meeting notes imported from calendar
+    
+    **Complete timeline**:
+    - All touchpoints in one place
+    - Historical context for every client
+    - Sentiment tracking across channels
+  </Tab>
+  
+  <Tab title="CS Director">
+    **Team oversight**:
+    - Activity tracking across all CSMs
+    - Pipeline health from CRM data
+    - Support ticket escalation patterns
+    
+    **Performance analytics**:
+    - Response time metrics
+    - Client engagement patterns
+    - Revenue pipeline accuracy
+  </Tab>
+  
+  <Tab title="Leadership">
+    **Strategic insights**:
+    - Cross-platform client health
+    - Revenue risk identification
+    - Growth opportunity analysis
+    
+    **Executive reporting**:
+    - Unified KPIs across all tools
+    - Trend analysis and forecasting
+    - ROI measurement by channel
+  </Tab>
+</Tabs>
+
+## Setting Up Integrations
+
+### Prerequisites
+Before connecting integrations:
+- [ ] Admin access to the external tool
+- [ ] Clear understanding of data you want to sync
+- [ ] Team consensus on field mapping
+- [ ] Backup of existing data (recommended)
+
+### General Setup Process
+<Steps>
+  <Step title="Navigate to Integrations">
+    Go to **Settings** → **Integrations** in Stanna
+  </Step>
+  
+  <Step title="Choose Integration">
+    Click **Connect** next to your desired integration
+  </Step>
+  
+  <Step title="Authenticate">
+    Log in to your external account and grant permissions
+  </Step>
+  
+  <Step title="Configure Mapping">
+    Review and adjust field mappings as needed
+  </Step>
+  
+  <Step title="Start Sync">
+    Begin initial data import and monitor progress
+  </Step>
+</Steps>
+
+### Best Practices
+- **Start with one integration** to understand the process
+- **Test with small data sets** before full sync
+- **Document custom mappings** for team reference
+- **Monitor initial sync** for any data inconsistencies
+- **Train team** on new data sources and workflows
+
+## Data Quality & Management
+
+### Ensuring Clean Data
+<AccordionGroup>
+  <Accordion title="Duplicate Prevention">
+    **Company matching** by domain:
+    - Stanna matches companies primarily by domain
+    - Clean up domain variations (www, subdomains) in source systems
+    - Use merge tools for any duplicates that slip through
+    
+    **Contact deduplication**:
+    - Multiple contacts per company are preserved
+    - Email addresses used for contact matching
+    - Manual merge available for edge cases
+  </Accordion>
+  
+  <Accordion title="Data Validation">
+    **Automatic validation**:
+    - Invalid email formats flagged
+    - Missing required fields highlighted
+    - Unusual data patterns reported
+    
+    **Manual review process**:
+    - Weekly data quality reports
+    - Flagged records for human review
+    - Bulk correction tools available
+  </Accordion>
+  
+  <Accordion title="Historical Data">
+    **Sync timeframe**:
+    - Default: 2 years of historical data
+    - Configurable: 6 months to 5 years
+    - Selective sync: Choose specific data types
+    
+    **Performance impact**:
+    - Large syncs may take several hours
+    - Background processing doesn't affect usage
+    - Progress tracking available in settings
+  </Accordion>
+</AccordionGroup>
+
+### Managing Data Conflicts
+When data conflicts arise between systems:
+
+1. **Source priority**: Configure which system is authoritative for each field
+2. **Manual override**: Always possible for individual records
+3. **Conflict reports**: Weekly summaries of discrepancies
+4. **Sync preferences**: Choose merge behavior for specific scenarios
+
+## Integration Troubleshooting
+
+### Common Issues
+<AccordionGroup>
+  <Accordion title="Integration shows as disconnected">
+    **Causes**:
+    - API credentials expired
+    - Permissions revoked in source system
+    - Network connectivity issues
+    
+    **Solutions**:
+    1. Click "Reconnect" in integration settings
+    2. Verify account permissions haven't changed
+    3. Check for any recent password/security changes
+  </Accordion>
+  
+  <Accordion title="Data not syncing or outdated">
+    **Immediate checks**:
+    1. Verify last sync time in integration dashboard
+    2. Check sync status for any error messages
+    3. Confirm data exists in source system
+    
+    **Troubleshooting steps**:
+    1. Trigger manual sync
+    2. Review error logs if available
+    3. Test with a single record
+    4. Contact support with specific examples
+  </Accordion>
+  
+  <Accordion title="Wrong data in fields">
+    **Field mapping issues**:
+    1. Review field mapping in integration settings
+    2. Check data format in source system
+    3. Look for custom fields or naming conflicts
+    
+    **Correction process**:
+    1. Fix mapping configuration
+    2. Re-sync affected data
+    3. Manually correct any persistent issues
+  </Accordion>
+</AccordionGroup>
+
+## Security & Permissions
+
+### Data Access
+- **Read-only access**: Stanna never modifies data in connected systems
+- **Selective permissions**: Grant access only to necessary data types
+- **Audit trail**: All data access logged for security review
+
+### Authentication Methods
+- **OAuth 2.0**: Secure, revocable access tokens
+- **API keys**: For systems without OAuth support
+- **SSO integration**: Enterprise plans support SAML/OIDC
+
+### Compliance
+- **SOC 2 Type II**: All integrations meet security standards
+- **GDPR compliant**: Data processing agreements in place
+- **Data residency**: Choose where integration data is processed
+
+## Coming Soon
+
+<CardGroup cols={2}>
+  <Card title="Salesforce" icon="salesforce">
+    Full CRM integration for Salesforce users
+  </Card>
+  
+  <Card title="Slack" icon="slack">
+    Client mentions and team collaboration
+  </Card>
+  
+  <Card title="Zoom" icon="video">
+    Meeting recordings and sentiment analysis
+  </Card>
+  
+  <Card title="Microsoft 365" icon="microsoft">
+    Outlook and Teams integration
+  </Card>
+</CardGroup>
+
+<Info>
+**Want to request an integration?** Email [integrations@stanna.io](mailto:integrations@stanna.io) with your specific needs and use case.
+</Info>
+
+## Getting Help
+
+<CardGroup cols={2}>
+  <Card title="Setup Assistance" icon="handshake">
+    Free 30-minute setup calls available for all new integrations
+  </Card>
+  
+  <Card title="Technical Support" icon="wrench">
+    Integration issues? Email [support@stanna.io](mailto:support@stanna.io) with integration name and error details
+  </Card>
+</CardGroup>

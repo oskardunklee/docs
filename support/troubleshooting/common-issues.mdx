@@ -1,0 +1,231 @@
+---
+title: 'Common Issues & Solutions'
+description: 'Quick solutions to the most frequently encountered problems in Stanna'
+---
+
+## Login & Account Issues
+
+<AccordionGroup>
+  <Accordion title="Can't log into my account">
+    **Symptoms**: Invalid credentials error or login page redirect
+    
+    **Solutions**:
+    1. **Reset your password**: Click "Forgot Password" and check your email
+    2. **Check your email address**: Ensure you're using the correct email
+    3. **Clear browser cache**: Try incognito/private browsing mode
+    4. **Check workspace**: If you're part of multiple workspaces, ensure you're selecting the right one
+    
+    **Still stuck?** Contact [support@stanna.io](mailto:support@stanna.io) with your email address.
+  </Accordion>
+  
+  <Accordion title="I don't see my assigned clients">
+    **Symptoms**: Dashboard shows no clients or missing clients you should see
+    
+    **Solutions**:
+    1. **Check assignments**: Ask your CS Director to verify client assignments
+    2. **Refresh data**: Click the refresh icon or reload the page
+    3. **Check filters**: Clear any active filters in your client view
+    4. **Verify permissions**: Ensure you have the correct role permissions
+  </Accordion>
+  
+  <Accordion title="Invited team member can't access workspace">
+    **Symptoms**: Team member received invitation but can't join workspace
+    
+    **Solutions**:
+    1. **Check spam folder**: Invitation emails sometimes end up in spam
+    2. **Resend invitation**: Go to Settings → Team and resend the invite
+    3. **Verify email address**: Ensure invitation was sent to correct email
+    4. **Check workspace limits**: Verify you haven't exceeded your plan's user limit
+  </Accordion>
+</AccordionGroup>
+
+## Data Sync Issues
+
+<AccordionGroup>
+  <Accordion title="Integration not syncing data">
+    **Symptoms**: Missing clients, interactions, or outdated information from connected tools
+    
+    **Solutions**:
+    1. **Check connection status**: Go to Settings → Integrations and verify connection is active
+    2. **Verify permissions**: Ensure Stanna has proper access to your connected tool
+    3. **Manual sync**: Click "Sync Now" to trigger immediate data refresh
+    4. **Check sync timeline**: Review last sync time - some integrations sync every 30 minutes
+    5. **Verify data exists**: Confirm the missing data exists in your source system
+    
+    **Integration-specific checks**:
+    - **HubSpot**: Verify contact and deal permissions
+    - **Intercom**: Check conversation access settings
+    - **Google**: Confirm Gmail and Calendar permissions
+  </Accordion>
+  
+  <Accordion title="Duplicate clients appearing">
+    **Symptoms**: Same client company showing multiple times with different names/domains
+    
+    **Solutions**:
+    1. **Check domain variations**: Look for www vs non-www, different subdomains
+    2. **Review import data**: Verify CSV imports don't contain duplicates
+    3. **Merge clients**: Use the merge function in client settings
+    4. **Update integration mapping**: Ensure consistent company identification across tools
+    
+    **Prevention**: Always use consistent domain formats across all systems.
+  </Accordion>
+  
+  <Accordion title="Client data missing after sync">
+    **Symptoms**: Clients exist but missing MRR, contact info, or other details
+    
+    **Solutions**:
+    1. **Check field mapping**: Verify integration field mapping in Settings
+    2. **Review source data**: Confirm data exists in the connected system
+    3. **Manual data entry**: Add missing information directly in Stanna
+    4. **Re-sync specific client**: Use the individual client sync option
+  </Accordion>
+</AccordionGroup>
+
+## Health Score & Sentiment Issues
+
+<AccordionGroup>
+  <Accordion title="Health scores seem inaccurate">
+    **Symptoms**: Client health scores don't match your perception of the relationship
+    
+    **Solutions**:
+    1. **Review interaction history**: Check if all communications are being captured
+    2. **Add manual interactions**: Log missed calls, meetings, or conversations
+    3. **Provide sentiment feedback**: Correct sentiment scores on individual interactions
+    4. **Check integration coverage**: Ensure all communication channels are connected
+    5. **Allow learning time**: New accounts need 2-4 weeks of data for accurate scoring
+    
+    **Adjustment process**:
+    - Click on any interaction to adjust its sentiment score
+    - Add context notes to help the AI learn your business patterns
+    - Health scores will recalculate within 24 hours
+  </Accordion>
+  
+  <Accordion title="Sentiment analysis is wrong">
+    **Symptoms**: Individual interactions showing incorrect positive/negative sentiment
+    
+    **Solutions**:
+    1. **Manual correction**: Click the sentiment score and adjust it
+    2. **Add context**: Include notes about why the sentiment should be different
+    3. **Review interaction content**: Ensure the full message was captured
+    4. **Industry-specific language**: AI may misinterpret technical jargon
+    
+    **Improving accuracy**:
+    - Regularly correct obviously wrong sentiment scores
+    - Add notes explaining context (e.g., "positive feedback on feature request")
+    - The system learns from your corrections over time
+  </Accordion>
+</AccordionGroup>
+
+## Task & Notification Issues
+
+<AccordionGroup>
+  <Accordion title="Not receiving email notifications">
+    **Symptoms**: Missing alerts for due tasks, at-risk clients, or system updates
+    
+    **Solutions**:
+    1. **Check notification settings**: Go to Settings → Notifications
+    2. **Verify email address**: Ensure notifications are sent to correct email
+    3. **Check spam/junk folders**: Look for Stanna emails in filtered folders
+    4. **Whitelist domain**: Add @stanna.io to your email whitelist
+    5. **Test notifications**: Use the "Send Test Email" feature
+  </Accordion>
+  
+  <Accordion title="Tasks not appearing or disappearing">
+    **Symptoms**: Created tasks don't show up or completed tasks still appear
+    
+    **Solutions**:
+    1. **Refresh the page**: Simple browser refresh often resolves display issues
+    2. **Check filters**: Ensure task view isn't filtered by date, status, or assignment
+    3. **Verify task status**: Confirm task completion was saved properly
+    4. **Check assignment**: Ensure task is assigned to correct person
+    5. **Clear browser cache**: Try incognito mode to rule out caching issues
+  </Accordion>
+</AccordionGroup>
+
+## Performance & Loading Issues
+
+<AccordionGroup>
+  <Accordion title="Stanna is loading slowly">
+    **Symptoms**: Pages take a long time to load, dashboard widgets spinning
+    
+    **Solutions**:
+    1. **Check internet connection**: Verify your network speed and stability
+    2. **Clear browser cache**: Delete stored data and reload
+    3. **Try different browser**: Test Chrome, Firefox, Safari, or Edge
+    4. **Disable browser extensions**: Ad blockers can sometimes interfere
+    5. **Check for updates**: Ensure your browser is current
+    
+    **If problems persist**: Report performance issues to support with:
+    - Browser type and version
+    - Operating system
+    - Specific pages that are slow
+    - Time of day when issues occur
+  </Accordion>
+  
+  <Accordion title="Dashboard widgets not loading">
+    **Symptoms**: Empty widgets, error messages, or spinning indicators that don't resolve
+    
+    **Solutions**:
+    1. **Refresh individual widgets**: Click the refresh icon on each widget
+    2. **Reset dashboard**: Use dashboard settings to reset to default layout
+    3. **Check data permissions**: Ensure you have access to the underlying data
+    4. **Browser compatibility**: Try a different browser or update current one
+  </Accordion>
+</AccordionGroup>
+
+## Search & Filtering Problems
+
+<AccordionGroup>
+  <Accordion title="Can't find specific clients or data">
+    **Symptoms**: Search returns no results for clients you know exist
+    
+    **Solutions**:
+    1. **Check spelling**: Verify exact company names and domains
+    2. **Use partial search**: Try searching for part of the company name
+    3. **Clear filters**: Remove any active filters that might hide results
+    4. **Search by domain**: Try searching by website domain instead of name
+    5. **Check client assignments**: Ensure you have access to those specific clients
+  </Accordion>
+  
+  <Accordion title="Filters not working correctly">
+    **Symptoms**: Filter results don't match expected criteria
+    
+    **Solutions**:
+    1. **Refresh data**: Ensure filters are working on current data
+    2. **Check date ranges**: Verify date filters are set correctly
+    3. **Clear and reapply**: Remove all filters and add them back one by one
+    4. **Review filter logic**: Some filters use AND logic, others use OR
+  </Accordion>
+</AccordionGroup>
+
+## Getting Additional Help
+
+If these solutions don't resolve your issue:
+
+<CardGroup cols={2}>
+  <Card title="Contact Support" icon="envelope">
+    Email [support@stanna.io](mailto:support@stanna.io) with:
+    - Detailed description of the issue
+    - Steps you've already tried
+    - Screenshots if helpful
+    - Browser and operating system info
+  </Card>
+  
+  <Card title="Schedule a Call" icon="phone">
+    For complex issues, request a screen-share session:
+    - Include "Screen Share Request" in subject
+    - Provide your available times
+    - List specific issues to address
+  </Card>
+</CardGroup>
+
+## Preventing Common Issues
+
+<Tip>
+**Best practices to avoid problems**:
+- Keep integrations connected and permissions current
+- Regularly update client data and review health scores
+- Log important interactions manually when needed  
+- Use consistent naming conventions across all tools
+- Set up proper notification preferences from day one
+</Tip>

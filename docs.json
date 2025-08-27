@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Stanna Help Center",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -11,58 +11,112 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Getting Started",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Quick Start",
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "getting-started/setup",
+              "getting-started/first-login"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Basic Concepts",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "getting-started/understanding-stanna",
+              "getting-started/dashboard-overview",
+              "getting-started/user-roles"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "User Guides",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "For CS Professionals",
             "pages": [
-              "api-reference/introduction"
+              "user-guides/cs-pro/client-management",
+              "user-guides/cs-pro/interaction-tracking",
+              "user-guides/cs-pro/task-management",
+              "user-guides/cs-pro/sentiment-analysis"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "For CS Directors",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "user-guides/director/team-overview",
+              "user-guides/director/performance-metrics",
+              "user-guides/director/client-portfolio"
+            ]
+          },
+          {
+            "group": "For Leadership",
+            "pages": [
+              "user-guides/leadership/executive-dashboard",
+              "user-guides/leadership/strategic-insights",
+              "user-guides/leadership/revenue-tracking"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Features",
+        "groups": [
+          {
+            "group": "Core Features",
+            "pages": [
+              "features/client-management",
+              "features/interaction-tracking",
+              "features/sentiment-scoring",
+              "features/task-automation"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "integrations/overview",
+              "integrations/hubspot",
+              "integrations/intercom",
+              "integrations/google"
+            ]
+          },
+          {
+            "group": "Advanced Features",
+            "pages": [
+              "features/upcoming-events",
+              "features/stakeholder-management",
+              "features/reporting"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Support",
+        "groups": [
+          {
+            "group": "Troubleshooting",
+            "pages": [
+              "support/troubleshooting/common-issues",
+              "support/troubleshooting/integration-problems",
+              "support/troubleshooting/data-sync"
+            ]
+          },
+          {
+            "group": "FAQ",
+            "pages": [
+              "support/faq/general",
+              "support/faq/billing",
+              "support/faq/integrations"
+            ]
+          },
+          {
+            "group": "Account Management",
+            "pages": [
+              "support/billing",
+              "support/settings",
+              "support/team-management"
             ]
           }
         ]
@@ -71,19 +125,14 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "Contact Support",
+          "href": "mailto:support@stanna.io",
+          "icon": "envelope"
         },
         {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "Feature Requests",
+          "href": "mailto:feedback@stanna.io",
+          "icon": "lightbulb"
         }
       ]
     }
@@ -96,13 +145,13 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@stanna.io"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Login to Stanna",
+      "href": "https://app.stanna.io"
     }
   },
   "contextual": {
@@ -119,9 +168,8 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/stanna_io",
+      "linkedin": "https://linkedin.com/company/stanna"
     }
   }
 }

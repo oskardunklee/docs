@@ -1,0 +1,228 @@
+---
+title: 'Client Management'
+description: 'Comprehensive guide to managing your client portfolio in Stanna'
+---
+
+## Overview
+
+Client management is the heart of Stanna. Every client in your portfolio gets a detailed profile that tracks interactions, sentiment, revenue, and relationship health automatically.
+
+## Client Profiles
+
+Each client profile contains:
+
+### Basic Information
+- **Company Name & Domain**: Primary identifiers
+- **MRR (Monthly Recurring Revenue)**: Current subscription value
+- **Tier**: Enterprise, Mid-Market, SMB, etc.
+- **Lifecycle Stage**: Onboarding, Active, Renewal, etc.
+- **CSM Owner**: Assigned customer success manager
+
+### Health Metrics
+- **Sentiment Score**: AI-powered relationship health (0-100)
+- **Last Interaction**: Most recent touchpoint date
+- **Interaction Frequency**: Communication patterns
+- **Renewal Date**: Next contract milestone
+
+## Adding Clients
+
+<Tabs>
+  <Tab title="Manual Entry">
+    1. Navigate to **Clients** in the main menu
+    2. Click **Add Client**
+    3. Fill in the required information:
+       - Company name (required)
+       - Domain (required) 
+       - MRR amount
+       - Renewal date
+       - Assigned CSM
+    4. Click **Save Client**
+  </Tab>
+  
+  <Tab title="CSV Import">
+    1. Go to **Clients** → **Import**
+    2. Download the CSV template
+    3. Fill in your client data with these columns:
+       - `name` (required)
+       - `domain` (required)
+       - `mrr` (optional)
+       - `renewal_date` (optional, format: YYYY-MM-DD)
+       - `tier` (optional)
+       - `csm_owner` (optional)
+    4. Upload your completed CSV file
+    5. Review and confirm the import
+  </Tab>
+  
+  <Tab title="Integration Sync">
+    Clients automatically sync from connected integrations:
+    - **HubSpot**: Companies with active deals
+    - **Intercom**: Companies with support conversations
+    - **Google**: Contacts from Gmail interactions
+  </Tab>
+</Tabs>
+
+## Client Health Scoring
+
+Stanna automatically calculates a health score (0-100) based on:
+
+<AccordionGroup>
+  <Accordion title="Interaction Patterns" icon="comments">
+    - Frequency of communications
+    - Response times from client
+    - Types of interactions (support vs. strategic)
+  </Accordion>
+  
+  <Accordion title="Sentiment Analysis" icon="heart">
+    - Email tone analysis
+    - Support ticket sentiment
+    - Meeting notes sentiment
+  </Accordion>
+  
+  <Accordion title="Engagement Metrics" icon="chart-line">
+    - Product usage (if integrated)
+    - Meeting attendance
+    - Response to outreach
+  </Accordion>
+  
+  <Accordion title="Business Indicators" icon="dollar-sign">
+    - Payment history
+    - Renewal timing
+    - Expansion opportunities
+  </Accordion>
+</AccordionGroup>
+
+### Health Score Ranges
+- **🔴 0-40**: At Risk - Immediate attention needed
+- **🟡 41-70**: Healthy - Monitor regularly  
+- **🟢 71-100**: Thriving - Expansion opportunity
+
+## Managing Client Data
+
+### Editing Client Information
+1. Click on any client name to open their profile
+2. Click the **Edit** button in the top right
+3. Update any field and click **Save**
+
+### Adding Custom Fields
+You can add custom fields for your specific business needs:
+1. Go to **Settings** → **Client Fields**
+2. Click **Add Custom Field**
+3. Choose field type (text, number, date, dropdown)
+4. Set field name and options
+5. Apply to existing clients if desired
+
+### Bulk Operations
+Select multiple clients to perform bulk actions:
+- **Reassign CSM**: Change ownership across multiple clients
+- **Update Tier**: Bulk categorization changes
+- **Add Tags**: Apply labels to groups of clients
+- **Export Data**: Download client information
+
+## Client Interactions
+
+### Viewing Interaction History
+Each client profile shows a complete timeline of interactions:
+- **Emails**: Sent and received communications
+- **Support Tickets**: Help desk interactions
+- **Meetings**: Calendar events and notes
+- **Phone Calls**: Logged conversations
+
+### Adding Manual Interactions
+1. Open any client profile
+2. Click **Add Interaction**
+3. Select interaction type:
+   - Email
+   - Phone call
+   - Meeting
+   - Note
+4. Add details and sentiment
+5. Save the interaction
+
+<Info>
+**Pro Tip**: Add context to manual interactions to improve sentiment analysis accuracy. Include outcomes and next steps.
+</Info>
+
+## Stakeholder Management
+
+Track multiple contacts within each client organization:
+
+### Adding Stakeholders
+1. In the client profile, scroll to **Stakeholders**
+2. Click **Add Stakeholder**
+3. Enter contact information:
+   - Name and title
+   - Email address
+   - Role/department
+   - Influence level
+4. Save the stakeholder
+
+### Stakeholder Insights
+- **Sentiment Average**: Relationship health with each contact
+- **Interaction History**: Communications with specific stakeholders
+- **Influence Mapping**: Decision-maker identification
+
+## Client Segmentation
+
+### Using Tags
+Organize clients with custom tags:
+- **Industry tags**: SaaS, Manufacturing, Healthcare
+- **Size tags**: Enterprise, Mid-Market, SMB
+- **Status tags**: Onboarding, Active, Churned
+- **Custom tags**: Whatever fits your business
+
+### Filtering & Searching
+Use the filter panel to find specific clients:
+- **Health Score**: Show only at-risk clients
+- **MRR Range**: Filter by revenue size
+- **Renewal Date**: Upcoming renewals
+- **CSM Owner**: Your assigned clients
+- **Tags**: Custom categorization
+
+### Saved Views
+Create and save common filter combinations:
+1. Set up your filters
+2. Click **Save View**
+3. Name your view (e.g., "My At-Risk Clients")
+4. Access quickly from the Views dropdown
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Regular Reviews" icon="calendar">
+    Schedule weekly reviews of your client portfolio to identify trends and risks early.
+  </Card>
+  
+  <Card title="Accurate Data" icon="check-circle">
+    Keep client information current, especially MRR and renewal dates for accurate forecasting.
+  </Card>
+  
+  <Card title="Stakeholder Mapping" icon="users">
+    Maintain complete stakeholder lists with influence levels for effective relationship management.
+  </Card>
+  
+  <Card title="Interaction Logging" icon="pencil">
+    Log all meaningful interactions to maintain complete relationship context.
+  </Card>
+</CardGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Client not syncing from integration">
+    - Check if the client exists in your connected system
+    - Verify integration permissions and connection status
+    - Manually trigger a sync in Settings → Integrations
+  </Accordion>
+  
+  <Accordion title="Incorrect health score">
+    - Review recent interactions for sentiment accuracy
+    - Add manual interactions with correct sentiment
+    - Contact support if scores remain consistently wrong
+  </Accordion>
+  
+  <Accordion title="Missing client data">
+    - Check if data exists in the source system
+    - Verify field mapping in integration settings
+    - Manually add missing information if needed
+  </Accordion>
+</AccordionGroup>
