@@ -1,0 +1,17 @@
+---
+// pages/integrations/gmail.mdx
+title: "Gmail"
+description: "Read-only ingestion and quotas."
+icon: "inbox"
+---
+Gmail provides the primary interaction feed.
+
+**What we fetch**
+- Message metadata and short snippet
+- Thread participants and timestamps
+
+**What we never fetch**
+- Attachments and full bodies by default
+
+**Quotas**
+Respect Gmail daily and per-user quotas. If you hit `403: rateLimitExceeded`, see **Troubleshooting → Gmail quota**.

@@ -1,0 +1,21 @@
+---
+// pages/concepts/health-score.mdx
+title: "Health score"
+description: "Signals, weights, and attribution."
+icon: "activity"
+---
+The score ranges **0–100**. Default initial value is **50**.
+
+**Inputs**
+- Sentiment from recent interactions
+- Interaction velocity and direction
+- Renewal proximity and QBR cadence
+- Open tasks and SLA breaches
+- Custom tags (e.g., "High ARR")
+
+**Attribution**
+Each recalculation stores **drivers** with `reason`, `delta`, `count`, and `sample` timestamps. See **Score attribution** page.
+
+**Tuning**
+- **Settings → Risk thresholds** to define alert bands.
+- Per-workspace weights available via config file or API.

@@ -22,9 +22,7 @@
       "href": "https://app.gostanna.com"
     }
   },
-  "contextual": {
-    "options": ["copy", "view", "chatgpt", "claude", "perplexity", "mcp", "cursor", "vscode"]
-  },
+  "contextual": { "options": ["copy", "view", "chatgpt", "claude", "perplexity", "mcp", "cursor", "vscode"] },
   "styling": { "eyebrows": "breadcrumbs" },
   "navigation": {
     "global": {
@@ -124,19 +122,18 @@
       },
       {
         "tab": "API reference",
+        "openapi": "api-reference/openapi.json",
         "groups": [
           {
             "group": "Overview",
-            "openapi": "/openapi.json",
             "pages": [
-              "api/introduction",
-              "api/authentication",
-              "api/rate-limits"
+              "api-reference/introduction",
+              "api-reference/authentication",
+              "api-reference/rate-limits"
             ]
           },
           {
             "group": "Metrics",
-            "openapi": "/openapi.json",
             "pages": [
               "GET /metrics/summary",
               "GET /metrics/trends/health",
@@ -146,7 +143,6 @@
           },
           {
             "group": "Clients",
-            "openapi": "/openapi.json",
             "pages": [
               "GET /clients",
               "GET /clients/{id}",
@@ -157,7 +153,6 @@
           },
           {
             "group": "Integrations",
-            "openapi": "/openapi.json",
             "pages": [
               "GET /integrations",
               "POST /integrations/google/authorize",

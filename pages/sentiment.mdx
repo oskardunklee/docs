@@ -1,0 +1,11 @@
+---
+// pages/concepts/sentiment.mdx
+title: "Sentiment"
+description: "Lightweight lexicon sentiment on subjects and snippets."
+icon: "message-square"
+---
+Stanna computes a sentiment value **−2..2** per interaction using a curated lexicon on **subject** and a short **content snippet**. Direction matters:
+- inbound negative weighs more than outbound negative
+- recent messages weigh more than older ones
+
+You can override sentiment on any interaction from the UI.
