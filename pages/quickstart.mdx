@@ -1,0 +1,27 @@
+---
+// pages/quickstart.mdx
+title: "Quickstart"
+description: "Connect Google, ingest 90 days, see health in 10 minutes."
+icon: "rocket"
+---
+## 1) Sign in
+Go to **app.gostanna.com** and sign in with Google.
+
+## 2) Select workspace
+Stanna infers `workspaceId` from your email domain. You can override in **Settings → Workspace**.
+
+## 3) Connect Google
+Open **Integrations → Google Workspace** and grant:
+- `openid email profile`
+- `https://www.googleapis.com/auth/gmail.readonly`
+
+## 4) Backfill and sync
+Initial backfill fetches the **last 90 days** of emails by default. You can change the window in **Settings**.
+
+## 5) View dashboard
+Open **Dashboard** to see:
+- Health score
+- 7/30/90-day trends
+- Drivers and next-best actions
+
+<Tip>Allowlist **https://app.gostanna.com** and your custom domains in API CORS.</Tip>

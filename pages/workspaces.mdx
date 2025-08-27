@@ -1,0 +1,14 @@
+---
+// pages/concepts/workspaces.mdx
+title: "Workspaces"
+description: "Multi-tenant separation with workspaceId."
+icon: "building-2"
+---
+A **workspace** is an isolation boundary for all data.
+
+- Identifier: `workspaceId` (string). Default is your email domain (e.g., `spare.com`).
+- All API reads require `workspaceId`. Many list endpoints accept `?workspaceId=<id>`.
+- Uniqueness: `Client` has a composite unique key `{ workspaceId, domain }`.
+
+**Change workspace**
+- Go to **Settings → Workspace** to rename or map multiple domains (e.g., `spare.com`, `sparelabs.com`) to one workspace.

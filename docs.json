@@ -1,14 +1,36 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Stanna Help Center",
+  "name": "Stanna Docs",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#0EA5E9",
+    "light": "#7DD3FC",
+    "dark": "#0369A1"
   },
   "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "navbar": {
+    "links": [
+      { "label": "Support", "href": "mailto:support@gostanna.com" }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Open app",
+      "href": "https://app.gostanna.com"
+    }
+  },
+  "contextual": { "options": ["copy", "view", "chatgpt", "claude", "perplexity", "mcp", "cursor", "vscode"] },
+  "styling": { "eyebrows": "breadcrumbs" },
   "navigation": {
+    "global": {
+      "anchors": [
+        { "anchor": "Website", "href": "https://gostanna.com", "icon": "globe" },
+        { "anchor": "Open app", "href": "https://app.gostanna.com", "icon": "arrow-up-right-from-square" }
+      ]
+    },
     "tabs": [
       {
         "tab": "Getting Started",
@@ -18,15 +40,26 @@
             "pages": [
               "index",
               "getting-started/setup",
-              "getting-started/first-login"
+              "getting-started/first-login",
+              "getting-started/dashboard-overview"
             ]
           },
           {
-            "group": "Basic Concepts",
+            "group": "Core Concepts",
             "pages": [
-              "getting-started/understanding-stanna",
-              "getting-started/dashboard-overview",
-              "getting-started/user-roles"
+              "concepts/workspaces",
+              "concepts/health-score",
+              "concepts/sentiment"
+            ]
+          },
+          {
+            "group": "Setup & Configuration",
+            "pages": [
+              "setup/requirements",
+              "setup/environments",
+              "setup/domains",
+              "setup/cors",
+              "setup/sso"
             ]
           }
         ]
@@ -37,26 +70,20 @@
           {
             "group": "For CS Professionals",
             "pages": [
-              "user-guides/cs-pro/client-management",
-              "user-guides/cs-pro/interaction-tracking",
-              "user-guides/cs-pro/task-management",
-              "user-guides/cs-pro/sentiment-analysis"
+              "user-guides/cs-pro/client-management"
             ]
           },
           {
-            "group": "For CS Directors",
+            "group": "Using Stanna",
             "pages": [
-              "user-guides/director/team-overview",
-              "user-guides/director/performance-metrics",
-              "user-guides/director/client-portfolio"
-            ]
-          },
-          {
-            "group": "For Leadership",
-            "pages": [
-              "user-guides/leadership/executive-dashboard",
-              "user-guides/leadership/strategic-insights",
-              "user-guides/leadership/revenue-tracking"
+              "product/clients",
+              "product/segments",
+              "product/tags",
+              "product/tasks",
+              "product/upcoming-events",
+              "product/stakeholders",
+              "product/next-best-actions",
+              "product/score-attribution"
             ]
           }
         ]
@@ -67,27 +94,27 @@
           {
             "group": "Core Features",
             "pages": [
-              "features/client-management",
-              "features/interaction-tracking",
-              "features/sentiment-scoring",
-              "features/task-automation"
+              "features/client-management"
             ]
           },
           {
             "group": "Integrations",
             "pages": [
               "integrations/overview",
+              "integrations/google-workspace",
+              "integrations/gmail",
+              "integrations/slack",
               "integrations/hubspot",
-              "integrations/intercom",
-              "integrations/google"
+              "integrations/intercom"
             ]
           },
           {
-            "group": "Advanced Features",
+            "group": "Data & Ingestion",
             "pages": [
-              "features/upcoming-events",
-              "features/stakeholder-management",
-              "features/reporting"
+              "data/sources",
+              "data/backfill",
+              "data/sync-freshness",
+              "data/deletion-retention"
             ]
           }
         ]
@@ -96,80 +123,91 @@
         "tab": "Support",
         "groups": [
           {
+            "group": "Help & FAQ",
+            "pages": [
+              "support/faq/general",
+              "support/billing"
+            ]
+          },
+          {
             "group": "Troubleshooting",
             "pages": [
               "support/troubleshooting/common-issues",
-              "support/troubleshooting/integration-problems",
-              "support/troubleshooting/data-sync"
+              "troubleshooting/common-errors",
+              "troubleshooting/oauth",
+              "troubleshooting/gmail-quota"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Admin",
+        "groups": [
+          {
+            "group": "Workspace Admin",
+            "pages": [
+              "admin/roles-permissions",
+              "admin/billing",
+              "admin/audit-logs",
+              "admin/security-compliance"
             ]
           },
           {
-            "group": "FAQ",
+            "group": "Configuration",
             "pages": [
-              "support/faq/general",
-              "support/faq/billing",
-              "support/faq/integrations"
+              "admin/settings",
+              "admin/webhooks",
+              "admin/risk-thresholds",
+              "admin/notifications"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "api-reference/introduction",
+              "api-reference/authentication",
+              "api-reference/rate-limits"
             ]
           },
           {
-            "group": "Account Management",
+            "group": "Endpoints",
             "pages": [
-              "support/billing",
-              "support/settings",
-              "support/team-management"
+              "api-reference/endpoint/metrics-summary",
+              "api-reference/endpoint/metrics-trends-health",
+              "api-reference/endpoint/metrics-trends-sentiment",
+              "api-reference/endpoint/metrics-trends-interactions",
+              "api-reference/endpoint/clients-list",
+              "api-reference/endpoint/clients-get",
+              "api-reference/endpoint/clients-create",
+              "api-reference/endpoint/clients-update",
+              "api-reference/endpoint/clients-history",
+              "api-reference/endpoint/integrations-list",
+              "api-reference/endpoint/integrations-google-authorize",
+              "api-reference/endpoint/integrations-google-callback"
+            ]
+          },
+          {
+            "group": "Webhooks",
+            "pages": [
+              "webhooks/overview",
+              "webhooks/events/client.updated",
+              "webhooks/events/metric.calculated"
             ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Contact Support",
-          "href": "mailto:support@stanna.io",
-          "icon": "envelope"
-        },
-        {
-          "anchor": "Feature Requests",
-          "href": "mailto:feedback@stanna.io",
-          "icon": "lightbulb"
-        }
-      ]
-    }
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:support@stanna.io"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Login to Stanna",
-      "href": "https://app.stanna.io"
-    }
-  },
-  "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+    ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/stanna_io",
-      "linkedin": "https://linkedin.com/company/stanna"
+      "x": "https://x.com/gostanna",
+      "github": "https://github.com/gostanna",
+      "linkedin": "https://www.linkedin.com/company/gostanna"
     }
   }
 }
