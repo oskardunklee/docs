@@ -1,14 +1,38 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Stanna Docs",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#0EA5E9",
+    "light": "#7DD3FC",
+    "dark": "#0369A1"
   },
   "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "navbar": {
+    "links": [
+      { "label": "Support", "href": "mailto:support@gostanna.com" }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Open app",
+      "href": "https://app.gostanna.com"
+    }
+  },
+  "contextual": {
+    "options": ["copy", "view", "chatgpt", "claude", "perplexity", "mcp", "cursor", "vscode"]
+  },
+  "styling": { "eyebrows": "breadcrumbs" },
   "navigation": {
+    "global": {
+      "anchors": [
+        { "anchor": "Website", "href": "https://gostanna.com", "icon": "globe" },
+        { "anchor": "Open app", "href": "https://app.gostanna.com", "icon": "arrow-up-right-from-square" }
+      ]
+    },
     "tabs": [
       {
         "tab": "Guides",
@@ -18,31 +42,82 @@
             "pages": [
               "index",
               "quickstart",
-              "development"
+              "concepts/workspaces",
+              "concepts/health-score",
+              "concepts/sentiment"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Setup",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "setup/requirements",
+              "setup/environments",
+              "setup/domains",
+              "setup/cors",
+              "setup/sso"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Integrations",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "integrations/google-workspace",
+              "integrations/gmail",
+              "integrations/slack",
+              "integrations/hubspot",
+              "integrations/intercom"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Data & ingestion",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "data/sources",
+              "data/backfill",
+              "data/sync-freshness",
+              "data/deletion-retention"
+            ]
+          },
+          {
+            "group": "Using Stanna",
+            "pages": [
+              "product/clients",
+              "product/segments",
+              "product/tags",
+              "product/tasks",
+              "product/upcoming-events",
+              "product/stakeholders",
+              "product/next-best-actions",
+              "product/score-attribution"
+            ]
+          },
+          {
+            "group": "Troubleshooting",
+            "pages": [
+              "troubleshooting/common-errors",
+              "troubleshooting/oauth",
+              "troubleshooting/gmail-quota"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Admin",
+        "groups": [
+          {
+            "group": "Workspace admin",
+            "pages": [
+              "admin/roles-permissions",
+              "admin/billing",
+              "admin/audit-logs",
+              "admin/security-compliance"
+            ]
+          },
+          {
+            "group": "Configuration",
+            "pages": [
+              "admin/settings",
+              "admin/webhooks",
+              "admin/risk-thresholds",
+              "admin/notifications"
             ]
           }
         ]
@@ -51,77 +126,61 @@
         "tab": "API reference",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Overview",
+            "openapi": "/openapi.json",
             "pages": [
-              "api-reference/introduction"
+              "api/introduction",
+              "api/authentication",
+              "api/rate-limits"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Metrics",
+            "openapi": "/openapi.json",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "GET /metrics/summary",
+              "GET /metrics/trends/health",
+              "GET /metrics/trends/sentiment",
+              "GET /metrics/trends/interactions"
+            ]
+          },
+          {
+            "group": "Clients",
+            "openapi": "/openapi.json",
+            "pages": [
+              "GET /clients",
+              "GET /clients/{id}",
+              "POST /clients",
+              "PATCH /clients/{id}",
+              "GET /clients/{id}/history"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "openapi": "/openapi.json",
+            "pages": [
+              "GET /integrations",
+              "POST /integrations/google/authorize",
+              "GET /integrations/google/callback"
+            ]
+          },
+          {
+            "group": "Webhooks",
+            "pages": [
+              "webhooks/overview",
+              "webhooks/events/client.updated",
+              "webhooks/events/metric.calculated"
             ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
-  },
-  "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+    ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/gostanna",
+      "github": "https://github.com/gostanna",
+      "linkedin": "https://www.linkedin.com/company/gostanna"
     }
   }
 }
