@@ -44,24 +44,6 @@
               "getting-started/dashboard-overview"
             ]
           },
-          {
-            "group": "Core Concepts",
-            "pages": [
-              "concepts/workspaces",
-              "concepts/health-score",
-              "concepts/sentiment"
-            ]
-          },
-          {
-            "group": "Setup & Configuration",
-            "pages": [
-              "setup/requirements",
-              "setup/environments",
-              "setup/domains",
-              "setup/cors",
-              "setup/sso"
-            ]
-          }
         ]
       },
       {
@@ -108,15 +90,6 @@
               "integrations/intercom"
             ]
           },
-          {
-            "group": "Data & Ingestion",
-            "pages": [
-              "data/sources",
-              "data/backfill",
-              "data/sync-freshness",
-              "data/deletion-retention"
-            ]
-          }
         ]
       },
       {
@@ -132,75 +105,11 @@
           {
             "group": "Troubleshooting",
             "pages": [
-              "support/troubleshooting/common-issues",
-              "troubleshooting/common-errors",
-              "troubleshooting/oauth",
-              "troubleshooting/gmail-quota"
+              "support/troubleshooting/common-issues"
             ]
           }
         ]
       },
-      {
-        "tab": "Admin",
-        "groups": [
-          {
-            "group": "Workspace Admin",
-            "pages": [
-              "admin/roles-permissions",
-              "admin/billing",
-              "admin/audit-logs",
-              "admin/security-compliance"
-            ]
-          },
-          {
-            "group": "Configuration",
-            "pages": [
-              "admin/settings",
-              "admin/webhooks",
-              "admin/risk-thresholds",
-              "admin/notifications"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "Overview",
-            "pages": [
-              "api-reference/introduction",
-              "api-reference/authentication",
-              "api-reference/rate-limits"
-            ]
-          },
-          {
-            "group": "Endpoints",
-            "pages": [
-              "api-reference/endpoint/metrics-summary",
-              "api-reference/endpoint/metrics-trends-health",
-              "api-reference/endpoint/metrics-trends-sentiment",
-              "api-reference/endpoint/metrics-trends-interactions",
-              "api-reference/endpoint/clients-list",
-              "api-reference/endpoint/clients-get",
-              "api-reference/endpoint/clients-create",
-              "api-reference/endpoint/clients-update",
-              "api-reference/endpoint/clients-history",
-              "api-reference/endpoint/integrations-list",
-              "api-reference/endpoint/integrations-google-authorize",
-              "api-reference/endpoint/integrations-google-callback"
-            ]
-          },
-          {
-            "group": "Webhooks",
-            "pages": [
-              "webhooks/overview",
-              "webhooks/events/client.updated",
-              "webhooks/events/metric.calculated"
-            ]
-          }
-        ]
-      }
     ]
   },
   "footer": {
