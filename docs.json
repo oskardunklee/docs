@@ -125,7 +125,6 @@
         "groups": [
           {
             "group": "Overview",
-            "openapi": "api-reference/openapi.json",
             "pages": [
               "api-reference/introduction",
               "api-reference/authentication",
@@ -133,33 +132,20 @@
             ]
           },
           {
-            "group": "Metrics",
-            "openapi": "api-reference/openapi.json",
+            "group": "Endpoint examples",
             "pages": [
-              "GET /metrics/summary",
-              "GET /metrics/trends/health",
-              "GET /metrics/trends/sentiment",
-              "GET /metrics/trends/interactions"
-            ]
-          },
-          {
-            "group": "Clients",
-            "openapi": "api-reference/openapi.json",
-            "pages": [
-              "GET /clients",
-              "GET /clients/{id}",
-              "POST /clients",
-              "PATCH /clients/{id}",
-              "GET /clients/{id}/history"
-            ]
-          },
-          {
-            "group": "Integrations",
-            "openapi": "api-reference/openapi.json",
-            "pages": [
-              "GET /integrations",
-              "POST /integrations/google/authorize",
-              "GET /integrations/google/callback"
+              "api-reference/endpoint/metrics-summary",
+              "api-reference/endpoint/metrics-trends-health",
+              "api-reference/endpoint/metrics-trends-sentiment",
+              "api-reference/endpoint/metrics-trends-interactions",
+              "api-reference/endpoint/clients-list",
+              "api-reference/endpoint/clients-get",
+              "api-reference/endpoint/clients-create",
+              "api-reference/endpoint/clients-update",
+              "api-reference/endpoint/clients-history",
+              "api-reference/endpoint/integrations-list",
+              "api-reference/endpoint/integrations-google-authorize",
+              "api-reference/endpoint/integrations-google-callback"
             ]
           },
           {
