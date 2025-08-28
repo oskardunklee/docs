@@ -1,0 +1,194 @@
+<svg width="600" height="500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Glass effect gradients -->
+    <linearGradient id="glassCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.95)"/>
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0.85)"/>
+    </linearGradient>
+    
+    <!-- Background orbs -->
+    <radialGradient id="orbBlue" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:rgba(59,130,246,0.2)"/>
+      <stop offset="100%" style="stop-color:rgba(139,92,246,0.05)"/>
+    </radialGradient>
+    
+    <radialGradient id="orbGreen" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:rgba(16,185,129,0.15)"/>
+      <stop offset="100%" style="stop-color:rgba(20,184,166,0.05)"/>
+    </radialGradient>
+    
+    <!-- Health score gradients -->
+    <linearGradient id="healthGood" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+    
+    <linearGradient id="healthWarn" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
+    </linearGradient>
+    
+    <linearGradient id="healthBad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ef4444"/>
+      <stop offset="100%" style="stop-color:#dc2626"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="500" fill="#f8fafc"/>
+  
+  <!-- Floating background orbs -->
+  <ellipse cx="520" cy="80" rx="100" ry="80" fill="url(#orbBlue)"/>
+  <ellipse cx="100" cy="400" rx="80" ry="60" fill="url(#orbGreen)"/>
+  
+  <!-- Header Card -->
+  <rect x="20" y="20" width="560" height="80" rx="16" fill="url(#glassCard)" stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
+  <text x="40" y="48" fill="#1e293b" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Client Portfolio</text>
+  <text x="40" y="68" fill="#64748b" font-family="Arial, sans-serif" font-size="12">• 47 total • 3 at risk • 8 no recent contact</text>
+  
+  <!-- Add Clients button -->
+  <rect x="460" y="40" width="100" height="32" rx="8" fill="#3b82f6"/>
+  <text x="485" y="58" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">+ Add Clients</text>
+  
+  <!-- Metric Cards Row -->
+  <rect x="20" y="120" width="130" height="80" rx="16" fill="url(#glassCard)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
+  <text x="30" y="140" fill="#64748b" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Portfolio Health</text>
+  <text x="30" y="165" fill="#22c55e" font-family="Arial, sans-serif" font-size="28" font-weight="bold">76</text>
+  <rect x="100" y="175" width="35" height="14" rx="7" fill="#dcfce7"/>
+  <text x="107" y="184" fill="#166534" font-family="Arial, sans-serif" font-size="7" font-weight="bold">+8%</text>
+  
+  <rect x="170" y="120" width="130" height="80" rx="16" fill="url(#glassCard)" stroke="rgba(239,68,68,0.3)" stroke-width="1"/>
+  <text x="180" y="140" fill="#64748b" font-family="Arial, sans-serif" font-size="10" font-weight="bold">At Risk Clients</text>
+  <text x="180" y="165" fill="#ef4444" font-family="Arial, sans-serif" font-size="28" font-weight="bold">3</text>
+  <text x="180" y="185" fill="#64748b" font-family="Arial, sans-serif" font-size="9">≤40 score</text>
+  
+  <rect x="320" y="120" width="130" height="80" rx="16" fill="url(#glassCard)" stroke="rgba(251,191,36,0.3)" stroke-width="1"/>
+  <text x="330" y="140" fill="#64748b" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Stale Contacts</text>
+  <text x="330" y="165" fill="#f59e0b" font-family="Arial, sans-serif" font-size="28" font-weight="bold">8</text>
+  <text x="330" y="185" fill="#64748b" font-family="Arial, sans-serif" font-size="9">≥14 days</text>
+  
+  <rect x="470" y="120" width="110" height="80" rx="16" fill="url(#glassCard)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+  <text x="480" y="140" fill="#64748b" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Total MRR</text>
+  <text x="480" y="165" fill="#059669" font-family="Arial, sans-serif" font-size="20" font-weight="bold">$180K</text>
+  
+  <!-- Controls Bar -->
+  <rect x="20" y="220" width="560" height="50" rx="16" fill="url(#glassCard)" stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
+  
+  <!-- Search input -->
+  <rect x="30" y="235" width="200" height="20" rx="10" fill="rgba(248,250,252,0.8)" stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
+  <text x="40" y="247" fill="#94a3b8" font-family="Arial, sans-serif" font-size="9">🔍 Search clients...</text>
+  <text x="215" y="247" fill="#64748b" font-family="Arial, sans-serif" font-size="7">/</text>
+  
+  <!-- Tab buttons -->
+  <rect x="250" y="232" width="80" height="26" rx="13" fill="#3b82f6"/>
+  <text x="280" y="247" fill="white" font-family="Arial, sans-serif" font-size="8" font-weight="bold" text-anchor="middle">All Clients</text>
+  <rect x="340" y="232" width="80" height="26" rx="13" fill="rgba(255,255,255,0.6)" stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
+  <text x="370" y="247" fill="#64748b" font-family="Arial, sans-serif" font-size="8" font-weight="bold" text-anchor="middle">At Risk (≤40)</text>
+  <rect x="430" y="232" width="80" height="26" rx="13" fill="rgba(255,255,255,0.6)" stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
+  <text x="460" y="247" fill="#64748b" font-family="Arial, sans-serif" font-size="8" font-weight="bold" text-anchor="middle">Stale (≥14d)</text>
+  
+  <!-- Client Row 1 - TechFlow Solutions -->
+  <rect x="20" y="290" width="560" height="60" rx="16" fill="url(#glassCard)" stroke="rgba(226,232,240,0.3)" stroke-width="1"/>
+  
+  <!-- Avatar -->
+  <circle cx="50" cy="320" r="16" fill="#3b82f6"/>
+  <text x="50" y="325" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">T</text>
+  
+  <!-- Client Info -->
+  <text x="80" y="310" fill="#1e293b" font-family="Arial, sans-serif" font-size="14" font-weight="bold">TechFlow Solutions</text>
+  <text x="80" y="325" fill="#64748b" font-family="Arial, sans-serif" font-size="10">🌐 techflow.com</text>
+  <text x="80" y="340" fill="#64748b" font-family="Arial, sans-serif" font-size="9">👤 Sarah Johnson</text>
+  
+  <!-- Health Score -->
+  <text x="280" y="305" fill="#64748b" font-family="Arial, sans-serif" font-size="8" font-weight="bold">HEALTH</text>
+  <circle cx="290" cy="318" r="12" fill="url(#healthGood)"/>
+  <text x="290" y="322" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold" text-anchor="middle">84</text>
+  
+  <!-- Last Contact -->
+  <text x="320" y="305" fill="#64748b" font-family="Arial, sans-serif" font-size="8" font-weight="bold">LAST CONTACT</text>
+  <text x="320" y="318" fill="#1e293b" font-family="Arial, sans-serif" font-size="10" font-weight="bold">2d ago</text>
+  
+  <!-- MRR -->
+  <text x="390" y="305" fill="#64748b" font-family="Arial, sans-serif" font-size="8" font-weight="bold">MRR</text>
+  <text x="390" y="318" fill="#059669" font-family="Arial, sans-serif" font-size="11" font-weight="bold">$24,500</text>
+  
+  <!-- Renewal -->
+  <text x="450" y="305" fill="#64748b" font-family="Arial, sans-serif" font-size="8" font-weight="bold">RENEWAL</text>
+  <text x="450" y="318" fill="#1e293b" font-family="Arial, sans-serif" font-size="10">Mar 15, 2025</text>
+  
+  <!-- Actions -->
+  <rect x="520" y="308" width="25" height="18" rx="9" fill="rgba(255,255,255,0.8)" stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
+  <text x="527" y="318" fill="#64748b" font-family="Arial, sans-serif" font-size="7">View</text>
+  <rect x="550" y="308" width="25" height="18" rx="9" fill="rgba(59,130,246,0.1)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+  <text x="557" y="318" fill="#3b82f6" font-family="Arial, sans-serif" font-size="7">Timeline</text>
+  
+  <!-- Client Row 2 - DataFlow Ltd (At Risk) -->
+  <rect x="20" y="360" width="560" height="60" rx="16" fill="url(#glassCard)" stroke="rgba(239,68,68,0.2)" stroke-width="1"/>
+  
+  <!-- Avatar -->
+  <circle cx="50" cy="390" r="16" fill="#ef4444"/>
+  <text x="50" y="395" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">D</text>
+  
+  <!-- Client Info -->
+  <text x="80" y="380" fill="#1e293b" font-family="Arial, sans-serif" font-size="14" font-weight="bold">DataFlow Ltd</text>
+  <text x="80" y="395" fill="#64748b" font-family="Arial, sans-serif" font-size="10">🌐 dataflow.io</text>
+  <text x="80" y="410" fill="#64748b" font-family="Arial, sans-serif" font-size="9">👤 Mike Davis</text>
+  
+  <!-- Health Score (Bad) -->
+  <text x="280" y="375" fill="#64748b" font-family="Arial, sans-serif" font-size="8" font-weight="bold">HEALTH</text>
+  <circle cx="290" cy="388" r="12" fill="url(#healthBad)"/>
+  <text x="290" y="392" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold" text-anchor="middle">38</text>
+  
+  <!-- Last Contact -->
+  <text x="320" y="375" fill="#64748b" font-family="Arial, sans-serif" font-size="8" font-weight="bold">LAST CONTACT</text>
+  <text x="320" y="388" fill="#ef4444" font-family="Arial, sans-serif" font-size="10" font-weight="bold">21d ago</text>
+  
+  <!-- MRR -->
+  <text x="390" y="375" fill="#64748b" font-family="Arial, sans-serif" font-size="8" font-weight="bold">MRR</text>
+  <text x="390" y="388" fill="#059669" font-family="Arial, sans-serif" font-size="11" font-weight="bold">$8,000</text>
+  
+  <!-- Renewal -->
+  <text x="450" y="375" fill="#64748b" font-family="Arial, sans-serif" font-size="8" font-weight="bold">RENEWAL</text>
+  <text x="450" y="388" fill="#ef4444" font-family="Arial, sans-serif" font-size="10">Jan 30, 2025</text>
+  
+  <!-- Actions -->
+  <rect x="520" y="378" width="25" height="18" rx="9" fill="rgba(255,255,255,0.8)" stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
+  <text x="527" y="388" fill="#64748b" font-family="Arial, sans-serif" font-size="7">View</text>
+  <rect x="550" y="378" width="25" height="18" rx="9" fill="rgba(59,130,246,0.1)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+  <text x="557" y="388" fill="#3b82f6" font-family="Arial, sans-serif" font-size="7">Timeline</text>
+  
+  <!-- Client Row 3 - CloudSync Pro -->
+  <rect x="20" y="430" width="560" height="60" rx="16" fill="url(#glassCard)" stroke="rgba(226,232,240,0.3)" stroke-width="1"/>
+  
+  <!-- Avatar -->
+  <circle cx="50" cy="460" r="16" fill="#8b5cf6"/>
+  <text x="50" y="465" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">C</text>
+  
+  <!-- Client Info -->
+  <text x="80" y="450" fill="#1e293b" font-family="Arial, sans-serif" font-size="14" font-weight="bold">CloudSync Pro</text>
+  <text x="80" y="465" fill="#64748b" font-family="Arial, sans-serif" font-size="10">🌐 cloudsync.co</text>
+  <text x="80" y="480" fill="#64748b" font-family="Arial, sans-serif" font-size="9">👤 Alex Kim</text>
+  
+  <!-- Health Score (Warning) -->
+  <text x="280" y="445" fill="#64748b" font-family="Arial, sans-serif" font-size="8" font-weight="bold">HEALTH</text>
+  <circle cx="290" cy="458" r="12" fill="url(#healthWarn)"/>
+  <text x="290" y="462" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold" text-anchor="middle">52</text>
+  
+  <!-- Last Contact -->
+  <text x="320" y="445" fill="#64748b" font-family="Arial, sans-serif" font-size="8" font-weight="bold">LAST CONTACT</text>
+  <text x="320" y="458" fill="#1e293b" font-family="Arial, sans-serif" font-size="10" font-weight="bold">6d ago</text>
+  
+  <!-- MRR -->
+  <text x="390" y="445" fill="#64748b" font-family="Arial, sans-serif" font-size="8" font-weight="bold">MRR</text>
+  <text x="390" y="458" fill="#059669" font-family="Arial, sans-serif" font-size="11" font-weight="bold">$15,200</text>
+  
+  <!-- Renewal -->
+  <text x="450" y="445" fill="#64748b" font-family="Arial, sans-serif" font-size="8" font-weight="bold">RENEWAL</text>
+  <text x="450" y="458" fill="#1e293b" font-family="Arial, sans-serif" font-size="10">Apr 20, 2025</text>
+  
+  <!-- Actions -->
+  <rect x="520" y="448" width="25" height="18" rx="9" fill="rgba(255,255,255,0.8)" stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
+  <text x="527" y="458" fill="#64748b" font-family="Arial, sans-serif" font-size="7">View</text>
+  <rect x="550" y="448" width="25" height="18" rx="9" fill="rgba(59,130,246,0.1)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+  <text x="557" y="458" fill="#3b82f6" font-family="Arial, sans-serif" font-size="7">Timeline</text>
+</svg>

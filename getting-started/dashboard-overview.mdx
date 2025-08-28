@@ -13,32 +13,40 @@ The Stanna dashboard is your command center, displaying the most important infor
 
 ## Dashboard Layout
 
-### Key Metrics Bar
-At the top of your dashboard, you'll see:
-- **Active Clients**: Total clients in your portfolio
-- **At-Risk Accounts**: Clients with health scores below 70
-- **Tasks Due**: Outstanding action items
-- **This Month's Renewals**: Upcoming contract dates
+Your dashboard features a modern glassmorphism design with floating background orbs and glass-effect cards for optimal visual clarity.
 
-### Main Widgets
+### Key Performance Cards
+The main dashboard displays critical metrics in easy-to-scan cards:
 
 <CardGroup cols={2}>
-  <Card title="Client Health Overview" icon="heart-pulse">
-    Visual breakdown of your portfolio health with color-coded segments
+  <Card title="Average Health Score" icon="heart-pulse">
+    Your portfolio's overall health with trend indicators and percentage changes
   </Card>
   
-  <Card title="Recent Activity" icon="clock">
-    Latest client interactions, tasks completed, and system updates
+  <Card title="MRR at Risk" icon="exclamation-triangle">
+    Revenue from clients with health scores ≤40, showing immediate attention needed
   </Card>
   
-  <Card title="Revenue Pipeline" icon="dollar-sign">
-    MRR trends, renewal forecasts, and expansion opportunities
+  <Card title="Upcoming Renewals" icon="calendar">
+    Count and value of renewals in the next 30 days
   </Card>
   
-  <Card title="Task Queue" icon="list-check">
-    Your prioritized action items with due dates and client context
+  <Card title="Integration Health" icon="link">
+    Status of your Gmail, HubSpot, and Intercom connections with last sync times
   </Card>
 </CardGroup>
+
+### At-Risk Clients Table
+A dedicated section highlights clients needing immediate attention:
+- **Health scores ≤40**: Color-coded danger indicators
+- **Client details**: Name, MRR, assigned CSM
+- **Quick actions**: Direct links to client profiles
+
+### Real-time Updates
+The dashboard refreshes automatically and shows:
+- **Last updated**: Timestamp showing data freshness
+- **Time filters**: Toggle between 7-day and 30-day views
+- **Interactive elements**: Click any metric to drill down into details
 
 ## Customizing Your Dashboard
 
