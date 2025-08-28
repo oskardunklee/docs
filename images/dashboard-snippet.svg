@@ -1,31 +1,138 @@
-<svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Glass effect gradients -->
+    <linearGradient id="glassCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.95)"/>
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0.85)"/>
+    </linearGradient>
+    
+    <!-- Health score gradient -->
+    <linearGradient id="healthGood" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+    
+    <!-- Background orbs -->
+    <radialGradient id="orbBlue" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:rgba(59,130,246,0.3)"/>
+      <stop offset="100%" style="stop-color:rgba(59,130,246,0.05)"/>
+    </radialGradient>
+    
+    <radialGradient id="orbPurple" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:rgba(139,92,246,0.2)"/>
+      <stop offset="100%" style="stop-color:rgba(139,92,246,0.05)"/>
+    </radialGradient>
+  </defs>
+  
   <!-- Background -->
-  <rect width="400" height="200" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <rect width="600" height="400" fill="#f8fafc"/>
   
-  <!-- Header -->
-  <rect x="0" y="0" width="400" height="50" fill="#0ea5e9"/>
-  <text x="20" y="30" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Stanna Dashboard</text>
+  <!-- Floating background orbs -->
+  <ellipse cx="480" cy="80" rx="80" ry="80" fill="url(#orbBlue)"/>
+  <ellipse cx="120" cy="320" rx="60" ry="60" fill="url(#orbPurple)"/>
   
-  <!-- Health Score Cards -->
-  <rect x="20" y="70" width="80" height="60" fill="#22c55e" rx="8"/>
-  <text x="25" y="85" fill="white" font-family="Arial, sans-serif" font-size="10">Healthy</text>
-  <text x="25" y="105" fill="white" font-family="Arial, sans-serif" font-size="20" font-weight="bold">85</text>
-  <text x="25" y="120" fill="white" font-family="Arial, sans-serif" font-size="8">clients</text>
+  <!-- Header Glass Card -->
+  <rect x="20" y="20" width="560" height="60" rx="16" fill="url(#glassCard)" stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
+  <text x="40" y="45" fill="#1e293b" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Client Health Dashboard</text>
+  <text x="40" y="65" fill="#64748b" font-family="Arial, sans-serif" font-size="12">🕐 Last updated 2 minutes ago</text>
   
-  <rect x="120" y="70" width="80" height="60" fill="#eab308" rx="8"/>
-  <text x="125" y="85" fill="white" font-family="Arial, sans-serif" font-size="10">At Risk</text>
-  <text x="125" y="105" fill="white" font-family="Arial, sans-serif" font-size="20" font-weight="bold">12</text>
-  <text x="125" y="120" fill="white" font-family="Arial, sans-serif" font-size="8">clients</text>
+  <!-- Time filter buttons -->
+  <rect x="400" y="35" width="60" height="24" rx="12" fill="rgba(59,130,246,1)" stroke="none"/>
+  <text x="420" y="49" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">7 days</text>
+  <rect x="470" y="35" width="60" height="24" rx="12" fill="rgba(255,255,255,0.6)" stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
+  <text x="490" y="49" fill="#64748b" font-family="Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">30 days</text>
   
-  <rect x="220" y="70" width="80" height="60" fill="#ef4444" rx="8"/>
-  <text x="225" y="85" fill="white" font-family="Arial, sans-serif" font-size="10">Critical</text>
-  <text x="225" y="105" fill="white" font-family="Arial, sans-serif" font-size="20" font-weight="bold">3</text>
-  <text x="225" y="120" fill="white" font-family="Arial, sans-serif" font-size="8">clients</text>
+  <!-- Health Score Card (Large) -->
+  <rect x="20" y="100" width="280" height="120" rx="16" fill="url(#glassCard)" stroke="rgba(34,197,94,0.3)" stroke-width="2"/>
+  <text x="40" y="125" fill="#64748b" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Average Health Score</text>
+  <text x="40" y="155" fill="#1e293b" font-family="Arial, sans-serif" font-size="36" font-weight="bold">78</text>
+  <rect x="240" y="135" width="40" height="16" rx="8" fill="#dcfce7"/>
+  <text x="250" y="145" fill="#166534" font-family="Arial, sans-serif" font-size="8" font-weight="bold">+12%</text>
   
-  <!-- Client List Preview -->
-  <rect x="20" y="150" width="360" height="35" fill="white" stroke="#e2e8f0"/>
-  <circle cx="35" cy="167" r="6" fill="#22c55e"/>
-  <text x="50" y="160" fill="#1f2937" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Acme Corp</text>
-  <text x="50" y="175" fill="#6b7280" font-family="Arial, sans-serif" font-size="10">Health Score: 92 • Last Contact: 2 days ago</text>
-  <text x="320" y="170" fill="#059669" font-family="Arial, sans-serif" font-size="10">$15,000 MRR</text>
+  <!-- Mini trend line -->
+  <polyline points="40,180 70,175 100,170 130,165 160,172 190,168 220,165 250,160" 
+            fill="none" stroke="url(#healthGood)" stroke-width="2" opacity="0.8"/>
+  
+  <!-- MRR at Risk Card -->
+  <rect x="320" y="100" width="120" height="120" rx="16" fill="url(#glassCard)" stroke="rgba(251,191,36,0.3)" stroke-width="2"/>
+  <text x="330" y="120" fill="#64748b" font-family="Arial, sans-serif" font-size="10" font-weight="bold">MRR at Risk</text>
+  <rect x="400" y="110" width="25" height="14" rx="7" fill="#fbbf24"/>
+  <text x="407" y="119" fill="white" font-family="Arial, sans-serif" font-size="7" font-weight="bold">≤40</text>
+  <text x="330" y="145" fill="#1e293b" font-family="Arial, sans-serif" font-size="20" font-weight="bold">$24K</text>
+  <text x="330" y="165" fill="#64748b" font-family="Arial, sans-serif" font-size="9">3 clients at risk</text>
+  
+  <!-- Alert icon -->
+  <polygon points="360,185 370,200 350,200" fill="#f59e0b" opacity="0.6"/>
+  <circle cx="360" cy="195" r="2" fill="#f59e0b"/>
+  
+  <!-- Renewals Card -->
+  <rect x="460" y="100" width="120" height="120" rx="16" fill="url(#glassCard)" stroke="rgba(59,130,246,0.3)" stroke-width="2"/>
+  <text x="470" y="120" fill="#64748b" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Renewals (30d)</text>
+  <text x="470" y="145" fill="#1e293b" font-family="Arial, sans-serif" font-size="20" font-weight="bold">8</text>
+  <text x="470" y="165" fill="#64748b" font-family="Arial, sans-serif" font-size="9">$180K value</text>
+  
+  <!-- Calendar icon -->
+  <rect x="530" y="180" width="14" height="12" rx="2" fill="#3b82f6" opacity="0.6"/>
+  <rect x="532" y="175" width="2" height="4" fill="#3b82f6"/>
+  <rect x="538" y="175" width="2" height="4" fill="#3b82f6"/>
+  
+  <!-- At-Risk Clients Table -->
+  <rect x="20" y="240" width="270" height="140" rx="16" fill="url(#glassCard)" stroke="rgba(239,68,68,0.3)" stroke-width="1"/>
+  <text x="30" y="260" fill="#64748b" font-family="Arial, sans-serif" font-size="12" font-weight="bold">⚠️ At-Risk Accounts (≤40)</text>
+  <text x="240" y="260" fill="#3b82f6" font-family="Arial, sans-serif" font-size="9">View All →</text>
+  
+  <!-- Table headers -->
+  <text x="30" y="280" fill="#64748b" font-family="Arial, sans-serif" font-size="9" font-weight="bold">Client</text>
+  <text x="120" y="280" fill="#64748b" font-family="Arial, sans-serif" font-size="9" font-weight="bold">Health</text>
+  <text x="170" y="280" fill="#64748b" font-family="Arial, sans-serif" font-size="9" font-weight="bold">MRR</text>
+  <text x="220" y="280" fill="#64748b" font-family="Arial, sans-serif" font-size="9" font-weight="bold">Owner</text>
+  
+  <!-- Table rows -->
+  <rect x="30" y="290" width="240" height="18" fill="rgba(254,242,242,0.8)" rx="4"/>
+  <text x="35" y="301" fill="#1e293b" font-family="Arial, sans-serif" font-size="8" font-weight="bold">TechCorp Inc</text>
+  <circle cx="130" cy="299" r="8" fill="#ef4444"/>
+  <text x="128" y="302" fill="white" font-family="Arial, sans-serif" font-size="7" font-weight="bold">32</text>
+  <text x="175" y="301" fill="#1e293b" font-family="Arial, sans-serif" font-size="8">$12K</text>
+  <text x="225" y="301" fill="#64748b" font-family="Arial, sans-serif" font-size="8">Sarah J</text>
+  
+  <rect x="30" y="315" width="240" height="18" fill="rgba(255,255,255,0.4)" rx="4"/>
+  <text x="35" y="326" fill="#1e293b" font-family="Arial, sans-serif" font-size="8" font-weight="bold">DataFlow Ltd</text>
+  <circle cx="130" cy="324" r="8" fill="#f59e0b"/>
+  <text x="128" y="327" fill="white" font-family="Arial, sans-serif" font-size="7" font-weight="bold">38</text>
+  <text x="175" y="326" fill="#1e293b" font-family="Arial, sans-serif" font-size="8">$8K</text>
+  <text x="225" y="326" fill="#64748b" font-family="Arial, sans-serif" font-size="8">Mike D</text>
+  
+  <rect x="30" y="340" width="240" height="18" fill="rgba(255,255,255,0.4)" rx="4"/>
+  <text x="35" y="351" fill="#1e293b" font-family="Arial, sans-serif" font-size="8" font-weight="bold">CloudSync Pro</text>
+  <circle cx="130" cy="349" r="8" fill="#ef4444"/>
+  <text x="128" y="352" fill="white" font-family="Arial, sans-serif" font-size="7" font-weight="bold">28</text>
+  <text x="175" y="351" fill="#1e293b" font-family="Arial, sans-serif" font-size="8">$15K</text>
+  <text x="225" y="351" fill="#64748b" font-family="Arial, sans-serif" font-size="8">Alex K</text>
+  
+  <!-- Integration Status -->
+  <rect x="310" y="240" width="270" height="140" rx="16" fill="url(#glassCard)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
+  <text x="320" y="260" fill="#64748b" font-family="Arial, sans-serif" font-size="12" font-weight="bold">🔗 Integration Health</text>
+  
+  <!-- Gmail integration -->
+  <rect x="320" y="280" width="240" height="22" fill="rgba(34,197,94,0.1)" rx="8"/>
+  <circle cx="330" cy="291" r="4" fill="#22c55e"/>
+  <text x="340" y="294" fill="#1e293b" font-family="Arial, sans-serif" font-size="9" font-weight="bold">Gmail</text>
+  <rect x="520" y="287" width="35" height="12" rx="6" fill="#22c55e"/>
+  <text x="527" y="295" fill="white" font-family="Arial, sans-serif" font-size="7">Connected</text>
+  
+  <!-- HubSpot integration -->
+  <rect x="320" y="310" width="240" height="22" fill="rgba(34,197,94,0.1)" rx="8"/>
+  <circle cx="330" cy="321" r="4" fill="#22c55e"/>
+  <text x="340" y="324" fill="#1e293b" font-family="Arial, sans-serif" font-size="9" font-weight="bold">HubSpot</text>
+  <rect x="520" y="317" width="35" height="12" rx="6" fill="#22c55e"/>
+  <text x="527" y="325" fill="white" font-family="Arial, sans-serif" font-size="7">Connected</text>
+  
+  <!-- Intercom integration -->
+  <rect x="320" y="340" width="240" height="22" fill="rgba(156,163,175,0.1)" rx="8"/>
+  <circle cx="330" cy="351" r="4" fill="#9ca3af"/>
+  <text x="340" y="354" fill="#1e293b" font-family="Arial, sans-serif" font-size="9" font-weight="bold">Intercom</text>
+  <rect x="520" y="347" width="35" height="12" rx="6" fill="#9ca3af"/>
+  <text x="530" y="355" fill="white" font-family="Arial, sans-serif" font-size="7">Setup</text>
+  
+  <text x="320" y="375" fill="#64748b" font-family="Arial, sans-serif" font-size="8">Last sync: 5 minutes ago</text>
 </svg>
