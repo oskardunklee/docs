@@ -1,136 +1,263 @@
-<svg width="600" height="450" xmlns="http://www.w3.org/2000/svg">
+<svg width="800" height="650" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Glass effect gradients -->
+    <!-- Beautiful Page Background Gradient -->
+    <linearGradient id="pageBackground" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8fafc"/>
+      <stop offset="50%" style="stop-color:#e0f2fe"/>
+      <stop offset="100%" style="stop-color:#faf5ff"/>
+    </linearGradient>
+    
+    <!-- Primary Gradient -->
+    <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    
+    <!-- Success Gradient -->
+    <linearGradient id="successGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    
+    <!-- Warning Gradient -->
+    <linearGradient id="warningGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
+    </linearGradient>
+    
+    <!-- Floating Orb Gradients -->
+    <radialGradient id="orbBlue" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#3b82f6" stop-opacity="0.25"/>
+      <stop offset="100%" style="stop-color:#8b5cf6" stop-opacity="0.05"/>
+    </radialGradient>
+    
+    <radialGradient id="orbPurple" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#8b5cf6" stop-opacity="0.2"/>
+      <stop offset="100%" style="stop-color:#ec4899" stop-opacity="0.05"/>
+    </radialGradient>
+    
+    <!-- Glass Card Background -->
     <linearGradient id="glassCard" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:rgba(255,255,255,0.95)"/>
       <stop offset="100%" style="stop-color:rgba(255,255,255,0.85)"/>
     </linearGradient>
     
-    <!-- Background orbs -->
-    <radialGradient id="orbBlue" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" style="stop-color:rgba(59,130,246,0.25)"/>
-      <stop offset="100%" style="stop-color:rgba(59,130,246,0.05)"/>
-    </radialGradient>
+    <!-- Drop Shadows -->
+    <filter id="largeShadow">
+      <feDropShadow dx="0" dy="10" stdDeviation="15" flood-opacity="0.1"/>
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.05"/>
+    </filter>
     
-    <!-- Health score gradient -->
-    <linearGradient id="healthGood" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#22c55e"/>
-      <stop offset="100%" style="stop-color:#16a34a"/>
+    <filter id="cardShadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.1"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.06"/>
+    </filter>
+    
+    <!-- Text Gradient -->
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
     </linearGradient>
   </defs>
   
-  <!-- Background -->
-  <rect width="600" height="450" fill="#f8fafc"/>
+  <!-- Beautiful Page Background -->
+  <rect width="800" height="650" fill="url(#pageBackground)"/>
   
-  <!-- Floating background orb -->
-  <ellipse cx="500" cy="100" rx="100" ry="80" fill="url(#orbBlue)"/>
+  <!-- Floating Orbs -->
+  <ellipse cx="650" cy="100" rx="120" ry="100" fill="url(#orbBlue)" style="filter: blur(40px); opacity: 0.6;"/>
+  <ellipse cx="150" cy="500" rx="100" ry="80" fill="url(#orbPurple)" style="filter: blur(40px); opacity: 0.6;"/>
   
-  <!-- Header with breadcrumb -->
-  <text x="20" y="25" fill="#64748b" font-family="Arial, sans-serif" font-size="12">← Back to Clients</text>
+  <!-- Breadcrumb -->
+  <text x="32" y="32" fill="#64748b" font-family="Inter, sans-serif" font-size="12" font-weight="500">
+    ← Back to Clients
+  </text>
   
-  <!-- Client Header Card -->
-  <rect x="20" y="40" width="560" height="80" rx="16" fill="url(#glassCard)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
+  <!-- Main Client Header Card -->
+  <rect x="24" y="48" width="752" height="100" rx="24" fill="url(#glassCard)" 
+        stroke="rgba(34,197,94,0.3)" stroke-width="1" filter="url(#largeShadow)"/>
   
   <!-- Health Score Circle -->
-  <circle cx="70" cy="80" r="28" fill="none" stroke="#e2e8f0" stroke-width="4"/>
-  <circle cx="70" cy="80" r="28" fill="none" stroke="url(#healthGood)" stroke-width="4" 
-          stroke-dasharray="140" stroke-dashoffset="28" stroke-linecap="round"/>
-  <text x="70" y="88" fill="#22c55e" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle">84</text>
+  <circle cx="84" cy="98" r="32" fill="none" stroke="#e2e8f0" stroke-width="4"/>
+  <circle cx="84" cy="98" r="32" fill="none" stroke="url(#successGradient)" stroke-width="4" 
+          stroke-dasharray="160" stroke-dashoffset="32" stroke-linecap="round"/>
+  <text x="84" y="108" fill="#10b981" font-family="Inter, sans-serif" font-size="24" 
+        font-weight="800" text-anchor="middle">84</text>
   
-  <!-- Client Info -->
-  <text x="120" y="60" fill="#1e293b" font-family="Arial, sans-serif" font-size="24" font-weight="bold">TechFlow Solutions</text>
-  <text x="120" y="80" fill="#64748b" font-family="Arial, sans-serif" font-size="12">techflow.com • Enterprise</text>
+  <!-- Client Info Section -->
+  <text x="140" y="75" fill="#1e293b" font-family="Inter, sans-serif" font-size="28" font-weight="700">
+    TechFlow Solutions
+  </text>
+  <text x="140" y="98" fill="#64748b" font-family="Inter, sans-serif" font-size="14" font-weight="500">
+    techflow.com • Enterprise
+  </text>
   
-  <!-- Key Metrics -->
-  <text x="350" y="55" fill="#64748b" font-family="Arial, sans-serif" font-size="10" font-weight="bold">MRR</text>
-  <text x="350" y="70" fill="#1e293b" font-family="Arial, sans-serif" font-size="16" font-weight="bold">$24,500</text>
+  <!-- Key Metrics Grid -->
+  <text x="420" y="68" fill="#64748b" font-family="Inter, sans-serif" font-size="9" 
+        font-weight="600" text-transform="uppercase" letter-spacing="0.05em">MRR</text>
+  <text x="420" y="88" fill="#1e293b" font-family="Inter, sans-serif" font-size="18" font-weight="700">$24,500</text>
   
-  <text x="430" y="55" fill="#64748b" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Renewal</text>
-  <text x="430" y="70" fill="#1e293b" font-family="Arial, sans-serif" font-size="12">Mar 15, 2025</text>
+  <text x="520" y="68" fill="#64748b" font-family="Inter, sans-serif" font-size="9" 
+        font-weight="600" text-transform="uppercase" letter-spacing="0.05em">Renewal</text>
+  <text x="520" y="88" fill="#1e293b" font-family="Inter, sans-serif" font-size="14" font-weight="600">Mar 15, 2025</text>
   
-  <text x="350" y="90" fill="#64748b" font-family="Arial, sans-serif" font-size="10" font-weight="bold">CSM</text>
-  <text x="350" y="105" fill="#1e293b" font-family="Arial, sans-serif" font-size="12">Sarah Johnson</text>
+  <text x="420" y="108" fill="#64748b" font-family="Inter, sans-serif" font-size="9" 
+        font-weight="600" text-transform="uppercase" letter-spacing="0.05em">CSM</text>
+  <text x="420" y="128" fill="#1e293b" font-family="Inter, sans-serif" font-size="14" font-weight="600">Sarah Johnson</text>
   
-  <text x="430" y="90" fill="#64748b" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Last Contact</text>
-  <text x="430" y="105" fill="#22c55e" font-family="Arial, sans-serif" font-size="12">2 days ago</text>
+  <text x="520" y="108" fill="#64748b" font-family="Inter, sans-serif" font-size="9" 
+        font-weight="600" text-transform="uppercase" letter-spacing="0.05em">Last Contact</text>
+  <text x="520" y="128" fill="#10b981" font-family="Inter, sans-serif" font-size="14" font-weight="600">2 days ago</text>
   
-  <!-- Trend badge -->
-  <rect x="520" y="50" width="45" height="20" rx="10" fill="#dcfce7"/>
-  <text x="532" y="62" fill="#166534" font-family="Arial, sans-serif" font-size="8" font-weight="bold">+12% 30d</text>
+  <!-- Trend Badge -->
+  <rect x="680" y="70" width="60" height="22" rx="11" fill="#dcfce7"/>
+  <text x="700" y="83" fill="#166534" font-family="Inter, sans-serif" font-size="10" 
+        font-weight="700" text-anchor="middle">+12% 30d</text>
   
-  <!-- Summary Card -->
-  <rect x="20" y="140" width="560" height="60" rx="16" fill="url(#glassCard)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
-  <text x="40" y="165" fill="#64748b" font-family="Arial, sans-serif" font-size="12" font-weight="bold">📊 Health Summary</text>
-  <text x="40" y="185" fill="#1e293b" font-family="Arial, sans-serif" font-size="11">Strong relationship with positive 30-day trend. Active engagement across multiple channels with healthy response patterns.</text>
+  <!-- Health Summary Card -->
+  <rect x="24" y="172" width="752" height="80" rx="20" fill="url(#glassCard)" 
+        stroke="rgba(59,130,246,0.3)" stroke-width="1" filter="url(#cardShadow)"/>
+  <text x="48" y="202" fill="#64748b" font-family="Inter, sans-serif" font-size="14" 
+        font-weight="600">📊 Health Summary</text>
+  <text x="48" y="225" fill="#1e293b" font-family="Inter, sans-serif" font-size="13" font-weight="400">
+    Strong relationship with positive 30-day trend. Active engagement across multiple channels with healthy response patterns.
+  </text>
   
-  <!-- Interaction History -->
-  <rect x="20" y="220" width="360" height="200" rx="16" fill="url(#glassCard)" stroke="rgba(139,92,246,0.3)" stroke-width="1"/>
-  <text x="40" y="245" fill="#64748b" font-family="Arial, sans-serif" font-size="12" font-weight="bold">💬 Recent Interactions</text>
+  <!-- Recent Interactions Card -->
+  <rect x="24" y="276" width="460" height="350" rx="20" fill="url(#glassCard)" 
+        stroke="rgba(139,92,246,0.3)" stroke-width="1" filter="url(#largeShadow)"/>
   
-  <!-- Search bar -->
-  <rect x="40" y="255" width="200" height="24" rx="12" fill="rgba(241,245,249,0.8)" stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
-  <text x="50" y="269" fill="#94a3b8" font-family="Arial, sans-serif" font-size="9">🔍 Search interactions...</text>
+  <text x="48" y="306" fill="#64748b" font-family="Inter, sans-serif" font-size="14" 
+        font-weight="600">💬 Recent Interactions</text>
   
-  <!-- Channel filter -->
-  <rect x="250" y="255" width="50" height="24" rx="12" fill="rgba(59,130,246,1)" stroke="none"/>
-  <text x="265" y="269" fill="white" font-family="Arial, sans-serif" font-size="8" font-weight="bold" text-anchor="middle">All</text>
-  <rect x="310" y="255" width="50" height="24" rx="12" fill="rgba(255,255,255,0.6)" stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
-  <text x="325" y="269" fill="#64748b" font-family="Arial, sans-serif" font-size="8" font-weight="bold" text-anchor="middle">Email</text>
+  <!-- Search Bar -->
+  <rect x="48" y="320" width="220" height="28" rx="14" fill="rgba(248,250,252,0.8)" 
+        stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
+  <text x="63" y="337" fill="#94a3b8" font-family="Inter, sans-serif" font-size="11">
+    🔍 Search interactions...
+  </text>
   
-  <!-- Interaction entries -->
-  <rect x="40" y="290" width="320" height="35" fill="rgba(34,197,94,0.05)" rx="8" stroke="rgba(34,197,94,0.2)" stroke-width="1"/>
-  <circle cx="55" cy="307" r="4" fill="#22c55e"/>
-  <text x="70" y="302" fill="#64748b" font-family="Arial, sans-serif" font-size="8">2 days ago • Email</text>
-  <text x="70" y="315" fill="#1e293b" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Great progress on Q4 implementation!</text>
-  <text x="70" y="328" fill="#64748b" font-family="Arial, sans-serif" font-size="9">Thanks for the update on the rollout. Everything looks on track...</text>
+  <!-- Channel Filter -->
+  <rect x="288" y="320" width="60" height="28" rx="14" fill="url(#primaryGradient)" 
+        style="box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);"/>
+  <text x="308" y="337" fill="white" font-family="Inter, sans-serif" font-size="10" 
+        font-weight="600" text-anchor="middle">All</text>
   
-  <rect x="40" y="335" width="320" height="35" fill="rgba(251,191,36,0.05)" rx="8" stroke="rgba(251,191,36,0.2)" stroke-width="1"/>
-  <circle cx="55" cy="352" r="4" fill="#fbbf24"/>
-  <text x="70" y="347" fill="#64748b" font-family="Arial, sans-serif" font-size="8">5 days ago • Support</text>
-  <text x="70" y="360" fill="#1e293b" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Question about user permissions</text>
-  <text x="70" y="373" fill="#64748b" font-family="Arial, sans-serif" font-size="9">Can you help with setting up role-based access for new team...</text>
+  <rect x="358" y="320" width="60" height="28" rx="14" fill="rgba(255,255,255,0.6)" 
+        stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
+  <text x="378" y="337" fill="#64748b" font-family="Inter, sans-serif" font-size="10" 
+        font-weight="600" text-anchor="middle">Email</text>
   
-  <rect x="40" y="380" width="320" height="35" fill="rgba(34,197,94,0.05)" rx="8" stroke="rgba(34,197,94,0.2)" stroke-width="1"/>
-  <circle cx="55" cy="397" r="4" fill="#22c55e"/>
-  <text x="70" y="392" fill="#64748b" font-family="Arial, sans-serif" font-size="8">1 week ago • Meeting</text>
-  <text x="70" y="405" fill="#1e293b" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Quarterly Business Review</text>
-  <text x="70" y="418" fill="#64748b" font-family="Arial, sans-serif" font-size="9">Excellent session covering ROI metrics and future roadmap...</text>
+  <!-- Interaction Entries -->
+  
+  <!-- Interaction 1 - Positive Email -->
+  <rect x="48" y="368" width="416" height="48" fill="rgba(34,197,94,0.05)" rx="12" 
+        stroke="rgba(34,197,94,0.2)" stroke-width="1"/>
+  <circle cx="68" cy="392" r="5" fill="#10b981"/>
+  <text x="88" y="380" fill="#64748b" font-family="Inter, sans-serif" font-size="10" font-weight="500">
+    2 days ago • Email
+  </text>
+  <text x="88" y="396" fill="#1e293b" font-family="Inter, sans-serif" font-size="13" font-weight="600">
+    Great progress on Q4 implementation!
+  </text>
+  <text x="88" y="410" fill="#64748b" font-family="Inter, sans-serif" font-size="11">
+    Thanks for the update on the rollout. Everything looks on track...
+  </text>
+  
+  <!-- Interaction 2 - Support Question -->
+  <rect x="48" y="428" width="416" height="48" fill="rgba(251,191,36,0.05)" rx="12" 
+        stroke="rgba(251,191,36,0.2)" stroke-width="1"/>
+  <circle cx="68" cy="452" r="5" fill="#f59e0b"/>
+  <text x="88" y="440" fill="#64748b" font-family="Inter, sans-serif" font-size="10" font-weight="500">
+    5 days ago • Support
+  </text>
+  <text x="88" y="456" fill="#1e293b" font-family="Inter, sans-serif" font-size="13" font-weight="600">
+    Question about user permissions
+  </text>
+  <text x="88" y="470" fill="#64748b" font-family="Inter, sans-serif" font-size="11">
+    Can you help with setting up role-based access for new team...
+  </text>
+  
+  <!-- Interaction 3 - Positive Meeting -->
+  <rect x="48" y="488" width="416" height="48" fill="rgba(34,197,94,0.05)" rx="12" 
+        stroke="rgba(34,197,94,0.2)" stroke-width="1"/>
+  <circle cx="68" cy="512" r="5" fill="#10b981"/>
+  <text x="88" y="500" fill="#64748b" font-family="Inter, sans-serif" font-size="10" font-weight="500">
+    1 week ago • Meeting
+  </text>
+  <text x="88" y="516" fill="#1e293b" font-family="Inter, sans-serif" font-size="13" font-weight="600">
+    Quarterly Business Review
+  </text>
+  <text x="88" y="530" fill="#64748b" font-family="Inter, sans-serif" font-size="11">
+    Excellent session covering ROI metrics and future roadmap...
+  </text>
   
   <!-- Health Trend Chart -->
-  <rect x="400" y="220" width="180" height="120" rx="16" fill="url(#glassCard)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
-  <text x="420" y="245" fill="#64748b" font-family="Arial, sans-serif" font-size="12" font-weight="bold">📈 Health Trend (30d)</text>
+  <rect x="508" y="276" width="268" height="160" rx="20" fill="url(#glassCard)" 
+        stroke="rgba(34,197,94,0.3)" stroke-width="1" filter="url(#largeShadow)"/>
   
-  <!-- Mini chart -->
-  <polyline points="420,270 435,268 450,265 465,260 480,262 495,258 510,255 525,250 540,248 555,245" 
-            fill="none" stroke="url(#healthGood)" stroke-width="2.5" opacity="0.8"/>
+  <text x="532" y="306" fill="#64748b" font-family="Inter, sans-serif" font-size="14" 
+        font-weight="600">📈 Health Trend (30d)</text>
   
-  <!-- Chart points -->
-  <circle cx="420" cy="270" r="2" fill="#22c55e"/>
-  <circle cx="555" cy="245" r="2" fill="#22c55e"/>
+  <!-- Chart Area -->
+  <polyline points="532,340 552,335 572,330 592,325 612,330 632,325 652,320 672,315 692,310 712,305" 
+            fill="none" stroke="url(#successGradient)" stroke-width="3" opacity="0.8"/>
   
-  <!-- Y-axis labels -->
-  <text x="410" y="250" fill="#64748b" font-family="Arial, sans-serif" font-size="8">90</text>
-  <text x="410" y="275" fill="#64748b" font-family="Arial, sans-serif" font-size="8">70</text>
+  <!-- Chart Points -->
+  <circle cx="532" cy="340" r="3" fill="#10b981"/>
+  <circle cx="712" cy="305" r="3" fill="#10b981"/>
   
-  <!-- Current score highlight -->
-  <text x="420" y="295" fill="#22c55e" font-family="Arial, sans-serif" font-size="14" font-weight="bold">84</text>
-  <text x="450" y="295" fill="#64748b" font-family="Arial, sans-serif" font-size="10">Current Score</text>
+  <!-- Y-axis Labels -->
+  <text x="520" y="310" fill="#64748b" font-family="Inter, sans-serif" font-size="10">90</text>
+  <text x="520" y="345" fill="#64748b" font-family="Inter, sans-serif" font-size="10">70</text>
   
-  <rect x="420" y="305" width="40" height="16" rx="8" fill="#dcfce7"/>
-  <text x="430" y="315" fill="#166534" font-family="Arial, sans-serif" font-size="8" font-weight="bold">+12%</text>
-  <text x="470" y="315" fill="#64748b" font-family="Arial, sans-serif" font-size="8">vs 30d ago</text>
+  <!-- Current Score Display -->
+  <text x="532" y="375" fill="#10b981" font-family="Inter, sans-serif" font-size="20" 
+        font-weight="800">84</text>
+  <text x="565" y="375" fill="#64748b" font-family="Inter, sans-serif" font-size="12" 
+        font-weight="500">Current Score</text>
   
-  <!-- Stakeholders -->
-  <rect x="400" y="360" width="180" height="60" rx="16" fill="url(#glassCard)" stroke="rgba(99,102,241,0.3)" stroke-width="1"/>
-  <text x="420" y="385" fill="#64748b" font-family="Arial, sans-serif" font-size="12" font-weight="bold">👥 Key Stakeholders</text>
+  <rect x="532" y="385" width="50" height="18" rx="9" fill="#dcfce7"/>
+  <text x="545" y="397" fill="#166534" font-family="Inter, sans-serif" font-size="10" 
+        font-weight="700">+12%</text>
+  <text x="590" y="397" fill="#64748b" font-family="Inter, sans-serif" font-size="10">vs 30d ago</text>
   
-  <text x="420" y="400" fill="#1e293b" font-family="Arial, sans-serif" font-size="9" font-weight="bold">Mike Chen</text>
-  <text x="470" y="400" fill="#64748b" font-family="Arial, sans-serif" font-size="8">CTO</text>
-  <circle cx="550" cy="398" r="6" fill="#22c55e"/>
-  <text x="548" y="401" fill="white" font-family="Arial, sans-serif" font-size="6" font-weight="bold">92</text>
+  <!-- Key Stakeholders Card -->
+  <rect x="508" y="460" width="268" height="166" rx="20" fill="url(#glassCard)" 
+        stroke="rgba(99,102,241,0.3)" stroke-width="1" filter="url(#largeShadow)"/>
   
-  <text x="420" y="415" fill="#1e293b" font-family="Arial, sans-serif" font-size="9" font-weight="bold">Lisa Park</text>
-  <text x="470" y="415" fill="#64748b" font-family="Arial, sans-serif" font-size="8">PM</text>
-  <circle cx="550" cy="413" r="6" fill="#fbbf24"/>
-  <text x="548" y="416" fill="white" font-family="Arial, sans-serif" font-size="6" font-weight="bold">76</text>
+  <text x="532" y="490" fill="#64748b" font-family="Inter, sans-serif" font-size="14" 
+        font-weight="600">👥 Key Stakeholders</text>
+  
+  <!-- Stakeholder 1 -->
+  <text x="532" y="518" fill="#1e293b" font-family="Inter, sans-serif" font-size="13" 
+        font-weight="600">Mike Chen</text>
+  <text x="608" y="518" fill="#64748b" font-family="Inter, sans-serif" font-size="11">CTO</text>
+  <circle cx="720" cy="515" r="8" fill="url(#successGradient)" 
+          style="box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);"/>
+  <text x="720" y="520" fill="white" font-family="Inter, sans-serif" font-size="8" 
+        font-weight="700" text-anchor="middle">92</text>
+  
+  <!-- Stakeholder 2 -->
+  <text x="532" y="548" fill="#1e293b" font-family="Inter, sans-serif" font-size="13" 
+        font-weight="600">Lisa Park</text>
+  <text x="608" y="548" fill="#64748b" font-family="Inter, sans-serif" font-size="11">PM</text>
+  <circle cx="720" cy="545" r="8" fill="url(#warningGradient)" 
+          style="box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);"/>
+  <text x="720" y="550" fill="white" font-family="Inter, sans-serif" font-size="8" 
+        font-weight="700" text-anchor="middle">76</text>
+  
+  <!-- Stakeholder 3 -->
+  <text x="532" y="578" fill="#1e293b" font-family="Inter, sans-serif" font-size="13" 
+        font-weight="600">James Wilson</text>
+  <text x="608" y="578" fill="#64748b" font-family="Inter, sans-serif" font-size="11">CEO</text>
+  <circle cx="720" cy="575" r="8" fill="url(#successGradient)" 
+          style="box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);"/>
+  <text x="720" y="580" fill="white" font-family="Inter, sans-serif" font-size="8" 
+        font-weight="700" text-anchor="middle">88</text>
+  
+  <!-- Add Stakeholder Button -->
+  <rect x="532" y="595" width="120" height="20" rx="10" fill="rgba(59,130,246,0.1)" 
+        stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+  <text x="567" y="607" fill="#3b82f6" font-family="Inter, sans-serif" font-size="10" 
+        font-weight="600" text-anchor="middle">+ Add Stakeholder</text>
 </svg>
