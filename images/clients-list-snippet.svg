@@ -1,331 +1,347 @@
-<svg width="800" height="700" xmlns="http://www.w3.org/2000/svg">
+<svg width="1200" height="900" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Beautiful Page Background Gradient -->
-    <linearGradient id="pageBackground" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Page background gradient from globals.css -->
+    <linearGradient id="pageBg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#f8fafc"/>
       <stop offset="50%" style="stop-color:#e0f2fe"/>
       <stop offset="100%" style="stop-color:#faf5ff"/>
     </linearGradient>
     
-    <!-- Primary Gradient -->
-    <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Primary gradient -->
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:#3b82f6"/>
       <stop offset="100%" style="stop-color:#8b5cf6"/>
     </linearGradient>
     
-    <!-- Success Gradient -->
-    <linearGradient id="successGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Success gradient -->
+    <linearGradient id="successGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#10b981"/>
       <stop offset="100%" style="stop-color:#059669"/>
     </linearGradient>
     
-    <!-- Warning Gradient -->
-    <linearGradient id="warningGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Warning gradient -->
+    <linearGradient id="warnGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#f59e0b"/>
       <stop offset="100%" style="stop-color:#d97706"/>
     </linearGradient>
     
-    <!-- Danger Gradient -->
-    <linearGradient id="dangerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Danger gradient -->
+    <linearGradient id="dangerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#ef4444"/>
       <stop offset="100%" style="stop-color:#dc2626"/>
     </linearGradient>
     
-    <!-- Floating Orb Gradients -->
-    <radialGradient id="orbBlue" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" style="stop-color:#3b82f6" stop-opacity="0.2"/>
-      <stop offset="100%" style="stop-color:#8b5cf6" stop-opacity="0.05"/>
-    </radialGradient>
-    
-    <radialGradient id="orbGreen" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" style="stop-color:#10b981" stop-opacity="0.15"/>
-      <stop offset="100%" style="stop-color:#059669" stop-opacity="0.05"/>
-    </radialGradient>
-    
-    <!-- Glass Card Background -->
-    <linearGradient id="glassCard" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:rgba(255,255,255,0.95)"/>
-      <stop offset="100%" style="stop-color:rgba(255,255,255,0.85)"/>
-    </linearGradient>
-    
-    <!-- Drop Shadows -->
-    <filter id="largeShadow">
-      <feDropShadow dx="0" dy="10" stdDeviation="15" flood-opacity="0.1"/>
-      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.05"/>
+    <!-- Shadow effects -->
+    <filter id="shadow-xl">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-opacity="0.08"/>
     </filter>
     
-    <filter id="cardShadow">
-      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.1"/>
-      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.06"/>
-    </filter>
+    <!-- Floating orbs -->
+    <radialGradient id="orb1">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.05"/>
+    </radialGradient>
     
-    <!-- Text Gradient -->
-    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#3b82f6"/>
-      <stop offset="100%" style="stop-color:#8b5cf6"/>
-    </linearGradient>
+    <radialGradient id="orb2">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:0.05"/>
+    </radialGradient>
   </defs>
   
-  <!-- Beautiful Page Background -->
-  <rect width="800" height="700" fill="url(#pageBackground)"/>
+  <!-- Page background -->
+  <rect width="1200" height="900" fill="url(#pageBg)"/>
   
-  <!-- Floating Orbs -->
-  <ellipse cx="680" cy="120" rx="120" ry="100" fill="url(#orbBlue)" style="filter: blur(40px); opacity: 0.6;"/>
-  <ellipse cx="120" cy="550" rx="100" ry="80" fill="url(#orbGreen)" style="filter: blur(40px); opacity: 0.6;"/>
+  <!-- Floating orbs -->
+  <circle cx="1050" cy="150" r="200" fill="url(#orb1)" opacity="0.6"/>
+  <circle cx="100" cy="700" r="180" fill="url(#orb2)" opacity="0.5"/>
   
-  <!-- Header Glass Card -->
-  <rect x="24" y="24" width="752" height="88" rx="24" fill="url(#glassCard)" 
-        stroke="rgba(255,255,255,0.3)" stroke-width="1" filter="url(#cardShadow)"/>
-  
-  <!-- Header Content -->
-  <text x="48" y="58" fill="url(#textGradient)" font-family="Inter, sans-serif" font-size="32" font-weight="800">
-    Client Portfolio
-  </text>
-  <g>
-    <circle cx="48" cy="84" r="3" fill="#3b82f6"/>
-    <text x="62" y="88" fill="#64748b" font-family="Inter, sans-serif" font-size="12" font-weight="500">47 total</text>
-    <circle cx="140" cy="84" r="3" fill="#ef4444"/>
-    <text x="154" y="88" fill="#64748b" font-family="Inter, sans-serif" font-size="12" font-weight="500">3 at risk</text>
-    <circle cx="230" cy="84" r="3" fill="#f59e0b"/>
-    <text x="244" y="88" fill="#64748b" font-family="Inter, sans-serif" font-size="12" font-weight="500">8 no recent contact</text>
+  <!-- Main container -->
+  <g transform="translate(40, 40)">
+    
+    <!-- Header glass card -->
+    <rect x="0" y="0" width="1120" height="140" rx="24" fill="white" fill-opacity="0.8" filter="url(#shadow-xl)"/>
+    <rect x="0" y="0" width="1120" height="140" rx="24" fill="none" stroke="white" stroke-opacity="0.2"/>
+    
+    <!-- Client Portfolio title with gradient text -->
+    <text x="30" y="50" font-family="Inter, -apple-system, system-ui" font-size="36" font-weight="700" fill="url(#primaryGrad)">Client Portfolio</text>
+    
+    <!-- Portfolio stats -->
+    <g transform="translate(30, 75)">
+      <circle cx="0" cy="0" r="3" fill="#3b82f6"/>
+      <text x="15" y="5" font-family="Inter" font-size="14" font-weight="500" fill="#334155">127 total</text>
+      
+      <circle cx="120" cy="0" r="3" fill="#ef4444"/>
+      <text x="135" y="5" font-family="Inter" font-size="14" font-weight="500" fill="#334155">12 at risk</text>
+      
+      <circle cx="240" cy="0" r="3" fill="#f59e0b"/>
+      <text x="255" y="5" font-family="Inter" font-size="14" font-weight="500" fill="#334155">8 no recent contact</text>
+    </g>
+    
+    <!-- Action buttons -->
+    <g transform="translate(850, 40)">
+      <rect x="0" y="0" width="130" height="44" rx="12" fill="url(#primaryGrad)"/>
+      <text x="65" y="28" font-family="Inter" font-size="14" font-weight="500" fill="white" text-anchor="middle">+ Add Clients</text>
+      
+      <rect x="140" y="0" width="120" height="44" rx="12" fill="white" fill-opacity="0.6" stroke="#e5e7eb"/>
+      <text x="200" y="28" font-family="Inter" font-size="14" font-weight="500" fill="#64748b" text-anchor="middle">Export CSV</text>
+    </g>
+    
+    <!-- Metric HealthCards row -->
+    <g transform="translate(0, 160)">
+      <!-- Portfolio Health -->
+      <g>
+        <rect x="0" y="0" width="265" height="110" rx="20" fill="white" fill-opacity="0.95" filter="url(#shadow-xl)"/>
+        <rect x="0" y="0" width="265" height="110" rx="20" fill="url(#successGrad)" fill-opacity="0.05"/>
+        
+        <rect x="20" y="20" width="36" height="36" rx="8" fill="url(#successGrad)"/>
+        <path d="M 38 31 C 35 31 32 34 32 37 C 32 40 35 43 38 43 C 41 43 44 40 44 37 C 44 34 41 31 38 31 Z M 36 37 L 38 39 L 42 35" 
+              stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        
+        <text x="70" y="35" font-family="Inter" font-size="12" font-weight="500" fill="#64748b">Portfolio Health</text>
+        <text x="70" y="60" font-family="Inter" font-size="32" font-weight="700" fill="#059669">73</text>
+      </g>
+      
+      <!-- At Risk Clients -->
+      <g transform="translate(280, 0)">
+        <rect x="0" y="0" width="265" height="110" rx="20" fill="white" fill-opacity="0.95" filter="url(#shadow-xl)"/>
+        <rect x="0" y="0" width="265" height="110" rx="20" fill="url(#dangerGrad)" fill-opacity="0.05"/>
+        
+        <rect x="20" y="20" width="36" height="36" rx="8" fill="url(#dangerGrad)"/>
+        <path d="M 35 31 L 38 28 L 41 31 M 35 45 L 38 48 L 41 45 M 35 34 L 41 42 M 41 34 L 35 42" 
+              stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        
+        <text x="70" y="35" font-family="Inter" font-size="12" font-weight="500" fill="#64748b">At Risk Clients</text>
+        <text x="70" y="60" font-family="Inter" font-size="32" font-weight="700" fill="#dc2626">12</text>
+      </g>
+      
+      <!-- Stale Contacts -->
+      <g transform="translate(560, 0)">
+        <rect x="0" y="0" width="265" height="110" rx="20" fill="white" fill-opacity="0.95" filter="url(#shadow-xl)"/>
+        <rect x="0" y="0" width="265" height="110" rx="20" fill="url(#warnGrad)" fill-opacity="0.05"/>
+        
+        <rect x="20" y="20" width="36" height="36" rx="8" fill="url(#warnGrad)"/>
+        <path d="M 38 28 C 41 28 44 31 44 34 L 44 42 C 44 45 41 48 38 48 C 35 48 32 45 32 42 L 32 34 C 32 31 35 28 38 28 Z M 38 35 L 38 39 M 38 42 L 38 42.5" 
+              stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        
+        <text x="70" y="35" font-family="Inter" font-size="12" font-weight="500" fill="#64748b">Stale Contacts (14d+)</text>
+        <text x="70" y="60" font-family="Inter" font-size="32" font-weight="700" fill="#d97706">8</text>
+      </g>
+      
+      <!-- Total MRR -->
+      <g transform="translate(840, 0)">
+        <rect x="0" y="0" width="265" height="110" rx="20" fill="white" fill-opacity="0.95" filter="url(#shadow-xl)"/>
+        
+        <rect x="20" y="20" width="36" height="36" rx="8" fill="#e0e7ff"/>
+        <text x="38" y="43" font-family="Inter" font-size="18" font-weight="600" fill="#6366f1" text-anchor="middle">$</text>
+        
+        <text x="70" y="35" font-family="Inter" font-size="12" font-weight="500" fill="#64748b">Total MRR</text>
+        <text x="70" y="60" font-family="Inter" font-size="28" font-weight="700" fill="#334155">$2.4M</text>
+      </g>
+    </g>
+    
+    <!-- Controls bar -->
+    <g transform="translate(0, 290)">
+      <rect x="0" y="0" width="1120" height="70" rx="24" fill="white" fill-opacity="0.8" filter="url(#shadow-xl)"/>
+      
+      <!-- Search input -->
+      <rect x="25" y="13" width="320" height="44" rx="12" fill="white" fill-opacity="0.8" stroke="#e5e7eb"/>
+      <text x="40" y="38" font-family="Inter" font-size="14" fill="#9ca3af">Search clients...</text>
+      <rect x="315" y="23" width="20" height="20" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="325" y="36" font-family="Inter" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">/</text>
+      
+      <!-- Tab segmented control -->
+      <g transform="translate(360, 13)">
+        <rect x="0" y="0" width="340" height="44" rx="12" fill="white" fill-opacity="0.6"/>
+        <rect x="2" y="2" width="108" height="40" rx="10" fill="url(#primaryGrad)"/>
+        <text x="56" y="28" font-family="Inter" font-size="14" font-weight="500" fill="white" text-anchor="middle">All Clients</text>
+        <text x="170" y="28" font-family="Inter" font-size="14" font-weight="500" fill="#64748b" text-anchor="middle">At Risk (≤40)</text>
+        <text x="280" y="28" font-family="Inter" font-size="14" font-weight="500" fill="#64748b" text-anchor="middle">Stale (≥14d)</text>
+      </g>
+      
+      <!-- Sort controls -->
+      <g transform="translate(720, 13)">
+        <rect x="0" y="0" width="60" height="44" rx="8" fill="white" fill-opacity="0.4"/>
+        <text x="30" y="28" font-family="Inter" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">Client ↕</text>
+        
+        <rect x="70" y="0" width="60" height="44" rx="8" fill="url(#primaryGrad)" fill-opacity="0.1"/>
+        <text x="100" y="28" font-family="Inter" font-size="12" font-weight="500" fill="#3b82f6" text-anchor="middle">Health ↑</text>
+        
+        <rect x="140" y="0" width="70" height="44" rx="8" fill="white" fill-opacity="0.4"/>
+        <text x="175" y="28" font-family="Inter" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">Contact ↕</text>
+        
+        <rect x="220" y="0" width="50" height="44" rx="8" fill="white" fill-opacity="0.4"/>
+        <text x="245" y="28" font-family="Inter" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">MRR ↕</text>
+      </g>
+    </g>
+    
+    <!-- Client cards list -->
+    <g transform="translate(0, 380)">
+      <!-- Client 1 - High risk -->
+      <g>
+        <rect x="0" y="0" width="1120" height="120" rx="24" fill="white" fill-opacity="0.8" filter="url(#shadow-xl)"/>
+        
+        <!-- Avatar -->
+        <rect x="30" y="30" width="60" height="60" rx="12" fill="#dc2626" fill-opacity="0.1"/>
+        <text x="60" y="70" font-family="Inter" font-size="28" font-weight="600" fill="#dc2626" text-anchor="middle">G</text>
+        
+        <!-- Client info -->
+        <text x="110" y="45" font-family="Inter" font-size="18" font-weight="600" fill="#1e293b">Global Systems Ltd</text>
+        <text x="110" y="65" font-family="Inter" font-size="14" fill="#64748b">globalsystems.com</text>
+        <text x="110" y="85" font-family="Inter" font-size="13" fill="#64748b">👤 Sarah Johnson</text>
+        
+        <!-- Metrics -->
+        <g transform="translate(600, 30)">
+          <!-- Health Score -->
+          <g>
+            <text x="0" y="15" font-family="Inter" font-size="10" font-weight="500" fill="#94a3b8" text-anchor="middle">HEALTH</text>
+            <rect x="-20" y="20" width="40" height="24" rx="12" fill="url(#dangerGrad)"/>
+            <text x="0" y="36" font-family="Inter" font-size="14" font-weight="600" fill="white" text-anchor="middle">28</text>
+          </g>
+          
+          <!-- Last Contact -->
+          <g transform="translate(80, 0)">
+            <text x="0" y="15" font-family="Inter" font-size="10" font-weight="500" fill="#94a3b8" text-anchor="middle">LAST CONTACT</text>
+            <text x="0" y="35" font-family="Inter" font-size="14" font-weight="600" fill="#334155" text-anchor="middle">18 days ago</text>
+          </g>
+          
+          <!-- MRR -->
+          <g transform="translate(160, 0)">
+            <text x="0" y="15" font-family="Inter" font-size="10" font-weight="500" fill="#94a3b8" text-anchor="middle">MRR</text>
+            <text x="0" y="35" font-family="Inter" font-size="14" font-weight="700" fill="#059669" text-anchor="middle">$4,200</text>
+          </g>
+          
+          <!-- Renewal -->
+          <g transform="translate(240, 0)">
+            <text x="0" y="15" font-family="Inter" font-size="10" font-weight="500" fill="#94a3b8" text-anchor="middle">RENEWAL</text>
+            <text x="0" y="35" font-family="Inter" font-size="14" font-weight="600" fill="#334155" text-anchor="middle">Mar 15, 2025</text>
+          </g>
+        </g>
+        
+        <!-- Action buttons -->
+        <g transform="translate(950, 30)">
+          <rect x="0" y="0" width="60" height="32" rx="8" fill="white" fill-opacity="0.6" stroke="#e5e7eb"/>
+          <text x="30" y="21" font-family="Inter" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">View</text>
+          
+          <rect x="70" y="0" width="80" height="32" rx="8" fill="url(#primaryGrad)" fill-opacity="0.1"/>
+          <text x="110" y="21" font-family="Inter" font-size="12" font-weight="500" fill="#3b82f6" text-anchor="middle">Timeline</text>
+        </g>
+      </g>
+      
+      <!-- Client 2 - Good health -->
+      <g transform="translate(0, 140)">
+        <rect x="0" y="0" width="1120" height="120" rx="24" fill="white" fill-opacity="0.8" filter="url(#shadow-xl)"/>
+        
+        <!-- Avatar -->
+        <rect x="30" y="30" width="60" height="60" rx="12" fill="#10b981" fill-opacity="0.1"/>
+        <text x="60" y="70" font-family="Inter" font-size="28" font-weight="600" fill="#10b981" text-anchor="middle">T</text>
+        
+        <!-- Client info -->
+        <text x="110" y="45" font-family="Inter" font-size="18" font-weight="600" fill="#1e293b">TechFlow Solutions</text>
+        <text x="110" y="65" font-family="Inter" font-size="14" fill="#64748b">techflow.io</text>
+        <text x="110" y="85" font-family="Inter" font-size="13" fill="#64748b">👤 Mike Chen</text>
+        
+        <!-- Metrics -->
+        <g transform="translate(600, 30)">
+          <!-- Health Score -->
+          <g>
+            <text x="0" y="15" font-family="Inter" font-size="10" font-weight="500" fill="#94a3b8" text-anchor="middle">HEALTH</text>
+            <rect x="-20" y="20" width="40" height="24" rx="12" fill="url(#successGrad)"/>
+            <text x="0" y="36" font-family="Inter" font-size="14" font-weight="600" fill="white" text-anchor="middle">84</text>
+          </g>
+          
+          <!-- Last Contact -->
+          <g transform="translate(80, 0)">
+            <text x="0" y="15" font-family="Inter" font-size="10" font-weight="500" fill="#94a3b8" text-anchor="middle">LAST CONTACT</text>
+            <text x="0" y="35" font-family="Inter" font-size="14" font-weight="600" fill="#334155" text-anchor="middle">2 days ago</text>
+          </g>
+          
+          <!-- MRR -->
+          <g transform="translate(160, 0)">
+            <text x="0" y="15" font-family="Inter" font-size="10" font-weight="500" fill="#94a3b8" text-anchor="middle">MRR</text>
+            <text x="0" y="35" font-family="Inter" font-size="14" font-weight="700" fill="#059669" text-anchor="middle">$12,500</text>
+          </g>
+          
+          <!-- Renewal -->
+          <g transform="translate(240, 0)">
+            <text x="0" y="15" font-family="Inter" font-size="10" font-weight="500" fill="#94a3b8" text-anchor="middle">RENEWAL</text>
+            <text x="0" y="35" font-family="Inter" font-size="14" font-weight="600" fill="#334155" text-anchor="middle">Jun 22, 2025</text>
+          </g>
+        </g>
+        
+        <!-- Action buttons -->
+        <g transform="translate(950, 30)">
+          <rect x="0" y="0" width="60" height="32" rx="8" fill="white" fill-opacity="0.6" stroke="#e5e7eb"/>
+          <text x="30" y="21" font-family="Inter" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">View</text>
+          
+          <rect x="70" y="0" width="80" height="32" rx="8" fill="url(#primaryGrad)" fill-opacity="0.1"/>
+          <text x="110" y="21" font-family="Inter" font-size="12" font-weight="500" fill="#3b82f6" text-anchor="middle">Timeline</text>
+        </g>
+      </g>
+      
+      <!-- Client 3 - Warning health -->
+      <g transform="translate(0, 280)">
+        <rect x="0" y="0" width="1120" height="120" rx="24" fill="white" fill-opacity="0.8" filter="url(#shadow-xl)"/>
+        
+        <!-- Avatar -->
+        <rect x="30" y="30" width="60" height="60" rx="12" fill="#f59e0b" fill-opacity="0.1"/>
+        <text x="60" y="70" font-family="Inter" font-size="28" font-weight="600" fill="#f59e0b" text-anchor="middle">D</text>
+        
+        <!-- Client info -->
+        <text x="110" y="45" font-family="Inter" font-size="18" font-weight="600" fill="#1e293b">DataCorp Analytics</text>
+        <text x="110" y="65" font-family="Inter" font-size="14" fill="#64748b">datacorp.com</text>
+        <text x="110" y="85" font-family="Inter" font-size="13" fill="#64748b">👤 Alex Rodriguez</text>
+        
+        <!-- Metrics -->
+        <g transform="translate(600, 30)">
+          <!-- Health Score -->
+          <g>
+            <text x="0" y="15" font-family="Inter" font-size="10" font-weight="500" fill="#94a3b8" text-anchor="middle">HEALTH</text>
+            <rect x="-20" y="20" width="40" height="24" rx="12" fill="url(#warnGrad)"/>
+            <text x="0" y="36" font-family="Inter" font-size="14" font-weight="600" fill="white" text-anchor="middle">52</text>
+          </g>
+          
+          <!-- Last Contact -->
+          <g transform="translate(80, 0)">
+            <text x="0" y="15" font-family="Inter" font-size="10" font-weight="500" fill="#94a3b8" text-anchor="middle">LAST CONTACT</text>
+            <text x="0" y="35" font-family="Inter" font-size="14" font-weight="600" fill="#334155" text-anchor="middle">7 days ago</text>
+          </g>
+          
+          <!-- MRR -->
+          <g transform="translate(160, 0)">
+            <text x="0" y="15" font-family="Inter" font-size="10" font-weight="500" fill="#94a3b8" text-anchor="middle">MRR</text>
+            <text x="0" y="35" font-family="Inter" font-size="14" font-weight="700" fill="#059669" text-anchor="middle">$8,900</text>
+          </g>
+          
+          <!-- Renewal -->
+          <g transform="translate(240, 0)">
+            <text x="0" y="15" font-family="Inter" font-size="10" font-weight="500" fill="#94a3b8" text-anchor="middle">RENEWAL</text>
+            <text x="0" y="35" font-family="Inter" font-size="14" font-weight="600" fill="#334155" text-anchor="middle">Aug 11, 2025</text>
+          </g>
+        </g>
+        
+        <!-- Action buttons -->
+        <g transform="translate(950, 30)">
+          <rect x="0" y="0" width="60" height="32" rx="8" fill="white" fill-opacity="0.6" stroke="#e5e7eb"/>
+          <text x="30" y="21" font-family="Inter" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">View</text>
+          
+          <rect x="70" y="0" width="80" height="32" rx="8" fill="url(#primaryGrad)" fill-opacity="0.1"/>
+          <text x="110" y="21" font-family="Inter" font-size="12" font-weight="500" fill="#3b82f6" text-anchor="middle">Timeline</text>
+        </g>
+      </g>
+    </g>
+    
+    <!-- Pagination -->
+    <g transform="translate(0, 800)">
+      <text x="0" y="25" font-family="Inter" font-size="14" font-weight="500" fill="#64748b">Page 1 of 6 • 127 clients</text>
+      
+      <g transform="translate(900, 0)">
+        <rect x="0" y="0" width="90" height="36" rx="8" fill="white" fill-opacity="0.6" stroke="#e5e7eb"/>
+        <text x="45" y="24" font-family="Inter" font-size="13" font-weight="500" fill="#9ca3af" text-anchor="middle">Previous</text>
+        
+        <rect x="100" y="0" width="60" height="36" rx="8" fill="white" fill-opacity="0.6" stroke="#e5e7eb"/>
+        <text x="130" y="24" font-family="Inter" font-size="13" font-weight="500" fill="#64748b" text-anchor="middle">Next</text>
+      </g>
+    </g>
+    
   </g>
-  
-  <!-- Add Clients Button -->
-  <rect x="620" y="48" width="130" height="40" rx="20" fill="url(#primaryGradient)" 
-        filter="url(#cardShadow)" style="box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);"/>
-  <text x="655" y="71" fill="white" font-family="Inter, sans-serif" font-size="13" font-weight="600">
-    <tspan x="655" y="71">+ Add Clients</tspan>
-  </text>
-  
-  <!-- KPI Cards Row -->
-  <rect x="24" y="136" width="172" height="100" rx="20" fill="url(#glassCard)" 
-        stroke="rgba(34,197,94,0.3)" stroke-width="2" filter="url(#largeShadow)"/>
-  <text x="40" y="162" fill="#64748b" font-family="Inter, sans-serif" font-size="11" 
-        font-weight="600" text-transform="uppercase" letter-spacing="0.05em">Portfolio Health</text>
-  <text x="40" y="195" fill="#10b981" font-family="Inter, sans-serif" font-size="36" font-weight="800">76</text>
-  <rect x="140" y="205" width="40" height="16" rx="8" fill="#dcfce7"/>
-  <text x="154" y="215" fill="#166534" font-family="Inter, sans-serif" font-size="9" font-weight="700">+8%</text>
-  
-  <rect x="212" y="136" width="172" height="100" rx="20" fill="url(#glassCard)" 
-        stroke="rgba(239,68,68,0.3)" stroke-width="2" filter="url(#largeShadow)"/>
-  <text x="228" y="162" fill="#64748b" font-family="Inter, sans-serif" font-size="11" 
-        font-weight="600" text-transform="uppercase" letter-spacing="0.05em">At Risk Clients</text>
-  <text x="228" y="195" fill="#ef4444" font-family="Inter, sans-serif" font-size="36" font-weight="800">3</text>
-  <text x="228" y="220" fill="#64748b" font-family="Inter, sans-serif" font-size="10">≤40 score</text>
-  
-  <rect x="400" y="136" width="172" height="100" rx="20" fill="url(#glassCard)" 
-        stroke="rgba(251,191,36,0.3)" stroke-width="2" filter="url(#largeShadow)"/>
-  <text x="416" y="162" fill="#64748b" font-family="Inter, sans-serif" font-size="11" 
-        font-weight="600" text-transform="uppercase" letter-spacing="0.05em">Stale Contacts</text>
-  <text x="416" y="195" fill="#f59e0b" font-family="Inter, sans-serif" font-size="36" font-weight="800">8</text>
-  <text x="416" y="220" fill="#64748b" font-family="Inter, sans-serif" font-size="10">≥14 days</text>
-  
-  <rect x="588" y="136" width="188" height="100" rx="20" fill="url(#glassCard)" 
-        stroke="rgba(59,130,246,0.3)" stroke-width="2" filter="url(#largeShadow)"/>
-  <text x="604" y="162" fill="#64748b" font-family="Inter, sans-serif" font-size="11" 
-        font-weight="600" text-transform="uppercase" letter-spacing="0.05em">Total MRR</text>
-  <text x="604" y="195" fill="#059669" font-family="Inter, sans-serif" font-size="32" font-weight="800">$180K</text>
-  
-  <!-- Search and Filter Controls -->
-  <rect x="24" y="260" width="752" height="64" rx="20" fill="url(#glassCard)" 
-        stroke="rgba(255,255,255,0.3)" stroke-width="1" filter="url(#cardShadow)"/>
-  
-  <!-- Search Input -->
-  <rect x="40" y="280" width="280" height="24" rx="12" fill="rgba(248,250,252,0.8)" 
-        stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
-  <text x="55" y="295" fill="#94a3b8" font-family="Inter, sans-serif" font-size="11">
-    🔍 Search clients...
-  </text>
-  <rect x="300" y="285" width="15" height="14" rx="2" fill="#e2e8f0"/>
-  <text x="305" y="294" fill="#64748b" font-family="Inter, monospace" font-size="8">/</text>
-  
-  <!-- Tab Buttons -->
-  <rect x="340" y="276" width="100" height="32" rx="16" fill="url(#primaryGradient)" 
-        style="box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);"/>
-  <text x="380" y="295" fill="white" font-family="Inter, sans-serif" font-size="11" 
-        font-weight="600" text-anchor="middle">All Clients</text>
-  
-  <rect x="450" y="276" width="110" height="32" rx="16" fill="rgba(255,255,255,0.6)" 
-        stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
-  <text x="495" y="295" fill="#64748b" font-family="Inter, sans-serif" font-size="11" 
-        font-weight="600" text-anchor="middle">At Risk (≤40)</text>
-  
-  <rect x="570" y="276" width="110" height="32" rx="16" fill="rgba(255,255,255,0.6)" 
-        stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
-  <text x="615" y="295" fill="#64748b" font-family="Inter, sans-serif" font-size="11" 
-        font-weight="600" text-anchor="middle">Stale (≥14d)</text>
-  
-  <!-- Client Cards -->
-  
-  <!-- Client 1 - TechFlow Solutions (Healthy) -->
-  <rect x="24" y="348" width="752" height="80" rx="20" fill="url(#glassCard)" 
-        stroke="rgba(226,232,240,0.3)" stroke-width="1" filter="url(#cardShadow)"
-        style="transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"/>
-  
-  <!-- Avatar -->
-  <rect x="48" y="368" width="40" height="40" rx="12" fill="url(#primaryGradient)" 
-        style="box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);"/>
-  <text x="68" y="392" fill="white" font-family="Inter, sans-serif" font-size="18" 
-        font-weight="700" text-anchor="middle">T</text>
-  
-  <!-- Client Info -->
-  <text x="104" y="380" fill="#1e293b" font-family="Inter, sans-serif" font-size="18" font-weight="600">
-    TechFlow Solutions
-  </text>
-  <text x="104" y="398" fill="#64748b" font-family="Inter, sans-serif" font-size="12">
-    🌐 techflow.com • 👤 Sarah Johnson
-  </text>
-  
-  <!-- Health Score -->
-  <text x="340" y="370" fill="#64748b" font-family="Inter, sans-serif" font-size="9" 
-        font-weight="600" text-transform="uppercase" letter-spacing="0.05em">HEALTH</text>
-  <circle cx="355" cy="385" r="16" fill="url(#successGradient)" 
-          style="box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);"/>
-  <text x="355" y="391" fill="white" font-family="Inter, sans-serif" font-size="12" 
-        font-weight="700" text-anchor="middle">84</text>
-  
-  <!-- Last Contact -->
-  <text x="400" y="370" fill="#64748b" font-family="Inter, sans-serif" font-size="9" 
-        font-weight="600" text-transform="uppercase" letter-spacing="0.05em">LAST CONTACT</text>
-  <text x="400" y="390" fill="#1e293b" font-family="Inter, sans-serif" font-size="13" font-weight="600">2d ago</text>
-  
-  <!-- MRR -->
-  <text x="500" y="370" fill="#64748b" font-family="Inter, sans-serif" font-size="9" 
-        font-weight="600" text-transform="uppercase" letter-spacing="0.05em">MRR</text>
-  <text x="500" y="390" fill="#059669" font-family="Inter, sans-serif" font-size="15" font-weight="700">$24,500</text>
-  
-  <!-- Renewal -->
-  <text x="600" y="370" fill="#64748b" font-family="Inter, sans-serif" font-size="9" 
-        font-weight="600" text-transform="uppercase" letter-spacing="0.05em">RENEWAL</text>
-  <text x="600" y="390" fill="#1e293b" font-family="Inter, sans-serif" font-size="13" font-weight="600">Mar 15, 2025</text>
-  
-  <!-- Action Buttons -->
-  <rect x="690" y="368" width="35" height="20" rx="10" fill="rgba(255,255,255,0.8)" 
-        stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
-  <text x="702" y="380" fill="#64748b" font-family="Inter, sans-serif" font-size="9" 
-        font-weight="500" text-anchor="middle">View</text>
-  
-  <rect x="690" y="394" width="35" height="20" rx="10" fill="rgba(59,130,246,0.1)" 
-        stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
-  <text x="702" y="406" fill="#3b82f6" font-family="Inter, sans-serif" font-size="9" 
-        font-weight="500" text-anchor="middle">Timeline</text>
-  
-  <!-- Client 2 - DataFlow Ltd (At Risk) -->
-  <rect x="24" y="444" width="752" height="80" rx="20" fill="url(#glassCard)" 
-        stroke="rgba(239,68,68,0.2)" stroke-width="1" filter="url(#cardShadow)"/>
-  
-  <!-- Avatar -->
-  <rect x="48" y="464" width="40" height="40" rx="12" fill="url(#dangerGradient)" 
-        style="box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);"/>
-  <text x="68" y="488" fill="white" font-family="Inter, sans-serif" font-size="18" 
-        font-weight="700" text-anchor="middle">D</text>
-  
-  <!-- Client Info -->
-  <text x="104" y="476" fill="#1e293b" font-family="Inter, sans-serif" font-size="18" font-weight="600">
-    DataFlow Ltd
-  </text>
-  <text x="104" y="494" fill="#64748b" font-family="Inter, sans-serif" font-size="12">
-    🌐 dataflow.io • 👤 Mike Davis
-  </text>
-  
-  <!-- Health Score (Critical) -->
-  <text x="340" y="466" fill="#64748b" font-family="Inter, sans-serif" font-size="9" 
-        font-weight="600" text-transform="uppercase" letter-spacing="0.05em">HEALTH</text>
-  <circle cx="355" cy="481" r="16" fill="url(#dangerGradient)" 
-          style="box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);"/>
-  <text x="355" y="487" fill="white" font-family="Inter, sans-serif" font-size="12" 
-        font-weight="700" text-anchor="middle">38</text>
-  
-  <!-- Last Contact (Critical) -->
-  <text x="400" y="466" fill="#64748b" font-family="Inter, sans-serif" font-size="9" 
-        font-weight="600" text-transform="uppercase" letter-spacing="0.05em">LAST CONTACT</text>
-  <text x="400" y="486" fill="#ef4444" font-family="Inter, sans-serif" font-size="13" font-weight="600">21d ago</text>
-  
-  <!-- MRR -->
-  <text x="500" y="466" fill="#64748b" font-family="Inter, sans-serif" font-size="9" 
-        font-weight="600" text-transform="uppercase" letter-spacing="0.05em">MRR</text>
-  <text x="500" y="486" fill="#059669" font-family="Inter, sans-serif" font-size="15" font-weight="700">$8,000</text>
-  
-  <!-- Renewal (Critical) -->
-  <text x="600" y="466" fill="#64748b" font-family="Inter, sans-serif" font-size="9" 
-        font-weight="600" text-transform="uppercase" letter-spacing="0.05em">RENEWAL</text>
-  <text x="600" y="486" fill="#ef4444" font-family="Inter, sans-serif" font-size="13" font-weight="600">Jan 30, 2025</text>
-  
-  <!-- Action Buttons -->
-  <rect x="690" y="464" width="35" height="20" rx="10" fill="rgba(255,255,255,0.8)" 
-        stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
-  <text x="702" y="476" fill="#64748b" font-family="Inter, sans-serif" font-size="9" 
-        font-weight="500" text-anchor="middle">View</text>
-  
-  <rect x="690" y="490" width="35" height="20" rx="10" fill="rgba(59,130,246,0.1)" 
-        stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
-  <text x="702" y="502" fill="#3b82f6" font-family="Inter, sans-serif" font-size="9" 
-        font-weight="500" text-anchor="middle">Timeline</text>
-  
-  <!-- Client 3 - CloudSync Pro (Warning) -->
-  <rect x="24" y="540" width="752" height="80" rx="20" fill="url(#glassCard)" 
-        stroke="rgba(226,232,240,0.3)" stroke-width="1" filter="url(#cardShadow)"/>
-  
-  <!-- Avatar -->
-  <rect x="48" y="560" width="40" height="40" rx="12" fill="url(#warningGradient)" 
-        style="box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);"/>
-  <text x="68" y="584" fill="white" font-family="Inter, sans-serif" font-size="18" 
-        font-weight="700" text-anchor="middle">C</text>
-  
-  <!-- Client Info -->
-  <text x="104" y="572" fill="#1e293b" font-family="Inter, sans-serif" font-size="18" font-weight="600">
-    CloudSync Pro
-  </text>
-  <text x="104" y="590" fill="#64748b" font-family="Inter, sans-serif" font-size="12">
-    🌐 cloudsync.co • 👤 Alex Kim
-  </text>
-  
-  <!-- Health Score (Warning) -->
-  <text x="340" y="562" fill="#64748b" font-family="Inter, sans-serif" font-size="9" 
-        font-weight="600" text-transform="uppercase" letter-spacing="0.05em">HEALTH</text>
-  <circle cx="355" cy="577" r="16" fill="url(#warningGradient)" 
-          style="box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);"/>
-  <text x="355" y="583" fill="white" font-family="Inter, sans-serif" font-size="12" 
-        font-weight="700" text-anchor="middle">52</text>
-  
-  <!-- Last Contact -->
-  <text x="400" y="562" fill="#64748b" font-family="Inter, sans-serif" font-size="9" 
-        font-weight="600" text-transform="uppercase" letter-spacing="0.05em">LAST CONTACT</text>
-  <text x="400" y="582" fill="#1e293b" font-family="Inter, sans-serif" font-size="13" font-weight="600">6d ago</text>
-  
-  <!-- MRR -->
-  <text x="500" y="562" fill="#64748b" font-family="Inter, sans-serif" font-size="9" 
-        font-weight="600" text-transform="uppercase" letter-spacing="0.05em">MRR</text>
-  <text x="500" y="582" fill="#059669" font-family="Inter, sans-serif" font-size="15" font-weight="700">$15,200</text>
-  
-  <!-- Renewal -->
-  <text x="600" y="562" fill="#64748b" font-family="Inter, sans-serif" font-size="9" 
-        font-weight="600" text-transform="uppercase" letter-spacing="0.05em">RENEWAL</text>
-  <text x="600" y="582" fill="#1e293b" font-family="Inter, sans-serif" font-size="13" font-weight="600">Apr 20, 2025</text>
-  
-  <!-- Action Buttons -->
-  <rect x="690" y="560" width="35" height="20" rx="10" fill="rgba(255,255,255,0.8)" 
-        stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
-  <text x="702" y="572" fill="#64748b" font-family="Inter, sans-serif" font-size="9" 
-        font-weight="500" text-anchor="middle">View</text>
-  
-  <rect x="690" y="586" width="35" height="20" rx="10" fill="rgba(59,130,246,0.1)" 
-        stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
-  <text x="702" y="598" fill="#3b82f6" font-family="Inter, sans-serif" font-size="9" 
-        font-weight="500" text-anchor="middle">Timeline</text>
-  
-  <!-- Pagination -->
-  <text x="40" y="660" fill="#64748b" font-family="Inter, sans-serif" font-size="12" font-weight="500">
-    Page 1 of 2 • 47 clients
-  </text>
-  
-  <rect x="650" y="645" width="60" height="28" rx="14" fill="rgba(255,255,255,0.8)" 
-        stroke="rgba(226,232,240,0.5)" stroke-width="1"/>
-  <text x="670" y="662" fill="#64748b" font-family="Inter, sans-serif" font-size="11" 
-        font-weight="500" text-anchor="middle">← Previous</text>
-  
-  <rect x="720" y="645" width="40" height="28" rx="14" fill="url(#primaryGradient)" 
-        style="box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);"/>
-  <text x="735" y="662" fill="white" font-family="Inter, sans-serif" font-size="11" 
-        font-weight="500" text-anchor="middle">Next →</text>
 </svg>
