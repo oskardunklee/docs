@@ -1,21 +1,226 @@
 ---
-// pages/concepts/health-score.mdx
-title: "Health score"
-description: "Signals, weights, and attribution."
-icon: "activity"
+title: 'Client Health Scoring'
+description: 'Understanding how Stanna calculates and uses client health scores'
 ---
-The score ranges **0–100**. Default initial value is **50**.
 
-**Inputs**
-- Sentiment from recent interactions
-- Interaction velocity and direction
-- Renewal proximity and QBR cadence
-- Open tasks and SLA breaches
-- Custom tags (e.g., "High ARR")
+## Overview
 
-**Attribution**
-Each recalculation stores **drivers** with `reason`, `delta`, `count`, and `sample` timestamps. See **Score attribution** page.
+Stanna's AI-powered health scoring system automatically evaluates the strength of your client relationships on a scale of 0-100. This score is the foundation for identifying at-risk clients, expansion opportunities, and overall portfolio health.
 
-**Tuning**
-- **Settings → Risk thresholds** to define alert bands.
-- Per-workspace weights available via config file or API.
+<Frame caption="Health score visualization in client dashboard">
+  <img src="/images/health-score-snippet.svg" alt="Client health score of 87 with trend indicator and attribution details" />
+</Frame>
+
+## How Health Scores Work
+
+### Score Range & Meaning
+- **🔴 0-40**: At Risk - Immediate attention required
+- **🟡 41-70**: Healthy - Monitor regularly  
+- **🟢 71-100**: Thriving - Expansion opportunity
+
+### Default Starting Score
+New clients begin with a **neutral score of 50** until sufficient data is collected to calculate an accurate health score.
+
+## Scoring Factors
+
+### Primary Inputs
+
+<AccordionGroup>
+  <Accordion title="Email Sentiment Analysis" icon="envelope">
+    **Gmail Integration Data:**
+    - Tone analysis of email communications
+    - Response time patterns
+    - Frequency of positive vs. negative interactions
+    - Client engagement with your outreach
+    
+    **Weight**: High impact on overall score
+  </Accordion>
+  
+  <Accordion title="Support Interaction Patterns" icon="headset">
+    **Intercom Integration Data:**
+    - Support ticket sentiment and resolution
+    - Escalation frequency and severity
+    - Customer satisfaction ratings
+    - Issue resolution time trends
+    
+    **Weight**: Moderate to high impact
+  </Accordion>
+  
+  <Accordion title="CRM Activity Data" icon="database">
+    **HubSpot Integration Data:**
+    - Meeting attendance and engagement
+    - Deal progression and pipeline health
+    - Contact activity and responsiveness
+    - Account expansion or contraction signals
+    
+    **Weight**: Moderate impact
+  </Accordion>
+  
+  <Accordion title="Revenue & Contract Health" icon="dollar-sign">
+    **Business Indicators:**
+    - Payment history and billing issues
+    - Renewal date proximity and likelihood
+    - Contract value changes
+    - Usage patterns (if available)
+    
+    **Weight**: High impact for revenue risk
+  </Accordion>
+</AccordionGroup>
+
+### Temporal Weighting
+
+Recent interactions have more influence than older ones:
+- **Last 7 days**: Maximum weight (100%)
+- **Last 30 days**: High weight (70%)
+- **Last 90 days**: Moderate weight (40%)
+- **Older than 90 days**: Low weight (20%)
+
+## Score Attribution
+
+### Understanding Score Changes
+
+Every health score recalculation includes detailed attribution:
+- **Reason**: What caused the score to change
+- **Delta**: How much the score increased or decreased  
+- **Impact Factors**: Which interactions influenced the change
+- **Timestamp**: When the change occurred
+
+### Accessing Attribution Data
+
+View score attribution details:
+1. **Client Profile**: Click on any client's health score
+2. **API Access**: `GET /api/clients/:id/attributions`
+3. **Manual Attribution**: `POST /api/clients/:id/attribute` to add context
+
+### Common Score Drivers
+
+**Positive Drivers:**
+- Positive email responses and engagement
+- Successful issue resolution
+- Meeting attendance and participation
+- On-time payments and contract renewals
+
+**Negative Drivers:**
+- Support escalations or complaints
+- Reduced email engagement or ignored messages
+- Missed meetings or delayed responses
+- Billing issues or payment delays
+
+## Customizing Health Scores
+
+### Risk Thresholds
+
+Adjust what scores trigger alerts:
+1. **Default**: Scores ≤40 are considered "at risk"
+2. **Custom Thresholds**: Set your own risk levels per workspace
+3. **Industry Adjustment**: Different thresholds for different client types
+
+### Manual Overrides
+
+When automated scoring doesn't reflect reality:
+- **Manual Attribution**: Add context explaining score changes
+- **Temporary Adjustments**: Account for known circumstances
+- **Permanent Overrides**: For clients with unique situations
+
+## Using Health Scores Effectively
+
+### Daily Workflow Integration
+
+<Steps>
+  <Step title="Morning Review">
+    Check the at-risk clients list on your dashboard for immediate priorities
+  </Step>
+  
+  <Step title="Score Change Alerts">
+    Review clients with significant score drops (≥10 points) in the past 24 hours
+  </Step>
+  
+  <Step title="Proactive Outreach">
+    Contact clients with declining trends before they become at-risk
+  </Step>
+  
+  <Step title="Expansion Identification">
+    Identify high-scoring clients (≥80) for potential upsell opportunities
+  </Step>
+</Steps>
+
+### Team Management
+
+**For CS Professionals:**
+- Focus on clients with scores 41-60 to prevent churn
+- Use score attribution to understand client concerns
+- Track your portfolio's average health score over time
+
+**For CS Directors:**
+- Monitor team performance through portfolio health trends
+- Identify training opportunities based on common score drivers
+- Allocate resources based on client risk distribution
+
+**For Leadership:**
+- Track overall portfolio health as a leading indicator
+- Measure correlation between health scores and revenue outcomes
+- Make strategic decisions based on client health patterns
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Regular Monitoring" icon="eye">
+    Check health scores weekly, not daily, to avoid over-reacting to normal fluctuations
+  </Card>
+  
+  <Card title="Context is Key" icon="message-circle">
+    Always investigate score changes - the story behind the score matters more than the number
+  </Card>
+  
+  <Card title="Proactive Approach" icon="shield-check">
+    Act on declining trends (41-60) before clients become at-risk (≤40)
+  </Card>
+  
+  <Card title="Team Calibration" icon="users">
+    Regularly discuss score interpretations with your team to maintain consistency
+  </Card>
+</CardGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Health score seems too low">
+    **Check these factors:**
+    - Are all positive interactions being captured by integrations?
+    - Is there recent negative interaction data skewing the score?
+    - Has the client had recent billing or support issues?
+    
+    **Solutions:**
+    1. Review integration sync status and completeness
+    2. Add manual attribution explaining positive context
+    3. Check for recent negative interactions that need context
+  </Accordion>
+  
+  <Accordion title="Health score not updating">
+    **Common causes:**
+    - Integration sync issues preventing new data
+    - Insufficient interaction data for recalculation
+    - Client domain mismatch between systems
+    
+    **Troubleshooting:**
+    1. Check integration status at `/api/integrations/status`
+    2. Verify recent interactions exist in source systems
+    3. Trigger manual sync if needed
+  </Accordion>
+  
+  <Accordion title="Score changes seem random">
+    **Understanding score volatility:**
+    - New clients may have unstable scores until sufficient data is collected
+    - Infrequent interactions can cause larger score swings
+    - Integration backfill may temporarily affect historical scoring
+    
+    **Stabilization strategies:**
+    1. Allow 30-60 days for new clients to develop stable scores
+    2. Focus on trends rather than individual score values
+    3. Use manual attribution to provide stability context
+  </Accordion>
+</AccordionGroup>
+
+<Info>
+**Advanced Scoring**: Enterprise customers can access custom scoring weights and advanced attribution features. Contact [support@gostanna.com](mailto:support@gostanna.com) for details.
+</Info>

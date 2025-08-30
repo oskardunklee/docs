@@ -1,0 +1,279 @@
+---
+title: 'HubSpot Integration'
+description: 'Sync contacts, companies, and activities from your HubSpot CRM'
+---
+
+## Overview
+
+The HubSpot integration connects your CRM data with Stanna's customer success platform, automatically syncing contacts, companies, deals, and activities to provide a complete view of your client relationships.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Contact & Company Sync" icon="building">
+    Automatic synchronization of companies and contacts with relationship mapping
+  </Card>
+  
+  <Card title="Deal Pipeline Data" icon="funnel">
+    Revenue data, deal stages, and renewal information for accurate forecasting
+  </Card>
+  
+  <Card title="Activity Tracking" icon="activity">
+    Import meetings, calls, emails, and other recorded activities
+  </Card>
+  
+  <Card title="Property Mapping" icon="arrows-rotate">
+    Flexible field mapping for custom HubSpot properties and data structure
+  </Card>
+</CardGroup>
+
+## Setting Up HubSpot Integration
+
+### Prerequisites
+
+Before connecting HubSpot:
+- [ ] HubSpot admin access or integration permissions
+- [ ] Understanding of your HubSpot data structure
+- [ ] Clear mapping between HubSpot companies and Stanna clients
+
+### Connection Process
+
+<Steps>
+  <Step title="Initiate OAuth Flow">
+    Navigate to `/api/integrations/hubspot/start` or click "Connect HubSpot" in integrations
+  </Step>
+  
+  <Step title="Authorize Access">
+    Sign in to HubSpot and grant Stanna permission to access:
+    - Companies and contacts
+    - Deals and pipeline data
+    - Activities and engagement data
+    - Custom properties (if needed)
+  </Step>
+  
+  <Step title="Verify Connection">
+    Check status at `/api/integrations/hubspot/status` to confirm:
+    - Active connection status
+    - Last successful sync time
+    - Available data scopes
+  </Step>
+  
+  <Step title="Initial Data Sync">
+    Trigger first sync with `POST /api/integrations/hubspot/sync`:
+    - Imports company and contact data
+    - Syncs deal information and revenue data
+    - Establishes client-company relationships
+  </Step>
+</Steps>
+
+## Data Mapping & Sync
+
+### Standard Field Mapping
+
+**Company Data**:
+- `name` → Client Name
+- `domain` → Client Domain
+- `annual_recurring_revenue` / `mrr` → Monthly Recurring Revenue
+- `renewal_date` / `contract_end_date` → Renewal Date
+- `hubspot_owner_id` → CSM Owner
+
+**Contact Data**:
+- `email` → Stakeholder Email
+- `firstname` + `lastname` → Stakeholder Name
+- `jobtitle` → Stakeholder Title
+- `company` → Client Association
+
+### Custom Property Support
+
+The integration supports custom HubSpot properties:
+- Map any HubSpot property to Stanna fields
+- Handle custom deal stages and pipeline configurations
+- Sync custom company and contact properties
+- Maintain property relationships across systems
+
+### Historical Data Import
+
+Use the backfill process for historical data:
+- **Endpoint**: `POST /api/integrations/hubspot/backfill`
+- **Timeframe**: Configurable lookback period (default 2 years)
+- **Data Types**: Companies, contacts, deals, activities
+- **Processing**: Background processing for large data volumes
+
+## Revenue & Pipeline Data
+
+### Deal Information
+
+Automatically sync deal data for revenue tracking:
+- **Pipeline stage**: Current deal status
+- **Close date**: Expected renewal or expansion
+- **Deal value**: Revenue amount and currency
+- **Deal probability**: Likelihood of closing
+
+### MRR Calculation
+
+Stanna calculates Monthly Recurring Revenue from HubSpot data:
+- Annual contract values divided by 12
+- Subscription-based deal values
+- Custom MRR fields from HubSpot properties
+- Automatic currency conversion if needed
+
+### Renewal Tracking
+
+Track renewal dates and contract milestones:
+- Contract end dates from HubSpot
+- Renewal probability scores
+- Expansion opportunity identification
+- Churn risk based on deal stage changes
+
+## Activity Sync
+
+### Supported Activities
+
+Import various HubSpot activities:
+- **Meetings**: Scheduled calls and appointments
+- **Calls**: Phone conversations and outcomes
+- **Emails**: Email opens, clicks, and responses
+- **Notes**: General contact and company notes
+- **Tasks**: Follow-up actions and reminders
+
+### Activity-Based Insights
+
+Activities influence client health scores:
+- Recent positive activities boost health scores
+- Missed meetings or lack of engagement lower scores
+- Activity frequency indicates relationship strength
+- Response patterns show client engagement levels
+
+## API Endpoints
+
+### Core Integration
+```
+GET  /api/integrations/hubspot/start     # Start OAuth flow
+GET  /api/integrations/hubspot/callback  # OAuth callback handling
+GET  /api/integrations/hubspot/status    # Check connection status
+POST /api/integrations/hubspot/sync      # Manual sync trigger
+POST /api/integrations/hubspot/backfill  # Historical data import
+```
+
+### Data Management
+```
+GET /api/integrations/status             # Overall integration status
+POST /api/ingest/run                     # Trigger full data sync
+GET /api/ingest/status                   # Check sync progress
+```
+
+## Sync Configuration
+
+### Sync Frequency
+
+- **Automatic Sync**: Every 15-30 minutes during business hours
+- **Manual Sync**: Available via API or dashboard
+- **Real-time Updates**: Critical changes sync immediately
+- **Batch Processing**: Large data sets processed in background
+
+### Data Filtering
+
+Configure which data to sync:
+- **Company Filters**: By lifecycle stage, owner, or properties
+- **Contact Filters**: By role, engagement level, or custom criteria
+- **Deal Filters**: By pipeline, stage, or value thresholds
+- **Activity Filters**: By type, date range, or outcome
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Integration disconnected or failing">
+    **Common Issues**:
+    - HubSpot API rate limits exceeded
+    - OAuth token expired or revoked
+    - Permission changes in HubSpot
+    - Network connectivity problems
+    
+    **Resolution Steps**:
+    1. Check `/api/integrations/hubspot/status` for specific errors
+    2. Re-authenticate at `/api/integrations/hubspot/start` if needed
+    3. Verify HubSpot permissions haven't changed
+    4. Contact support if rate limit issues persist
+  </Accordion>
+  
+  <Accordion title="Missing or incorrect company data">
+    **Troubleshooting Process**:
+    1. Verify company exists in HubSpot with required fields
+    2. Check domain field is populated and matches expected format
+    3. Confirm company is associated with contacts
+    4. Review custom property mappings
+    
+    **Data Requirements**:
+    - Companies must have a domain field for client matching
+    - Required properties must be populated
+    - Company-contact associations must exist
+  </Accordion>
+  
+  <Accordion title="Revenue data not syncing correctly">
+    **Common Causes**:
+    - Deal pipeline configuration issues
+    - Missing or incorrect deal amounts
+    - Currency conversion problems
+    - Custom property mapping errors
+    
+    **Solutions**:
+    1. Review deal pipeline setup in HubSpot
+    2. Verify deal amounts are properly formatted
+    3. Check custom MRR field configurations
+    4. Confirm currency settings match expectations
+  </Accordion>
+</AccordionGroup>
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Clean Data Hygiene" icon="sparkles">
+    Maintain clean company and contact data in HubSpot for accurate sync
+  </Card>
+  
+  <Card title="Consistent Domains" icon="link">
+    Ensure company domains are consistent and properly formatted across all records
+  </Card>
+  
+  <Card title="Regular Reviews" icon="calendar-check">
+    Review integration status and sync logs weekly to catch issues early
+  </Card>
+  
+  <Card title="Property Management" icon="settings">
+    Document custom property mappings and keep them updated as your process evolves
+  </Card>
+</CardGroup>
+
+## Advanced Configuration
+
+### Custom Property Mapping
+
+Configure advanced field mappings:
+- Map HubSpot lifecycle stages to Stanna client statuses
+- Sync custom company properties to client tags
+- Map deal properties to client health indicators
+- Create calculated fields from multiple HubSpot properties
+
+### Webhook Support
+
+For real-time updates (enterprise feature):
+- Configure HubSpot webhooks for immediate sync
+- Receive instant updates on deal changes
+- Get notified of new company/contact creation
+- Track property changes in real-time
+
+### Data Validation Rules
+
+Set up validation to ensure data quality:
+- Required field validation
+- Format checking for domains and emails
+- Range validation for revenue fields
+- Duplicate detection and handling
+
+<Warning>
+**Rate Limits**: HubSpot has API rate limits. Large syncs or frequent manual syncs may hit these limits. The system automatically handles rate limiting with retries and backoff.
+</Warning>
+
+<Info>
+**Need help with complex mappings?** Contact [support@gostanna.com](mailto:support@gostanna.com) for assistance with custom HubSpot configurations.
+</Info>

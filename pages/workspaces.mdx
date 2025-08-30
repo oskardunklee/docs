@@ -1,14 +1,260 @@
 ---
-// pages/concepts/workspaces.mdx
-title: "Workspaces"
-description: "Multi-tenant separation with workspaceId."
-icon: "building-2"
+title: 'Workspaces'
+description: 'Multi-tenant architecture and workspace management in Stanna'
 ---
-A **workspace** is an isolation boundary for all data.
 
-- Identifier: `workspaceId` (string). Default is your email domain (e.g., `spare.com`).
-- All API reads require `workspaceId`. Many list endpoints accept `?workspaceId=<id>`.
-- Uniqueness: `Client` has a composite unique key `{ workspaceId, domain }`.
+## Overview
 
-**Change workspace**
-- Go to **Settings → Workspace** to rename or map multiple domains (e.g., `spare.com`, `sparelabs.com`) to one workspace.
+Workspaces provide secure, isolated environments for different organizations, teams, or business units within Stanna. Each workspace maintains completely separate data, integrations, and settings.
+
+<Frame caption="Workspace selection and management interface">
+  <img src="/images/workspace-snippet.svg" alt="Workspace dashboard showing domain management and team settings" />
+</Frame>
+
+## How Workspaces Work
+
+### Workspace Identification
+
+Every workspace is identified by a unique `workspaceId`:
+- **Default ID**: Your email domain (e.g., `company.com`)
+- **Custom IDs**: Configurable for specific business needs
+- **Domain-based**: Automatic workspace assignment based on user email domains
+
+### Data Isolation
+
+Each workspace maintains complete separation of:
+- **Client data**: Companies, contacts, and interaction history
+- **Integrations**: OAuth tokens and sync configurations  
+- **User access**: Team members and permission levels
+- **Settings**: Custom configurations and preferences
+- **Billing**: Separate subscription and usage tracking
+
+## Workspace Management
+
+### Multi-Domain Support
+
+A single workspace can include multiple domains:
+- **Primary domain**: Main company domain (e.g., `company.com`)
+- **Additional domains**: Subsidiaries or alternate domains (e.g., `subsidiary.com`, `company.co.uk`)
+- **Automatic mapping**: Users from any configured domain join the same workspace
+
+<Steps>
+  <Step title="Access Workspace Settings">
+    Navigate to **Settings → Workspace** in your Stanna dashboard
+  </Step>
+  
+  <Step title="Add Additional Domains">
+    Click **Add Domain** and enter additional company domains that should share the same workspace
+  </Step>
+  
+  <Step title="Verify Domain Ownership">
+    Follow the verification process to confirm domain ownership (for security)
+  </Step>
+  
+  <Step title="Update Team Access">
+    Existing users from the new domains will automatically gain workspace access
+  </Step>
+</Steps>
+
+### Workspace Renaming
+
+Change your workspace display name:
+1. Go to **Settings → Workspace**
+2. Update the **Workspace Name** field
+3. Save changes (affects UI display only, not the underlying workspaceId)
+
+## API Integration
+
+### Workspace-Scoped Requests
+
+All API endpoints require workspace context:
+```http
+GET /api/clients?workspaceId=company.com
+GET /api/metrics/summary?workspaceId=company.com
+POST /api/clients/123/tasks?workspaceId=company.com
+```
+
+### Automatic Workspace Detection
+
+Most endpoints automatically detect workspace from:
+- **Authentication headers**: User's associated workspace
+- **Email domain**: Automatic mapping to appropriate workspace
+- **Explicit parameters**: Manual workspaceId specification
+
+## Data Architecture
+
+### Client Uniqueness
+
+Clients are unique within each workspace by domain:
+- **Composite key**: `{workspaceId, clientDomain}`
+- **Cross-workspace isolation**: Same client domain can exist in different workspaces
+- **Domain matching**: Client identification based on email domain patterns
+
+### Integration Isolation
+
+Each workspace maintains separate:
+- **OAuth tokens**: Independent Google, HubSpot, Intercom connections
+- **Sync cursors**: Independent data sync progress tracking
+- **Configuration**: Separate integration settings and field mappings
+
+## Feature Flags & Settings
+
+### Workspace-Level Features
+
+Configure features independently per workspace:
+- **Feature flags**: Enable/disable specific functionality
+- **Integration permissions**: Control which integrations are available
+- **Data retention**: Set custom retention policies
+- **Custom thresholds**: Risk scores and alert settings
+
+### Settings Management
+
+Access workspace settings through:
+- **UI**: Settings → Workspace in the dashboard
+- **API**: `GET/PUT /api/settings` endpoints
+- **Admin panel**: Enterprise customers can access admin controls
+
+## Team Management
+
+### User Assignment
+
+Users are automatically assigned to workspaces based on:
+- **Email domain**: Primary assignment method
+- **Manual invitation**: Admin-initiated workspace access
+- **Domain verification**: Confirmed domain ownership for security
+
+### Permission Levels
+
+Different access levels within workspaces:
+- **Admin**: Full workspace configuration and team management
+- **Member**: Standard client management and feature access
+- **Viewer**: Read-only access to workspace data
+- **Custom roles**: Enterprise feature for granular permissions
+
+## Enterprise Features
+
+### Workspace Administration
+
+Enterprise customers get additional workspace controls:
+- **Cross-workspace reporting**: Aggregate data across multiple workspaces
+- **Centralized billing**: Unified invoicing for multiple workspaces
+- **Advanced permissions**: Role-based access control
+- **Audit logging**: Track workspace-level changes and access
+
+### Multi-Workspace Management
+
+For organizations with multiple business units:
+- **Workspace hierarchy**: Parent-child workspace relationships
+- **Shared resources**: Common integrations or settings across workspaces
+- **Consolidated reporting**: Executive dashboards spanning workspaces
+
+## Security & Compliance
+
+### Data Isolation
+
+Strict separation ensures:
+- **No data leakage**: Impossible to access other workspace data
+- **Independent authentication**: Separate OAuth tokens and API access
+- **Isolated processing**: Background jobs scoped to individual workspaces
+
+### Compliance Features
+
+- **GDPR compliance**: Data processing confined to appropriate workspaces
+- **Data residency**: Choose geographic regions for workspace data
+- **Audit trails**: Complete logging of workspace data access
+- **Retention policies**: Configurable data retention per workspace
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Domain Management" icon="globe">
+    Keep domain lists current to ensure new team members get appropriate workspace access
+  </Card>
+  
+  <Card title="Integration Organization" icon="plug">
+    Set up integrations once per workspace - they don't need to be duplicated across domains
+  </Card>
+  
+  <Card title="Settings Consistency" icon="settings">
+    Establish workspace settings early and document them for team consistency
+  </Card>
+  
+  <Card title="Access Reviews" icon="users">
+    Regularly review workspace members, especially after team changes or acquisitions
+  </Card>
+</CardGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Wrong workspace or missing data">
+    **Check workspace assignment:**
+    - Verify your email domain matches the expected workspace
+    - Check if multiple workspaces exist for your organization
+    - Confirm you're accessing the correct workspace in the UI
+    
+    **Solutions:**
+    1. Switch workspaces using the workspace selector
+    2. Contact admin to verify domain configuration
+    3. Check if you need access to a different workspace
+  </Accordion>
+  
+  <Accordion title="Team member can't access workspace">
+    **Common causes:**
+    - Email domain not added to workspace configuration
+    - User needs manual invitation to workspace
+    - Account exists in different workspace
+    
+    **Resolution steps:**
+    1. Verify user's email domain is configured for the workspace
+    2. Send manual workspace invitation if needed
+    3. Check if user account exists in system
+  </Accordion>
+  
+  <Accordion title="Integration not working after domain changes">
+    **Domain change impacts:**
+    - OAuth tokens remain tied to original domain configuration
+    - Some integrations may need re-authentication
+    - API calls must use correct workspaceId
+    
+    **Fix process:**
+    1. Re-authenticate integrations after domain changes
+    2. Update any hardcoded workspaceId references
+    3. Verify integration permissions haven't changed
+  </Accordion>
+</AccordionGroup>
+
+## Advanced Configuration
+
+### Custom Workspace IDs
+
+For organizations requiring specific workspace identifiers:
+```
+# Instead of email domain
+workspaceId: "company.com"
+
+# Custom identifier
+workspaceId: "enterprise-division-1"
+```
+
+### API Workspace Management
+
+Programmatic workspace operations:
+```http
+# Get workspace information
+GET /api/workspace/info?workspaceId=company.com
+
+# Update workspace settings  
+PUT /api/settings
+{
+  "workspaceId": "company.com",
+  "settings": { ... }
+}
+
+# Admin: List all workspaces
+GET /api/admin/workspaces
+```
+
+<Info>
+**Enterprise Setup**: Need help configuring complex workspace hierarchies or cross-workspace reporting? Contact [support@gostanna.com](mailto:support@gostanna.com) for dedicated setup assistance.
+</Info>

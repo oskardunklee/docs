@@ -1,0 +1,223 @@
+---
+title: 'Google Workspace Integration'
+description: 'Connect Gmail and Google Calendar to Stanna for complete interaction tracking'
+---
+
+## Overview
+
+The Google Workspace integration connects your Gmail and Google Calendar to automatically track client interactions, analyze email sentiment, and provide comprehensive communication insights.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Gmail Integration" icon="envelope">
+    Automatic email tracking with sentiment analysis and engagement metrics
+  </Card>
+  
+  <Card title="Contact Discovery" icon="users">
+    Automatic client and stakeholder identification from email interactions
+  </Card>
+  
+  <Card title="Email Analytics" icon="chart-line">
+    Track email engagement, response rates, and communication patterns
+  </Card>
+  
+  <Card title="Real-time Sync" icon="sync">
+    Continuous monitoring with 15-30 minute sync intervals
+  </Card>
+</CardGroup>
+
+## Setting Up Google Integration
+
+### Prerequisites
+
+Before connecting Google Workspace:
+- [ ] Google Workspace admin access (or personal Gmail account)
+- [ ] Permission to grant third-party app access
+- [ ] Understanding of which email accounts to sync
+
+### Connection Process
+
+<Steps>
+  <Step title="Start OAuth Flow">
+    Navigate to `/api/integrations/google/start` or click "Connect Google" in your integrations dashboard
+  </Step>
+  
+  <Step title="Grant Permissions">
+    Sign in to your Google account and authorize Stanna to access:
+    - Gmail messages (read-only)
+    - Contact information
+    - Calendar events (if calendar integration is enabled)
+  </Step>
+  
+  <Step title="Verify Connection">
+    Check connection status at `/api/integrations/google/status`
+    - Shows last sync time
+    - Displays token expiration
+    - Confirms active sync status
+  </Step>
+  
+  <Step title="Initial Sync">
+    Trigger first sync with `POST /api/integrations/google/sync`
+    - Imports up to 2 years of historical emails
+    - Identifies clients by domain matching
+    - Begins sentiment analysis processing
+  </Step>
+</Steps>
+
+## Data Sync & Processing
+
+### What Data is Imported
+
+**Email Messages**:
+- Subject lines and content for sentiment analysis
+- Sender and recipient information
+- Timestamps and thread relationships
+- Email engagement (opens, clicks if available)
+
+**Contact Information**:
+- Email addresses and display names
+- Automatic stakeholder identification
+- Domain-based client mapping
+
+### Sync Frequency
+
+- **Real-time**: Critical interactions sync within minutes
+- **Regular Sync**: Every 15-30 minutes during business hours
+- **Manual Sync**: Available via `POST /api/integrations/google/sync`
+- **Batch Processing**: Background processing for large volumes
+
+### Historical Data Import
+
+Initial setup includes:
+- **Backfill Process**: `POST /api/integrations/google/backfill`
+- **Timeframe**: Default 2 years (configurable)
+- **Batch Processing**: Handles large email volumes without timeout
+- **Progress Tracking**: Monitor import status in real-time
+
+## Email Analytics & Insights
+
+### Sentiment Analysis
+
+Stanna analyzes email content to determine relationship health:
+- **Positive sentiment**: Friendly, collaborative language
+- **Neutral sentiment**: Transactional, informational exchanges  
+- **Negative sentiment**: Complaints, issues, frustration indicators
+
+### Engagement Tracking
+
+Monitor email interaction patterns:
+- **Response rates**: How often clients reply to your emails
+- **Response time**: How quickly clients respond
+- **Email frequency**: Communication cadence with each client
+- **Engagement trends**: Changes in communication patterns over time
+
+### Client Health Impact
+
+Email data directly influences client health scores:
+- Recent positive interactions boost scores
+- Lack of responses may lower scores
+- Issue-related emails trigger attention flags
+- Communication frequency affects relationship strength metrics
+
+## API Endpoints
+
+### Core Integration Management
+```
+GET  /api/integrations/google/start     # Start OAuth flow
+GET  /api/integrations/google/callback  # OAuth callback handling
+GET  /api/integrations/google/status    # Check connection status
+POST /api/integrations/google/sync      # Manual sync trigger
+```
+
+### Data Processing
+```
+POST /api/integrations/google/backfill     # Historical data import
+POST /api/integrations/google/batch-sync   # Batch processing
+POST /api/integrations/google/email-tracking # Email engagement updates
+```
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Integration shows as disconnected">
+    **Common Causes**:
+    - OAuth token expired (tokens expire every 6 months)
+    - Google account password changed
+    - 2FA settings modified
+    - Gmail API quotas exceeded
+    
+    **Solutions**:
+    1. Visit `/api/integrations/google/start` to re-authenticate
+    2. Verify Google account is accessible
+    3. Check for any recent security changes
+    4. Contact support if quota issues persist
+  </Accordion>
+  
+  <Accordion title="Emails not appearing in Stanna">
+    **Troubleshooting Steps**:
+    1. Check last sync time in integration status
+    2. Verify emails exist in Gmail (not deleted/archived)
+    3. Confirm client domains are properly configured
+    4. Trigger manual sync and monitor for errors
+    
+    **Data Requirements**:
+    - Emails must contain recognizable client domains
+    - System needs read access to the specific Gmail labels
+    - Large email volumes may take time to process
+  </Accordion>
+  
+  <Accordion title="Sentiment scores seem incorrect">
+    **Understanding Sentiment Analysis**:
+    - AI analyzes email content for tone and context
+    - Scores improve with more data over time
+    - Manual attribution can override automated scoring
+    
+    **Improvement Steps**:
+    1. Use `POST /api/clients/:id/attribute` to add context
+    2. Review email content for ambiguous language
+    3. Allow 1-2 weeks for AI model improvements
+    4. Contact support for persistent inaccuracies
+  </Accordion>
+</AccordionGroup>
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Clean Email Habits" icon="broom">
+    Use clear, professional communication for better sentiment analysis accuracy
+  </Card>
+  
+  <Card title="Domain Management" icon="globe">
+    Ensure client domains are consistent across all systems for proper matching
+  </Card>
+  
+  <Card title="Regular Monitoring" icon="eye">
+    Check sync status weekly to catch any connection issues early
+  </Card>
+  
+  <Card title="Data Privacy" icon="shield">
+    Review what data is synced and ensure compliance with your privacy policies
+  </Card>
+</CardGroup>
+
+## Security & Privacy
+
+### Data Access
+- **Read-only access**: Stanna never sends emails or modifies Gmail data
+- **Selective permissions**: Only reads necessary email data
+- **Secure tokens**: OAuth tokens encrypted and securely stored
+
+### Privacy Compliance
+- **GDPR compliant**: Data processing aligned with privacy regulations
+- **Data retention**: Configurable data retention periods
+- **Right to deletion**: Complete data removal available on request
+
+### Audit Trail
+- All email access logged with timestamps
+- Integration activity tracked in admin logs
+- Sync status and error reporting for transparency
+
+<Info>
+**Need help with setup?** Contact [support@gostanna.com](mailto:support@gostanna.com) for a free 30-minute setup consultation.
+</Info>

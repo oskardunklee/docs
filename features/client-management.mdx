@@ -9,11 +9,27 @@ Client management is the heart of Stanna. Every client in your portfolio gets a 
 
 ## Client Portfolio Overview
 
-Your main client list provides a comprehensive view of your entire portfolio with health scores, MRR, and renewal dates at a glance.
+Your main client list provides a comprehensive view of your entire portfolio with health scores, MRR, and renewal dates at a glance. The interface features a modern glassmorphism design with floating background orbs and glass-effect cards.
 
 <Frame caption="Client portfolio showing health metrics, search filters, and at-risk client identification">
   <img src="/images/clients-list-snippet.svg" alt="Client list page showing portfolio health, at-risk clients, and search functionality" />
 </Frame>
+
+### Portfolio Statistics
+
+The header displays key metrics:
+- **Total active clients** (excluding hidden clients)
+- **At-risk clients** (health score ≤ 40 by default)
+- **Stale contacts** (no interaction in 14+ days by default)
+- **Excluded clients** (hidden from main metrics)
+
+### Smart Filtering
+
+Filter clients by category:
+- **Active Clients**: All non-excluded clients (default view)
+- **At Risk**: Clients with health scores below your risk threshold
+- **Stale**: Clients with no recent contact (configurable days)
+- **Excluded**: Clients hidden from main portfolio metrics
 
 ## Individual Client Profiles
 
@@ -28,52 +44,44 @@ Each client gets a dedicated profile page with detailed health tracking, interac
 Each client profile contains:
 
 ### Basic Information
-- **Company Name & Domain**: Primary identifiers
-- **MRR (Monthly Recurring Revenue)**: Current subscription value
-- **Tier**: Enterprise, Mid-Market, SMB, etc.
-- **Lifecycle Stage**: Onboarding, Active, Renewal, etc.
+- **Company Name & Domain**: Primary identifiers with favicon display
+- **MRR (Monthly Recurring Revenue)**: Current subscription value in CAD
 - **CSM Owner**: Assigned customer success manager
+- **Exclusion Status**: Whether client is excluded from portfolio metrics
+- **Tags**: Custom categorization labels
 
 ### Health Metrics
-- **Sentiment Score**: AI-powered relationship health (0-100)
-- **Last Interaction**: Most recent touchpoint date
-- **Interaction Frequency**: Communication patterns
-- **Renewal Date**: Next contract milestone
+- **Sentiment Score**: AI-powered relationship health (0-100) with color-coded badges
+- **Last Interaction**: Most recent touchpoint with relative time display (e.g., "5d ago")
+- **Renewal Date**: Next contract milestone with formatted dates
+- **Score Attribution**: Explanations for health score changes
+- **Historical Tracking**: Score changes over time
 
 ## Adding Clients
 
 <Tabs>
-  <Tab title="Manual Entry">
+  <Tab title="Onboarding Flow">
     1. Navigate to **Clients** in the main menu
-    2. Click **Add Client**
-    3. Fill in the required information:
-       - Company name (required)
-       - Domain (required) 
-       - MRR amount
-       - Renewal date
-       - Assigned CSM
-    4. Click **Save Client**
+    2. Click **Add Clients** button
+    3. This redirects to `/onboarding` for the complete setup process
+    4. Follow the onboarding wizard to add clients and configure integrations
   </Tab>
   
-  <Tab title="CSV Import">
-    1. Go to **Clients** → **Import**
-    2. Download the CSV template
-    3. Fill in your client data with these columns:
-       - `name` (required)
-       - `domain` (required)
-       - `mrr` (optional)
-       - `renewal_date` (optional, format: YYYY-MM-DD)
-       - `tier` (optional)
-       - `csm_owner` (optional)
-    4. Upload your completed CSV file
-    5. Review and confirm the import
+  <Tab title="CSV Export/Import">
+    Current clients can be exported to CSV:
+    1. Go to **Clients** page
+    2. Apply any filters you want
+    3. Click **Export CSV** button
+    4. Download includes: name, domain, score, lastInteraction, mrr, renewalDate, owner
   </Tab>
   
   <Tab title="Integration Sync">
     Clients automatically sync from connected integrations:
-    - **HubSpot**: Companies with active deals
-    - **Intercom**: Companies with support conversations
-    - **Google**: Contacts from Gmail interactions
+    - **Google Workspace**: Gmail contacts and email interactions
+    - **HubSpot**: Companies and contacts with activity sync
+    - **Intercom**: Companies with conversation history
+    
+    All integrations use OAuth2 authentication and sync automatically.
   </Tab>
 </Tabs>
 
@@ -119,20 +127,20 @@ Stanna automatically calculates a health score (0-100) based on:
 2. Click the **Edit** button in the top right
 3. Update any field and click **Save**
 
-### Adding Custom Fields
-You can add custom fields for your specific business needs:
-1. Go to **Settings** → **Client Fields**
-2. Click **Add Custom Field**
-3. Choose field type (text, number, date, dropdown)
-4. Set field name and options
-5. Apply to existing clients if desired
+### Client Exclusion
+Exclude clients from portfolio metrics without deleting them:
+1. Find the client in your client list
+2. Look for the "Excluded" badge on excluded clients
+3. Use the **Excluded** tab to view all excluded clients
+4. Use the API endpoint `POST /api/clients/:id/exclude` to toggle exclusion status
 
-### Bulk Operations
-Select multiple clients to perform bulk actions:
-- **Reassign CSM**: Change ownership across multiple clients
-- **Update Tier**: Bulk categorization changes
-- **Add Tags**: Apply labels to groups of clients
-- **Export Data**: Download client information
+### Search and Sorting
+Advanced search and sort capabilities:
+- **Search**: Type to search by client name or domain (use `/` keyboard shortcut)
+- **Sort by**: Name, Health Score, Last Contact, MRR, Renewal Date
+- **Risk Threshold**: Adjust what score is considered "at risk" (default ≤40)
+- **Stale Days**: Configure how many days without contact is considered "stale" (default ≥14)
+- **Pagination**: 25 clients per page with navigation controls
 
 ## Client Interactions
 
@@ -143,16 +151,19 @@ Each client profile shows a complete timeline of interactions:
 - **Meetings**: Calendar events and notes
 - **Phone Calls**: Logged conversations
 
-### Adding Manual Interactions
+### Viewing Interaction History
+Detailed interaction tracking from integrated platforms:
+- **Email interactions**: From Gmail integration with sentiment analysis
+- **Support conversations**: From Intercom integration
+- **HubSpot activities**: Contact and company interactions
+- **Score attribution**: See why health scores changed
+
+### Manual Score Attribution
+Provide context for health score changes:
 1. Open any client profile
-2. Click **Add Interaction**
-3. Select interaction type:
-   - Email
-   - Phone call
-   - Meeting
-   - Note
-4. Add details and sentiment
-5. Save the interaction
+2. Navigate to the attributions section
+3. Use the `POST /api/clients/:id/attribute` endpoint to add manual explanations
+4. Track why scores increased or decreased
 
 <Info>
 **Pro Tip**: Add context to manual interactions to improve sentiment analysis accuracy. Include outcomes and next steps.
@@ -160,46 +171,39 @@ Each client profile shows a complete timeline of interactions:
 
 ## Stakeholder Management
 
-Track multiple contacts within each client organization:
+Stanna includes a dedicated stakeholder system for tracking multiple contacts within each client organization:
 
-### Adding Stakeholders
-1. In the client profile, scroll to **Stakeholders**
-2. Click **Add Stakeholder**
-3. Enter contact information:
-   - Name and title
-   - Email address
-   - Role/department
-   - Influence level
-4. Save the stakeholder
+### Stakeholder Features
+- Individual stakeholder records linked to clients
+- Email-based stakeholder identification from interactions
+- Automatic stakeholder discovery from Gmail and other integrations
+- Stakeholder-specific interaction history
 
-### Stakeholder Insights
-- **Sentiment Average**: Relationship health with each contact
-- **Interaction History**: Communications with specific stakeholders
-- **Influence Mapping**: Decision-maker identification
+### Accessing Stakeholder Data
+Stakeholder information is available through the client profile and API endpoints. The system automatically identifies stakeholders from email communications and integrates them into the client relationship view.
 
-## Client Segmentation
+## Client Management Features
 
-### Using Tags
-Organize clients with custom tags:
-- **Industry tags**: SaaS, Manufacturing, Healthcare
-- **Size tags**: Enterprise, Mid-Market, SMB
-- **Status tags**: Onboarding, Active, Churned
-- **Custom tags**: Whatever fits your business
+### Task Management
+Track action items and follow-ups for each client:
+- Create client-specific tasks with due dates
+- Mark tasks as complete with timestamps
+- View all tasks across your portfolio
+- API endpoints: `GET/POST /api/clients/:id/tasks`
 
-### Filtering & Searching
-Use the filter panel to find specific clients:
-- **Health Score**: Show only at-risk clients
-- **MRR Range**: Filter by revenue size
-- **Renewal Date**: Upcoming renewals
-- **CSM Owner**: Your assigned clients
-- **Tags**: Custom categorization
+### Upcoming Events
+Track important milestones and deadlines:
+- Renewal dates and contract milestones
+- QBR (Quarterly Business Review) scheduling
+- Launch dates and implementation milestones
+- Custom event types for your business needs
+- API endpoints: `GET/POST /api/clients/:id/upcoming`
 
-### Saved Views
-Create and save common filter combinations:
-1. Set up your filters
-2. Click **Save View**
-3. Name your view (e.g., "My At-Risk Clients")
-4. Access quickly from the Views dropdown
+### Tag System
+Organize clients with custom labels:
+- Apply multiple tags per client
+- Use tags for categorization and filtering
+- API endpoint: `POST /api/clients/:id/tags`
 
 ## Best Practices
 
@@ -225,9 +229,10 @@ Create and save common filter combinations:
 
 <AccordionGroup>
   <Accordion title="Client not syncing from integration">
-    - Check if the client exists in your connected system
-    - Verify integration permissions and connection status
-    - Manually trigger a sync in Settings → Integrations
+    - Check integration status at `/api/integrations/status`
+    - Verify OAuth tokens are valid and not expired
+    - Manually trigger sync: `POST /api/integrations/google/sync`, `/hubspot/sync`, or `/intercom/sync`
+    - Check data ingestion status at `/api/ingest/status`
   </Accordion>
   
   <Accordion title="Incorrect health score">

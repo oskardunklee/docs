@@ -1,0 +1,298 @@
+---
+title: 'Intercom Integration'
+description: 'Import conversations, contacts, and support data from Intercom'
+---
+
+## Overview
+
+The Intercom integration brings customer support conversations and contact data into Stanna, providing comprehensive insights into client health through support ticket sentiment, response times, and issue resolution patterns.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Conversation Import" icon="messages">
+    Sync all customer conversations with sentiment analysis and resolution tracking
+  </Card>
+  
+  <Card title="Contact & Company Sync" icon="address-book">
+    Import customer profiles and company information for complete client view
+  </Card>
+  
+  <Card title="Support Analytics" icon="headset">
+    Track response times, resolution rates, and customer satisfaction patterns
+  </Card>
+  
+  <Card title="Health Insights" icon="heart-pulse">
+    Incorporate support interactions into overall client health scoring
+  </Card>
+</CardGroup>
+
+## Setting Up Intercom Integration
+
+### Prerequisites
+
+Before connecting Intercom:
+- [ ] Intercom admin access or app installation permissions
+- [ ] Understanding of your Intercom workspace structure
+- [ ] Knowledge of which conversations and data to sync
+
+### Connection Process
+
+<Steps>
+  <Step title="Start OAuth Flow">
+    Navigate to `/api/integrations/intercom/start` or click "Connect Intercom"
+  </Step>
+  
+  <Step title="Authorize Stanna">
+    Sign in to Intercom and grant permissions for:
+    - Reading conversations and messages
+    - Accessing contact and company data
+    - Viewing conversation metadata and tags
+    - Reading user and admin information
+  </Step>
+  
+  <Step title="Confirm Connection">
+    Verify at `/api/integrations/intercom/status`:
+    - Connection status and last sync
+    - Available data access scopes
+    - Workspace information
+  </Step>
+  
+  <Step title="Initial Data Import">
+    Start first sync with `POST /api/integrations/intercom/sync`:
+    - Import existing conversations
+    - Sync contact and company data
+    - Begin sentiment analysis processing
+  </Step>
+</Steps>
+
+## Data Import & Processing
+
+### Conversation Data
+
+**What Gets Imported**:
+- All customer conversations (inbound and outbound)
+- Message content for sentiment analysis
+- Conversation metadata (tags, priority, resolution status)
+- Response times and resolution metrics
+- Participant information (customers, admins, teammates)
+
+**Conversation Analysis**:
+- Sentiment scoring for customer messages
+- Issue resolution tracking
+- Response time calculations
+- Customer satisfaction indicators
+
+### Contact & Company Information
+
+**Customer Profiles**:
+- Contact details (name, email, phone)
+- Company association and role
+- Custom attributes and properties
+- Last seen and engagement data
+
+**Company Data**:
+- Company names and domains for client matching
+- Custom company attributes
+- Plan and subscription information
+- Usage and engagement metrics
+
+### Historical Data Import
+
+Use backfill for comprehensive history:
+- **Endpoint**: `POST /api/integrations/intercom/backfill`
+- **Scope**: Configurable timeframe (default 2 years)
+- **Data Types**: Conversations, contacts, companies
+- **Processing**: Background processing with progress tracking
+
+## Support Analytics
+
+### Conversation Metrics
+
+Track key support performance indicators:
+- **First Response Time**: How quickly initial replies are sent
+- **Resolution Time**: Time from first message to closure
+- **Message Volume**: Conversation frequency per client
+- **Satisfaction Scores**: Customer ratings and feedback
+
+### Issue Pattern Recognition
+
+Identify trends in support interactions:
+- **Common Issues**: Recurring problem types by client
+- **Escalation Patterns**: When conversations require management attention
+- **Feature Requests**: Client suggestions and enhancement requests
+- **Churn Indicators**: Support patterns that correlate with client risk
+
+### Health Score Impact
+
+Support data influences client health:
+- Recent positive resolutions boost health scores
+- Escalated issues or complaints lower scores
+- Response satisfaction affects relationship strength
+- Issue frequency indicates potential problems
+
+## API Endpoints
+
+### Core Integration Management
+```
+GET  /api/integrations/intercom/start     # OAuth initiation
+GET  /api/integrations/intercom/callback  # OAuth callback
+GET  /api/integrations/intercom/status    # Connection status
+POST /api/integrations/intercom/sync      # Manual sync
+POST /api/integrations/intercom/backfill  # Historical import
+```
+
+### Data Access
+```
+GET /api/integrations/status              # All integrations status
+POST /api/ingest/run                      # Full data sync
+GET /api/ingest/status                    # Sync progress
+```
+
+## Configuration & Settings
+
+### Sync Preferences
+
+Configure what data to import:
+- **Conversation Types**: Choose inbox sources to include
+- **Date Range**: Set historical import timeframe
+- **Contact Filters**: Include only active or engaged contacts
+- **Company Matching**: Configure domain-based client mapping
+
+### Data Processing Options
+
+Customize how data is handled:
+- **Sentiment Analysis**: Enable/disable for different message types
+- **Tag Processing**: Map Intercom tags to Stanna client tags
+- **Priority Mapping**: Convert Intercom priorities to health indicators
+- **Team Member Filtering**: Include only specific admin responses
+
+## Sentiment Analysis
+
+### Customer Message Analysis
+
+Stanna analyzes customer messages for:
+- **Frustration Indicators**: Language showing dissatisfaction
+- **Satisfaction Markers**: Positive feedback and compliments
+- **Urgency Levels**: Time-sensitive issues and requests
+- **Feature Sentiment**: Reactions to product features or changes
+
+### Resolution Quality
+
+Measure support effectiveness:
+- **Resolution Satisfaction**: Customer feedback on solutions
+- **Issue Recurrence**: Whether problems are fully resolved
+- **Proactive vs Reactive**: Identifying proactive support opportunities
+- **Knowledge Gap Indicators**: Areas needing documentation or training
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Conversations not importing">
+    **Check These Items**:
+    - Verify Intercom workspace is active and accessible
+    - Confirm OAuth permissions include conversation access
+    - Check date range settings for historical import
+    - Review conversation filters and inclusion criteria
+    
+    **Debugging Steps**:
+    1. Test connection at `/api/integrations/intercom/status`
+    2. Try manual sync with a specific date range
+    3. Check Intercom API logs for any errors
+    4. Verify conversations exist in specified inboxes
+  </Accordion>
+  
+  <Accordion title="Client matching issues">
+    **Common Problems**:
+    - Company domains missing or inconsistent in Intercom
+    - Email domain variations (www, subdomains)
+    - Multiple companies for single client domain
+    - Custom company naming conventions
+    
+    **Solutions**:
+    1. Standardize company domains in Intercom
+    2. Update client domains in Stanna to match Intercom
+    3. Use manual client matching for edge cases
+    4. Review and clean up duplicate company records
+  </Accordion>
+  
+  <Accordion title="Sentiment scores seem inaccurate">
+    **Understanding Limitations**:
+    - Support conversations may have different tone than general business communication
+    - Customer frustration doesn't always indicate relationship risk
+    - Context matters - some "negative" sentiment is resolved quickly
+    
+    **Improvement Strategies**:
+    1. Review conversation resolution outcomes
+    2. Use manual attribution to provide context
+    3. Weight support sentiment differently than email sentiment
+    4. Focus on resolution patterns rather than individual message sentiment
+  </Accordion>
+</AccordionGroup>
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Response Time Tracking" icon="stopwatch">
+    Monitor and improve response times for better client relationships
+  </Card>
+  
+  <Card title="Issue Documentation" icon="file-text">
+    Use conversation insights to improve product documentation and reduce support volume
+  </Card>
+  
+  <Card title="Proactive Support" icon="shield-check">
+    Identify patterns to reach out before clients experience issues
+  </Card>
+  
+  <Card title="Team Training" icon="graduation-cap">
+    Use sentiment data to identify training opportunities for support team
+  </Card>
+</CardGroup>
+
+## Advanced Features
+
+### Custom Attributes
+
+Map Intercom custom attributes to Stanna:
+- Client tier or plan information
+- Feature usage and adoption data
+- Custom satisfaction scores
+- Account health indicators
+
+### Conversation Tags
+
+Utilize Intercom tags for enhanced insights:
+- Map tags to client categories or issue types
+- Use tags for filtering and segmentation
+- Track resolution patterns by tag
+- Create custom health indicators based on tag patterns
+
+### Workflow Integration
+
+Integrate with Intercom workflows:
+- Trigger Stanna updates from Intercom automation
+- Use Stanna health scores in Intercom routing
+- Create cross-platform task management
+- Synchronize client status updates
+
+## Privacy & Security
+
+### Data Handling
+- **Conversation Privacy**: Only authorized team members access imported conversations
+- **Customer Consent**: Ensure compliance with privacy policies
+- **Data Retention**: Configurable retention periods for conversation data
+- **Secure Storage**: All conversation data encrypted at rest
+
+### Access Control
+- **Role-Based Access**: Control who can view different types of support data
+- **Audit Logging**: Track all access to customer conversation data
+- **Data Anonymization**: Option to anonymize sensitive information
+
+<Warning>
+**Sensitive Information**: Be aware that customer conversations may contain sensitive information. Ensure your team follows appropriate data handling procedures.
+</Warning>
+
+<Info>
+**Custom Workflows**: Need help setting up custom Intercom workflows with Stanna? Contact [support@gostanna.com](mailto:support@gostanna.com) for consultation.
+</Info>

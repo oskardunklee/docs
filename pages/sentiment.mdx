@@ -1,11 +1,288 @@
 ---
-// pages/concepts/sentiment.mdx
-title: "Sentiment"
-description: "Lightweight lexicon sentiment on subjects and snippets."
-icon: "message-square"
+title: 'Sentiment Analysis'
+description: 'How Stanna analyzes communication sentiment to track relationship health'
 ---
-Stanna computes a sentiment value **−2..2** per interaction using a curated lexicon on **subject** and a short **content snippet**. Direction matters:
-- inbound negative weighs more than outbound negative
-- recent messages weigh more than older ones
 
-You can override sentiment on any interaction from the UI.
+## Overview
+
+Stanna's AI-powered sentiment analysis automatically evaluates the emotional tone and context of client communications across all integrated platforms. This sentiment data is a key component in calculating client health scores and identifying relationship risks.
+
+<Frame caption="Sentiment analysis visualization showing positive, neutral, and negative interaction trends">
+  <img src="/images/sentiment-snippet.svg" alt="Sentiment timeline showing client interaction sentiment patterns over time" />
+</Frame>
+
+## How Sentiment Analysis Works
+
+### Sentiment Scale
+
+Stanna computes sentiment values on a **-2 to +2** scale:
+- **+2**: Highly positive (enthusiastic, appreciative)
+- **+1**: Positive (satisfied, collaborative)  
+- **0**: Neutral (informational, transactional)
+- **-1**: Negative (frustrated, concerned)
+- **-2**: Highly negative (angry, threatening to churn)
+
+### Analysis Methods
+
+<AccordionGroup>
+  <Accordion title="Email Sentiment Analysis" icon="envelope">
+    **Gmail Integration:**
+    - Subject line analysis for urgency and tone
+    - Message content evaluation using natural language processing
+    - Context-aware analysis considering email threads
+    - Professional vs. personal communication tone detection
+    
+    **Factors Considered:**
+    - Language choice and formality
+    - Urgency indicators (ALL CAPS, urgent keywords)
+    - Positive language (thanks, great, excellent)
+    - Negative language (issues, problems, disappointed)
+  </Accordion>
+  
+  <Accordion title="Support Conversation Sentiment" icon="headset">
+    **Intercom Integration:**
+    - Customer message tone in support tickets
+    - Resolution satisfaction indicators
+    - Escalation language patterns
+    - Follow-up communication sentiment
+    
+    **Special Considerations:**
+    - Support context affects baseline expectations
+    - Issue resolution often improves sentiment over conversation
+    - Escalation patterns indicate deeper relationship concerns
+  </Accordion>
+  
+  <Accordion title="CRM Activity Sentiment" icon="database">
+    **HubSpot Integration:**
+    - Meeting notes and call summaries
+    - Deal progression indicators
+    - Contact engagement levels
+    - Account activity patterns
+    
+    **Business Context:**
+    - Meeting attendance and participation
+    - Response rates to outreach
+    - Deal advancement or stagnation
+    - Contract negotiation tone
+  </Accordion>
+</AccordionGroup>
+
+## Sentiment Weighting & Impact
+
+### Directional Weighting
+
+Communication direction affects sentiment impact:
+- **Inbound negative**: Higher weight (client expressing dissatisfaction)
+- **Outbound negative**: Lower weight (you addressing issues)
+- **Inbound positive**: High weight (client expressing satisfaction)
+- **Outbound positive**: Moderate weight (your positive communications)
+
+### Temporal Weighting
+
+Recent sentiment carries more weight than historical sentiment:
+- **Last 7 days**: 100% weight
+- **8-30 days**: 70% weight  
+- **31-90 days**: 40% weight
+- **Over 90 days**: 20% weight
+
+This ensures current relationship status is prioritized over past issues that may have been resolved.
+
+## Content Analysis Details
+
+### Subject Line Analysis
+
+Email subject lines provide immediate sentiment indicators:
+- **Urgent/Escalation**: "URGENT", "Problem", "Issue", "Help needed"
+- **Positive**: "Thank you", "Great meeting", "Success", "Appreciation"
+- **Neutral**: "Meeting notes", "Follow-up", "Update", "Question"
+- **Negative**: "Disappointed", "Concerned", "Problem", "Not working"
+
+### Content Snippet Processing
+
+Stanna analyzes key portions of message content:
+- **Opening and closing phrases**: Tone-setting language
+- **Key sentence sentiment**: Main message emotional content
+- **Context clues**: References to satisfaction, issues, or future plans
+- **Professional formality**: Changes in communication style
+
+## Sentiment Attribution
+
+### Understanding Sentiment Changes
+
+Track what drives sentiment variations:
+- **Specific interactions**: Which emails or conversations affected scores
+- **Content triggers**: Particular words or phrases that influenced analysis
+- **Trend patterns**: How sentiment is changing over time
+- **Contextual factors**: Business events that correlate with sentiment changes
+
+### Manual Sentiment Overrides
+
+When automated analysis misinterprets context:
+1. **Access client interaction history**
+2. **Identify incorrectly analyzed interactions**  
+3. **Use manual attribution** to provide correct context
+4. **Document reasoning** for future reference
+
+<Info>
+Manual overrides help train the AI system to better understand your specific business context and communication patterns.
+</Info>
+
+## Integration-Specific Considerations
+
+### Gmail Sentiment Patterns
+
+**Professional Email Norms:**
+- Formal business communication tends toward neutral baseline
+- Urgency doesn't always indicate negative relationship health
+- Thank you messages and positive feedback carry high positive weight
+- Issue reporting is expected and manageable if followed by resolution
+
+### Intercom Support Context
+
+**Support Communication Expectations:**
+- Customers contacting support often start with neutral or slightly negative sentiment
+- Resolution quality significantly impacts final sentiment score
+- Multiple tickets about the same issue indicate deeper problems
+- Quick, effective resolution often results in positive sentiment
+
+### HubSpot Business Intelligence
+
+**Deal and Meeting Context:**
+- Meeting attendance and engagement indicate relationship investment
+- Deal progression stagnation may reflect underlying concerns
+- Contract negotiations can temporarily affect sentiment
+- Long sales cycles require different sentiment interpretation
+
+## Best Practices for Sentiment Management
+
+### Proactive Monitoring
+
+<Steps>
+  <Step title="Daily Sentiment Review">
+    Check for significant sentiment drops (≥1 point) in the past 24 hours
+  </Step>
+  
+  <Step title="Context Investigation">
+    Review the specific interactions that caused sentiment changes
+  </Step>
+  
+  <Step title="Relationship Intervention">
+    Reach out to clients showing declining sentiment trends before they become critical
+  </Step>
+  
+  <Step title="Positive Reinforcement">
+    Acknowledge and build on positive sentiment interactions
+  </Step>
+</Steps>
+
+### Communication Style Impact
+
+<CardGroup cols={2}>
+  <Card title="Clear Communication" icon="message-circle">
+    Use clear, professional language to avoid misinterpretation by AI analysis
+  </Card>
+  
+  <Card title="Positive Acknowledgment" icon="thumbs-up">
+    Acknowledge client concerns before addressing solutions to improve sentiment tracking
+  </Card>
+  
+  <Card title="Follow-up Consistency" icon="clock">
+    Consistent follow-up communication helps maintain positive sentiment trends
+  </Card>
+  
+  <Card title="Issue Documentation" icon="file-text">
+    Document resolution of negative sentiment interactions to provide context
+  </Card>
+</CardGroup>
+
+## Advanced Sentiment Features
+
+### Sentiment Trending
+
+Track sentiment patterns over time:
+- **Rolling averages**: 7-day, 30-day, and 90-day sentiment trends
+- **Seasonal patterns**: Identify recurring sentiment cycles
+- **Intervention effectiveness**: Measure how actions affect sentiment recovery
+- **Predictive indicators**: Early warning signs of sentiment decline
+
+### Stakeholder-Level Sentiment
+
+For clients with multiple contacts:
+- **Individual sentiment tracking**: Monitor each stakeholder separately
+- **Aggregate sentiment**: Overall account relationship health
+- **Influence weighting**: Key decision-maker sentiment carries more weight
+- **Sentiment divergence**: When different stakeholders show different sentiment patterns
+
+### Sentiment-Based Automation
+
+Configure automated actions based on sentiment:
+- **Alert thresholds**: Notifications when sentiment drops below specified levels
+- **Task creation**: Automatic follow-up tasks for negative sentiment interactions
+- **Escalation triggers**: Alert management when sentiment reaches critical levels
+- **Success celebration**: Recognize and reinforce positive sentiment achievements
+
+## Troubleshooting Sentiment Analysis
+
+<AccordionGroup>
+  <Accordion title="Sentiment seems inaccurate">
+    **Common causes:**
+    - Cultural or industry-specific communication styles
+    - Sarcasm or humor not recognized by AI
+    - Technical language interpreted as negative
+    - Context missing from snippet analysis
+    
+    **Solutions:**
+    1. Use manual attribution to provide correct context
+    2. Review complete interaction context, not just snippets
+    3. Consider industry-specific communication norms
+    4. Document patterns for future reference
+  </Accordion>
+  
+  <Accordion title="Sentiment not updating">
+    **Check these factors:**
+    - Are integrations syncing properly?
+    - Is there sufficient interaction data for analysis?
+    - Are interactions being correctly attributed to clients?
+    
+    **Troubleshooting:**
+    1. Verify integration sync status
+    2. Check for recent interactions in source systems
+    3. Confirm client domain matching is working correctly
+  </Accordion>
+  
+  <Accordion title="Sentiment too volatile">
+    **Understanding volatility:**
+    - Small interaction volumes can cause large sentiment swings
+    - New clients may have unstable sentiment until more data is collected
+    - Single negative interactions can disproportionately affect overall sentiment
+    
+    **Stabilization strategies:**
+    1. Focus on sentiment trends rather than individual values
+    2. Allow time for sentiment patterns to establish (30-60 days)
+    3. Use manual attribution to provide stabilizing context
+  </Accordion>
+</AccordionGroup>
+
+## Privacy & Data Handling
+
+### Sentiment Data Security
+
+- **Content analysis**: Only analyzes content for sentiment, doesn't store complete message text
+- **Encryption**: All sentiment data encrypted at rest and in transit
+- **Access control**: Sentiment details only available to authorized team members
+- **Data retention**: Sentiment scores retained according to workspace policies
+
+### Compliance Considerations
+
+- **GDPR compliance**: Sentiment analysis respects data processing preferences
+- **Opt-out options**: Clients can request exclusion from automated sentiment analysis
+- **Data minimization**: Only processes content necessary for sentiment evaluation
+- **Transparency**: Clear documentation of how sentiment analysis affects client relationships
+
+<Warning>
+**Cultural Sensitivity**: Sentiment analysis may interpret communication styles differently across cultures. Consider manual overrides for international clients with different communication norms.
+</Warning>
+
+<Info>
+**Sentiment Training**: The AI system continuously learns from manual overrides and feedback. Regular use of manual attribution helps improve accuracy for your specific business context.
+</Info>

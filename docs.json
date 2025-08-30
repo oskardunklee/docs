@@ -77,7 +77,30 @@
           {
             "group": "Integrations",
             "pages": [
-              "integrations/overview"
+              "integrations/overview",
+              "integrations/google",
+              "integrations/hubspot",
+              "integrations/intercom"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "api-reference/introduction"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "pages": [
+              "api-reference/endpoint/create",
+              "api-reference/endpoint/get",
+              "api-reference/endpoint/delete",
+              "api-reference/endpoint/webhook"
             ]
           }
         ]
