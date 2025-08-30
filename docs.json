@@ -41,7 +41,8 @@
               "index",
               "getting-started/setup",
               "getting-started/first-login",
-              "getting-started/dashboard-overview"
+              "getting-started/dashboard-overview",
+              "getting-started/api-keys"
             ]
           }
         ]

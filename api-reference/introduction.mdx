@@ -1,33 +1,48 @@
 ---
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+title: 'API Reference'
+description: 'Complete guide to using the Stanna API with authentication'
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+## Welcome to the Stanna API
 
-## Welcome
-
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
-
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+The Stanna API provides programmatic access to your customer health data, metrics, and insights. All endpoints are secured with API key authentication to protect your sensitive customer data.
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+All API endpoints require authentication using API keys. You can create and manage API keys through your Stanna dashboard settings.
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+### API Key Format
+
+API keys follow the format: `sk-[random string]`
+
+### Authentication Methods
+
+You can authenticate requests using either of these methods:
+
+#### Bearer Token (Recommended)
+Include your API key in the Authorization header:
+
+```bash
+curl -X GET "https://api.stanna.com/api/metrics/summary?workspaceId=yourworkspace" \
+  -H "Authorization: Bearer sk-your-api-key-here"
 ```
+
+#### X-API-Key Header
+Alternatively, you can use the X-API-Key header:
+
+```bash
+curl -X GET "https://api.stanna.com/api/metrics/summary?workspaceId=yourworkspace" \
+  -H "X-API-Key: sk-your-api-key-here"
+```
+
+### Creating API Keys
+
+1. Navigate to **Settings** in your Stanna dashboard
+2. Click on **API Keys** tab
+3. Click **Create New Key**
+4. Give your key a descriptive name (e.g., "Production Dashboard", "Mobile App")
+5. Copy and securely store your API key - you won't be able to see it again
+
+<Warning>
+  Keep your API keys secure and never expose them in client-side code. API keys provide full access to your workspace data.
+</Warning>
