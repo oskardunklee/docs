@@ -1,0 +1,296 @@
+---
+title: 'Clients'
+description: 'Manage and retrieve client data'
+---
+
+## List All Clients
+
+Retrieve a list of all clients in your workspace with their health scores and metrics.
+
+<ParamField path="workspaceId" type="string" required>
+  Your workspace domain (e.g., `yourcompany.com`)
+</ParamField>
+
+### Request
+
+<CodeGroup>
+
+```bash cURL
+curl -X GET "https://api.gostanna.com/api/clients?workspaceId=yourcompany.com" \
+  -H "Authorization: Bearer sk-your-api-key-here"
+```
+
+```javascript Node.js
+const response = await fetch('https://api.gostanna.com/api/clients?workspaceId=yourcompany.com', {
+  headers: {
+    'Authorization': 'Bearer sk-your-api-key-here'
+  }
+});
+
+const clients = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.get(
+    'https://api.gostanna.com/api/clients',
+    params={'workspaceId': 'yourcompany.com'},
+    headers={'Authorization': 'Bearer sk-your-api-key-here'}
+)
+
+clients = response.json()
+```
+
+</CodeGroup>
+
+### Response
+
+```json
+[
+  {
+    "id": "client_123",
+    "name": "Acme Corp",
+    "domain": "acme.com",
+    "sentimentScore": 85,
+    "lastInteraction": "2024-01-15T10:30:00Z",
+    "mrr": 5000,
+    "renewalDate": "2024-06-01",
+    "csmOwner": "john.doe@yourcompany.com",
+    "isExcluded": false,
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2024-01-15T10:30:00Z"
+  }
+]
+```
+
+### Response Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | Unique client identifier |
+| `name` | string | Client company name |
+| `domain` | string | Client's domain |
+| `sentimentScore` | number | Health score (0-100) |
+| `lastInteraction` | string | ISO 8601 timestamp of last contact |
+| `mrr` | number | Monthly recurring revenue |
+| `renewalDate` | string | Next renewal date (YYYY-MM-DD) |
+| `csmOwner` | string | Assigned CSM email |
+| `isExcluded` | boolean | Whether client is excluded from metrics |
+
+---
+
+## Get Client Details
+
+Retrieve detailed information about a specific client.
+
+<ParamField path="clientId" type="string" required>
+  The client's unique identifier
+</ParamField>
+
+<ParamField path="workspaceId" type="string" required>
+  Your workspace domain
+</ParamField>
+
+### Request
+
+<CodeGroup>
+
+```bash cURL
+curl -X GET "https://api.gostanna.com/api/clients/client_123?workspaceId=yourcompany.com" \
+  -H "Authorization: Bearer sk-your-api-key-here"
+```
+
+```javascript Node.js
+const response = await fetch('https://api.gostanna.com/api/clients/client_123?workspaceId=yourcompany.com', {
+  headers: {
+    'Authorization': 'Bearer sk-your-api-key-here'
+  }
+});
+
+const client = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.get(
+    'https://api.gostanna.com/api/clients/client_123',
+    params={'workspaceId': 'yourcompany.com'},
+    headers={'Authorization': 'Bearer sk-your-api-key-here'}
+)
+
+client = response.json()
+```
+
+</CodeGroup>
+
+### Response
+
+```json
+{
+  "client": {
+    "id": "client_123",
+    "name": "Acme Corp",
+    "domain": "acme.com",
+    "sentimentScore": 85,
+    "lastInteraction": "2024-01-15T10:30:00Z",
+    "mrr": 5000,
+    "renewalDate": "2024-06-01",
+    "csmOwner": "john.doe@yourcompany.com",
+    "isExcluded": false
+  },
+  "metrics": {
+    "totalInteractions": 156,
+    "avgResponseTime": 2.5,
+    "lastMonthInteractions": 12,
+    "sentimentTrend": "improving"
+  },
+  "contacts": [
+    {
+      "email": "contact@acme.com",
+      "name": "Jane Smith",
+      "title": "CEO",
+      "lastSeen": "2024-01-15T10:30:00Z"
+    }
+  ]
+}
+```
+
+---
+
+## Get Client Interactions
+
+Retrieve interaction history for a specific client.
+
+<ParamField path="clientId" type="string" required>
+  The client's unique identifier
+</ParamField>
+
+<ParamField path="workspaceId" type="string" required>
+  Your workspace domain
+</ParamField>
+
+<ParamField query="limit" type="number">
+  Maximum number of interactions to return (default: 50, max: 200)
+</ParamField>
+
+<ParamField query="offset" type="number">
+  Number of interactions to skip for pagination (default: 0)
+</ParamField>
+
+### Request
+
+<CodeGroup>
+
+```bash cURL
+curl -X GET "https://api.gostanna.com/api/clients/client_123/interactions?workspaceId=yourcompany.com&limit=10" \
+  -H "Authorization: Bearer sk-your-api-key-here"
+```
+
+```javascript Node.js
+const response = await fetch('https://api.gostanna.com/api/clients/client_123/interactions?workspaceId=yourcompany.com&limit=10', {
+  headers: {
+    'Authorization': 'Bearer sk-your-api-key-here'
+  }
+});
+
+const interactions = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.get(
+    'https://api.gostanna.com/api/clients/client_123/interactions',
+    params={
+        'workspaceId': 'yourcompany.com',
+        'limit': 10
+    },
+    headers={'Authorization': 'Bearer sk-your-api-key-here'}
+)
+
+interactions = response.json()
+```
+
+</CodeGroup>
+
+### Response
+
+```json
+{
+  "interactions": [
+    {
+      "id": "int_456",
+      "type": "email",
+      "subject": "Re: Product Update",
+      "sentiment": "positive",
+      "date": "2024-01-15T10:30:00Z",
+      "from": "contact@acme.com",
+      "to": "support@yourcompany.com",
+      "summary": "Client expressed satisfaction with recent updates"
+    }
+  ],
+  "pagination": {
+    "total": 156,
+    "limit": 10,
+    "offset": 0,
+    "hasMore": true
+  }
+}
+```
+
+---
+
+## Get Last Interactions
+
+Get the last interaction timestamp for all clients.
+
+<ParamField path="workspaceId" type="string" required>
+  Your workspace domain
+</ParamField>
+
+### Request
+
+<CodeGroup>
+
+```bash cURL
+curl -X GET "https://api.gostanna.com/api/clients/last-interactions?workspaceId=yourcompany.com" \
+  -H "Authorization: Bearer sk-your-api-key-here"
+```
+
+```javascript Node.js
+const response = await fetch('https://api.gostanna.com/api/clients/last-interactions?workspaceId=yourcompany.com', {
+  headers: {
+    'Authorization': 'Bearer sk-your-api-key-here'
+  }
+});
+
+const lastInteractions = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.get(
+    'https://api.gostanna.com/api/clients/last-interactions',
+    params={'workspaceId': 'yourcompany.com'},
+    headers={'Authorization': 'Bearer sk-your-api-key-here'}
+)
+
+last_interactions = response.json()
+```
+
+</CodeGroup>
+
+### Response
+
+```json
+{
+  "client_123": "2024-01-15T10:30:00Z",
+  "client_124": "2024-01-14T15:45:00Z",
+  "client_125": "2024-01-13T08:20:00Z"
+}
+```
+
+The response is a map of client IDs to their last interaction timestamps.

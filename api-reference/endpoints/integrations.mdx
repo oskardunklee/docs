@@ -1,0 +1,381 @@
+---
+title: 'Integrations'
+description: 'Manage and sync data from external integrations'
+---
+
+## Get Integration Status
+
+Check the connection status of a specific integration.
+
+<ParamField path="provider" type="string" required>
+  Integration provider: `google`, `hubspot`, or `intercom`
+</ParamField>
+
+<ParamField path="workspaceId" type="string" required>
+  Your workspace domain
+</ParamField>
+
+### Request
+
+<CodeGroup>
+
+```bash cURL
+curl -X GET "https://api.gostanna.com/api/integrations/google/status?workspaceId=yourcompany.com" \
+  -H "Authorization: Bearer sk-your-api-key-here"
+```
+
+```javascript Node.js
+const response = await fetch('https://api.gostanna.com/api/integrations/google/status?workspaceId=yourcompany.com', {
+  headers: {
+    'Authorization': 'Bearer sk-your-api-key-here'
+  }
+});
+
+const status = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.get(
+    'https://api.gostanna.com/api/integrations/google/status',
+    params={'workspaceId': 'yourcompany.com'},
+    headers={'Authorization': 'Bearer sk-your-api-key-here'}
+)
+
+status = response.json()
+```
+
+</CodeGroup>
+
+### Response
+
+```json
+{
+  "connected": true,
+  "provider": "google",
+  "workspaceId": "yourcompany.com",
+  "email": "admin@yourcompany.com",
+  "expiresAt": "2024-06-01T00:00:00Z",
+  "hasRefresh": true,
+  "lastSyncAt": "2024-01-31T10:30:00Z",
+  "scope": "gmail.readonly calendar.readonly"
+}
+```
+
+---
+
+## Trigger Integration Sync
+
+Manually trigger a data sync for an integration.
+
+<ParamField path="provider" type="string" required>
+  Integration provider: `google`, `hubspot`, or `intercom`
+</ParamField>
+
+<ParamField body="workspaceId" type="string" required>
+  Your workspace domain
+</ParamField>
+
+### Request
+
+<CodeGroup>
+
+```bash cURL
+curl -X POST "https://api.gostanna.com/api/integrations/google/sync" \
+  -H "Authorization: Bearer sk-your-api-key-here" \
+  -H "Content-Type: application/json" \
+  -d '{"workspaceId": "yourcompany.com"}'
+```
+
+```javascript Node.js
+const response = await fetch('https://api.gostanna.com/api/integrations/google/sync', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer sk-your-api-key-here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    workspaceId: 'yourcompany.com'
+  })
+});
+
+const result = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.post(
+    'https://api.gostanna.com/api/integrations/google/sync',
+    json={'workspaceId': 'yourcompany.com'},
+    headers={'Authorization': 'Bearer sk-your-api-key-here'}
+)
+
+result = response.json()
+```
+
+</CodeGroup>
+
+### Response
+
+```json
+{
+  "success": true,
+  "message": "Sync initiated",
+  "syncId": "sync_abc123",
+  "startedAt": "2024-01-31T10:30:00Z",
+  "estimatedDuration": 300
+}
+```
+
+---
+
+## Backfill Historical Data
+
+Import historical data from an integration.
+
+<ParamField path="provider" type="string" required>
+  Integration provider: `google`, `hubspot`, or `intercom`
+</ParamField>
+
+<ParamField body="workspaceId" type="string" required>
+  Your workspace domain
+</ParamField>
+
+<ParamField body="sinceDays" type="number" required>
+  Number of days of history to import (max: 365)
+</ParamField>
+
+### Request
+
+<CodeGroup>
+
+```bash cURL
+curl -X POST "https://api.gostanna.com/api/integrations/google/backfill" \
+  -H "Authorization: Bearer sk-your-api-key-here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "workspaceId": "yourcompany.com",
+    "sinceDays": 90
+  }'
+```
+
+```javascript Node.js
+const response = await fetch('https://api.gostanna.com/api/integrations/google/backfill', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer sk-your-api-key-here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    workspaceId: 'yourcompany.com',
+    sinceDays: 90
+  })
+});
+
+const result = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.post(
+    'https://api.gostanna.com/api/integrations/google/backfill',
+    json={
+        'workspaceId': 'yourcompany.com',
+        'sinceDays': 90
+    },
+    headers={'Authorization': 'Bearer sk-your-api-key-here'}
+)
+
+result = response.json()
+```
+
+</CodeGroup>
+
+### Response
+
+```json
+{
+  "success": true,
+  "message": "Backfill started",
+  "jobId": "job_xyz789",
+  "startDate": "2023-11-01T00:00:00Z",
+  "endDate": "2024-01-31T23:59:59Z",
+  "estimatedRecords": 5000,
+  "status": "processing"
+}
+```
+
+---
+
+## Large-Scale Gmail Ingestion
+
+Perform a large-scale import of Gmail data (Google integration only).
+
+<ParamField body="workspaceId" type="string" required>
+  Your workspace domain
+</ParamField>
+
+<ParamField body="sinceDays" type="number" required>
+  Number of days of history to import (max: 365)
+</ParamField>
+
+<ParamField body="maxEmails" type="number">
+  Maximum number of emails to import (default: 10000, max: 50000)
+</ParamField>
+
+<ParamField body="batchSize" type="number">
+  Number of emails per batch (default: 500, max: 1000)
+</ParamField>
+
+### Request
+
+<CodeGroup>
+
+```bash cURL
+curl -X POST "https://api.gostanna.com/api/ingest/v2/start" \
+  -H "Authorization: Bearer sk-your-api-key-here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "workspaceId": "yourcompany.com",
+    "sinceDays": 365,
+    "maxEmails": 50000,
+    "batchSize": 1000
+  }'
+```
+
+```javascript Node.js
+const response = await fetch('https://api.gostanna.com/api/ingest/v2/start', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer sk-your-api-key-here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    workspaceId: 'yourcompany.com',
+    sinceDays: 365,
+    maxEmails: 50000,
+    batchSize: 1000
+  })
+});
+
+const result = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.post(
+    'https://api.gostanna.com/api/ingest/v2/start',
+    json={
+        'workspaceId': 'yourcompany.com',
+        'sinceDays': 365,
+        'maxEmails': 50000,
+        'batchSize': 1000
+    },
+    headers={'Authorization': 'Bearer sk-your-api-key-here'}
+)
+
+result = response.json()
+```
+
+</CodeGroup>
+
+### Response
+
+```json
+{
+  "success": true,
+  "message": "Large-scale ingestion started",
+  "sessionId": "session_abc123xyz",
+  "config": {
+    "workspaceId": "yourcompany.com",
+    "sinceDays": 365,
+    "maxEmails": 50000,
+    "batchSize": 1000,
+    "startDate": "2023-02-01T00:00:00Z"
+  },
+  "status": "initializing",
+  "estimatedDuration": "2-4 hours"
+}
+```
+
+---
+
+## Check Ingestion Status
+
+Monitor the progress of a large-scale ingestion job.
+
+<ParamField path="workspaceId" type="string" required>
+  Your workspace domain
+</ParamField>
+
+### Request
+
+<CodeGroup>
+
+```bash cURL
+curl -X GET "https://api.gostanna.com/api/ingest/v2/status?workspaceId=yourcompany.com" \
+  -H "Authorization: Bearer sk-your-api-key-here"
+```
+
+```javascript Node.js
+const response = await fetch('https://api.gostanna.com/api/ingest/v2/status?workspaceId=yourcompany.com', {
+  headers: {
+    'Authorization': 'Bearer sk-your-api-key-here'
+  }
+});
+
+const status = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.get(
+    'https://api.gostanna.com/api/ingest/v2/status',
+    params={'workspaceId': 'yourcompany.com'},
+    headers={'Authorization': 'Bearer sk-your-api-key-here'}
+)
+
+status = response.json()
+```
+
+</CodeGroup>
+
+### Response
+
+```json
+{
+  "sessionId": "session_abc123xyz",
+  "status": "processing",
+  "progress": {
+    "emailsProcessed": 25000,
+    "totalEmails": 50000,
+    "percentComplete": 50,
+    "batchesCompleted": 25,
+    "totalBatches": 50
+  },
+  "timing": {
+    "startedAt": "2024-01-31T10:00:00Z",
+    "lastUpdateAt": "2024-01-31T12:30:00Z",
+    "estimatedCompletionAt": "2024-01-31T14:00:00Z",
+    "elapsedSeconds": 9000
+  },
+  "stats": {
+    "clientsIdentified": 85,
+    "contactsCreated": 234,
+    "interactionsCreated": 24500,
+    "errorsCount": 12
+  },
+  "errors": [
+    {
+      "timestamp": "2024-01-31T11:15:00Z",
+      "message": "Rate limit reached, retrying...",
+      "recoverable": true
+    }
+  ]
+}
+```

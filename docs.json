@@ -92,16 +92,24 @@
           {
             "group": "Getting Started",
             "pages": [
-              "api-reference/introduction"
+              "api-reference/introduction",
+              "api-reference/quickstart",
+              "api-reference/authentication"
             ]
           },
           {
             "group": "Endpoints",
             "pages": [
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/endpoints/clients",
+              "api-reference/endpoints/metrics",
+              "api-reference/endpoints/integrations",
+              "api-reference/endpoints/settings"
+            ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "api-reference/errors"
             ]
           }
         ]

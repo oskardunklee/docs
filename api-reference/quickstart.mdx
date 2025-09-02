@@ -1,0 +1,249 @@
+---
+title: 'API Quickstart'
+description: 'Get started with the Stanna API in 5 minutes'
+---
+
+## Overview
+
+This quickstart guide will help you make your first API call to Stanna and retrieve your workspace metrics. You'll need:
+
+- A Stanna account with an active workspace
+- Access to your workspace settings to create an API key
+
+## Step 1: Create an API Key
+
+<Steps>
+  <Step title="Login to Stanna">
+    Navigate to [app.gostanna.com](https://app.gostanna.com) and log into your account
+  </Step>
+  
+  <Step title="Go to Settings">
+    Click on **Settings** in the main navigation
+  </Step>
+  
+  <Step title="Create API Key">
+    Scroll down to the **API Keys** section and click **Create New Key**
+  </Step>
+  
+  <Step title="Name Your Key">
+    Give it a descriptive name like "API Testing" and click **Create Key**
+  </Step>
+  
+  <Step title="Copy Your Key">
+    Copy the generated API key (starts with `sk-`) and store it securely
+  </Step>
+</Steps>
+
+<Warning>
+  Your API key provides full access to your workspace data. Keep it secure and never share it publicly.
+</Warning>
+
+## Step 2: Find Your Workspace ID
+
+Your workspace ID is your company domain. For example:
+- If your email is `john@acme.com`, your workspace ID is `acme.com`
+- If your email is `sarah@tech-startup.io`, your workspace ID is `tech-startup.io`
+
+## Step 3: Make Your First API Call
+
+Let's retrieve your workspace metrics summary:
+
+<CodeGroup>
+
+```bash cURL
+curl -X GET "https://api.gostanna.com/api/metrics/summary?workspaceId=your-domain.com" \
+  -H "Authorization: Bearer sk-your-api-key-here"
+```
+
+```javascript Node.js
+const fetch = require('node-fetch');
+
+async function getMetrics() {
+  const response = await fetch(
+    'https://api.gostanna.com/api/metrics/summary?workspaceId=your-domain.com',
+    {
+      headers: {
+        'Authorization': 'Bearer sk-your-api-key-here'
+      }
+    }
+  );
+  
+  const data = await response.json();
+  console.log('Workspace Metrics:', data);
+}
+
+getMetrics();
+```
+
+```python Python
+import requests
+
+response = requests.get(
+    'https://api.gostanna.com/api/metrics/summary',
+    params={'workspaceId': 'your-domain.com'},
+    headers={'Authorization': 'Bearer sk-your-api-key-here'}
+)
+
+if response.status_code == 200:
+    data = response.json()
+    print('Workspace Metrics:', data)
+else:
+    print(f'Error: {response.status_code}')
+    print(response.text)
+```
+
+```go Go
+package main
+
+import (
+    "encoding/json"
+    "fmt"
+    "net/http"
+    "io/ioutil"
+)
+
+func main() {
+    url := "https://api.gostanna.com/api/metrics/summary?workspaceId=your-domain.com"
+    
+    req, _ := http.NewRequest("GET", url, nil)
+    req.Header.Add("Authorization", "Bearer sk-your-api-key-here")
+    
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    if err != nil {
+        fmt.Println("Error:", err)
+        return
+    }
+    defer resp.Body.Close()
+    
+    body, _ := ioutil.ReadAll(resp.Body)
+    
+    var data map[string]interface{}
+    json.Unmarshal(body, &data)
+    
+    fmt.Println("Workspace Metrics:", data)
+}
+```
+
+</CodeGroup>
+
+Replace `your-domain.com` with your actual workspace ID and `sk-your-api-key-here` with your actual API key.
+
+## Step 4: Understand the Response
+
+A successful response will look like this:
+
+```json
+{
+  "totals": {
+    "clients": 85,
+    "contacts": 234,
+    "interactionsWindow": 456,
+    "renewals30d": 8,
+    "openTasks": 3
+  },
+  "revenue": {
+    "mrrTotal": 425000,
+    "mrrAtRisk": 35000,
+    "renewals30dValue": 65000
+  },
+  "health": {
+    "avgScore": 74.2,
+    "change7": 2.1,
+    "change7Pct": 2.9,
+    "threshold": 40,
+    "atRiskCount": 12
+  },
+  "asOf": "2024-01-31T23:59:59Z"
+}
+```
+
+This shows you:
+- **totals**: Key counts for your workspace
+- **revenue**: Financial metrics including MRR and at-risk revenue
+- **health**: Average health scores and changes
+- **asOf**: When this data was last calculated
+
+## Step 5: Try Other Endpoints
+
+Now that you have authentication working, try these popular endpoints:
+
+### Get All Clients
+
+```bash
+curl -X GET "https://api.gostanna.com/api/clients?workspaceId=your-domain.com" \
+  -H "Authorization: Bearer sk-your-api-key-here"
+```
+
+### Get Health Trends
+
+```bash
+curl -X GET "https://api.gostanna.com/api/metrics/trends/health?workspaceId=your-domain.com&windowDays=30" \
+  -H "Authorization: Bearer sk-your-api-key-here"
+```
+
+### Get Integration Status
+
+```bash
+curl -X GET "https://api.gostanna.com/api/integrations/google/status?workspaceId=your-domain.com" \
+  -H "Authorization: Bearer sk-your-api-key-here"
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Authentication Guide" href="/api-reference/authentication">
+    Learn about security best practices and API key management
+  </Card>
+  
+  <Card title="Clients API" href="/api-reference/endpoints/clients">
+    Retrieve and manage your client data
+  </Card>
+  
+  <Card title="Metrics API" href="/api-reference/endpoints/metrics">
+    Access detailed analytics and trends
+  </Card>
+  
+  <Card title="Integrations API" href="/api-reference/endpoints/integrations">
+    Manage data sync from external platforms
+  </Card>
+</CardGroup>
+
+## Common Issues
+
+### 401 Unauthorized
+- Check that your API key is correct and properly formatted
+- Ensure you're using the `Authorization: Bearer` header format
+
+### 403 Forbidden
+- Verify your workspace ID matches your account
+- Make sure your API key has the necessary permissions
+
+### 404 Not Found
+- Double-check the endpoint URL
+- Ensure your workspace ID is correct
+
+### Rate Limiting
+- The API allows 100 requests per minute per key
+- Implement exponential backoff for retries
+
+## SDK and Libraries
+
+While we don't provide official SDKs yet, the API works great with standard HTTP libraries in any language:
+
+- **Node.js**: `fetch`, `axios`, or `node-fetch`
+- **Python**: `requests` or `httpx`
+- **Go**: Standard `net/http` package
+- **PHP**: `cURL` or `Guzzle`
+- **Ruby**: `net/http` or `faraday`
+
+## Getting Help
+
+If you run into issues:
+
+1. Check your API key and workspace ID
+2. Review the endpoint documentation
+3. Test with a simple cURL command first
+4. Contact support at [support@gostanna.com](mailto:support@gostanna.com)
+
+Happy coding! 🚀

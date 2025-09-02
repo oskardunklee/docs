@@ -7,6 +7,14 @@ description: 'Complete guide to using the Stanna API with authentication'
 
 The Stanna API provides programmatic access to your customer health data, metrics, and insights. All endpoints are secured with API key authentication to protect your sensitive customer data.
 
+## Base URL
+
+```
+https://api.gostanna.com/api
+```
+
+All API requests should be made to this base URL.
+
 ## Authentication
 
 All API endpoints require authentication using API keys. You can create and manage API keys through your Stanna dashboard settings.
@@ -23,7 +31,7 @@ You can authenticate requests using either of these methods:
 Include your API key in the Authorization header:
 
 ```bash
-curl -X GET "https://api.stanna.com/api/metrics/summary?workspaceId=yourworkspace" \
+curl -X GET "https://api.gostanna.com/api/metrics/summary?workspaceId=yourworkspace.com" \
   -H "Authorization: Bearer sk-your-api-key-here"
 ```
 
@@ -31,14 +39,14 @@ curl -X GET "https://api.stanna.com/api/metrics/summary?workspaceId=yourworkspac
 Alternatively, you can use the X-API-Key header:
 
 ```bash
-curl -X GET "https://api.stanna.com/api/metrics/summary?workspaceId=yourworkspace" \
+curl -X GET "https://api.gostanna.com/api/metrics/summary?workspaceId=yourworkspace.com" \
   -H "X-API-Key: sk-your-api-key-here"
 ```
 
 ### Creating API Keys
 
 1. Navigate to **Settings** in your Stanna dashboard
-2. Click on **API Keys** tab
+2. Scroll down to the **API Keys** section
 3. Click **Create New Key**
 4. Give your key a descriptive name (e.g., "Production Dashboard", "Mobile App")
 5. Copy and securely store your API key - you won't be able to see it again
@@ -46,3 +54,42 @@ curl -X GET "https://api.stanna.com/api/metrics/summary?workspaceId=yourworkspac
 <Warning>
   Keep your API keys secure and never expose them in client-side code. API keys provide full access to your workspace data.
 </Warning>
+
+## Required Parameters
+
+All API endpoints require a `workspaceId` parameter. This is your workspace domain (e.g., `yourcompany.com`).
+
+## Rate Limiting
+
+API requests are limited to:
+- 100 requests per minute per API key
+- 10,000 requests per day per workspace
+
+Rate limit headers are included in all responses:
+- `X-RateLimit-Limit`: Maximum requests allowed
+- `X-RateLimit-Remaining`: Requests remaining in current window
+- `X-RateLimit-Reset`: Unix timestamp when the rate limit resets
+
+## Error Responses
+
+The API uses standard HTTP status codes to indicate success or failure:
+
+| Status Code | Description |
+|------------|-------------|
+| 200 | Success |
+| 400 | Bad Request - Invalid parameters |
+| 401 | Unauthorized - Invalid or missing API key |
+| 403 | Forbidden - Valid key but insufficient permissions |
+| 404 | Not Found - Resource doesn't exist |
+| 429 | Too Many Requests - Rate limit exceeded |
+| 500 | Internal Server Error |
+
+Error responses include a JSON body:
+
+```json
+{
+  "error": "Invalid API key",
+  "code": "AUTH_INVALID_KEY",
+  "status": 401
+}
+```
