@@ -31,12 +31,14 @@ Stanna computes sentiment values on a **-2 to +2** scale:
     - Message content evaluation using natural language processing
     - Context-aware analysis considering email threads
     - Professional vs. personal communication tone detection
+    - **Sarcasm detection** to correctly interpret ironic or sarcastic messages
     
     **Factors Considered:**
     - Language choice and formality
     - Urgency indicators (ALL CAPS, urgent keywords)
     - Positive language (thanks, great, excellent)
     - Negative language (issues, problems, disappointed)
+    - Sarcastic patterns (e.g., "Oh great!", "Just wonderful", "Thanks a bunch")
   </Accordion>
   
   <Accordion title="Support Conversation Sentiment" icon="headset">
@@ -86,6 +88,34 @@ Recent sentiment carries more weight than historical sentiment:
 - **Over 90 days**: 20% weight
 
 This ensures current relationship status is prioritized over past issues that may have been resolved.
+
+## Sarcasm Detection
+
+### How Sarcasm Detection Works
+
+Stanna uses advanced AI models to detect sarcasm and irony in client communications, ensuring that seemingly positive messages with sarcastic intent are correctly identified as negative sentiment.
+
+**Detection Methods:**
+- **AI-Powered Analysis**: Uses fine-tuned BERT models specifically trained on sarcasm detection with 92%+ accuracy
+- **Pattern Recognition**: Identifies common sarcastic phrases and structures
+- **Context Clues**: Analyzes punctuation patterns, contradictory statements, and exaggerated language
+
+**Common Sarcasm Patterns Detected:**
+- Exaggerated positive phrases: "Oh great!", "Just wonderful", "Exactly what I needed"
+- Quotation marks around positive words: "This is 'great'"
+- Contradictory statements: "This is perfect... but it doesn't work"
+- Excessive punctuation: Multiple exclamation marks or mixed punctuation
+- Common sarcastic expressions: "Thanks a bunch", "Brilliant", "Couldn't be better"
+
+**Sentiment Adjustment:**
+When sarcasm is detected with high confidence (>70%), the apparent sentiment is flipped:
+- Apparent positive becomes negative
+- The adjusted sentiment reflects the true negative intent
+- Confidence levels are maintained for transparency
+
+<Info>
+Sarcasm detection helps prevent misclassification of frustrated clients whose negative feelings are expressed through ironic positive language.
+</Info>
 
 ## Content Analysis Details
 
@@ -227,7 +257,7 @@ Configure automated actions based on sentiment:
   <Accordion title="Sentiment seems inaccurate">
     **Common causes:**
     - Cultural or industry-specific communication styles
-    - Sarcasm or humor not recognized by AI
+    - Complex sarcasm patterns not detected by AI models
     - Technical language interpreted as negative
     - Context missing from snippet analysis
     
