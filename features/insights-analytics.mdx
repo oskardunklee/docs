@@ -1,0 +1,334 @@
+---
+title: 'Insights & Analytics'
+description: 'AI-powered insights and automated risk detection for your client portfolio'
+---
+
+## Overview
+
+Stanna's insights engine automatically analyzes your client data to surface important patterns, risks, and opportunities that might otherwise go unnoticed. These insights help you stay proactive in managing your client relationships.
+
+<Frame caption="Insights dashboard showing AI-generated recommendations and risk alerts">
+  <img src="/images/insights-snippet.svg" alt="Analytics insights showing client risk alerts and trend analysis" />
+</Frame>
+
+## Automated Risk Detection
+
+### Score Movement Analysis
+
+The insights engine tracks significant changes in client health scores and provides context for why these changes occurred.
+
+**Key Insights Include:**
+- **Score Risers**: Clients with improving health scores and the factors driving improvement
+- **Score Fallers**: Clients with declining scores and specific risk factors
+- **Latency Risks**: Clients with delayed responses or reduced engagement
+- **Stakeholder Breadth**: Analysis of relationship depth across client organizations
+
+### Risk Categories
+
+<AccordionGroup>
+  <Accordion title="Communication Risks" icon="envelope-circle-check">
+    **Engagement Pattern Analysis:**
+    - Extended periods without client response
+    - Declining email open rates
+    - Reduced meeting attendance
+    - Shorter interaction durations
+
+    **Threshold**: Triggered when response time increases by >50% from baseline
+  </Accordion>
+
+  <Accordion title="Relationship Depth Risks" icon="users-line">
+    **Stakeholder Breadth Analysis:**
+    - Single point of contact dependency
+    - Key stakeholder disengagement
+    - Limited decision-maker access
+    - Organizational changes affecting contacts
+
+    **Threshold**: Triggered when stakeholder count drops below 2 active contacts
+  </Accordion>
+
+  <Accordion title="Sentiment Risks" icon="face-frown">
+    **Sentiment Trend Analysis:**
+    - Sustained negative sentiment patterns
+    - Support ticket escalation frequency
+    - Complaint keyword detection
+    - Satisfaction score decline
+
+    **Threshold**: Triggered when average sentiment drops below 0.4 over 14 days
+  </Accordion>
+
+  <Accordion title="Revenue Risks" icon="exclamation-triangle">
+    **Business Indicator Analysis:**
+    - Contract value reductions
+    - Usage pattern declines
+    - Billing or payment issues
+    - Renewal probability drops
+
+    **Threshold**: Triggered when renewal probability drops below 70%
+  </Accordion>
+</AccordionGroup>
+
+## Accessing Insights via API
+
+### Get Workspace Insights
+
+Retrieve AI-generated insights for your entire workspace.
+
+```bash
+curl -X GET "https://api.gostanna.com/api/insights?workspaceId=yourcompany.com&windowDays=30" \
+  -H "Authorization: Bearer sk-your-api-key-here"
+```
+
+**Response:**
+```json
+{
+  "riskAlerts": [
+    {
+      "type": "score_fallers",
+      "severity": "high",
+      "clientCount": 5,
+      "totalMrrAtRisk": 45000,
+      "clients": [
+        {
+          "clientId": "client_123",
+          "name": "Example Corp",
+          "currentScore": 32,
+          "scoreDelta": -18,
+          "mrrAtRisk": 12000,
+          "primaryRisk": "No response to emails in 14 days"
+        }
+      ]
+    },
+    {
+      "type": "latency_risk",
+      "severity": "medium",
+      "clientCount": 8,
+      "avgResponseDelay": "5.2 days",
+      "description": "Response times have increased significantly"
+    }
+  ],
+  "opportunities": [
+    {
+      "type": "expansion_ready",
+      "clientCount": 3,
+      "potentialMrr": 18000,
+      "clients": [
+        {
+          "clientId": "client_456",
+          "name": "Growth Inc",
+          "currentScore": 92,
+          "engagementTrend": "increasing",
+          "expansionSignals": ["positive sentiment", "increased usage", "stakeholder growth"]
+        }
+      ]
+    }
+  ],
+  "trends": {
+    "portfolioHealth": {
+      "direction": "improving",
+      "changePercent": 2.3,
+      "description": "Overall portfolio health improved 2.3% this month"
+    },
+    "engagementPatterns": {
+      "emailResponseRate": 0.68,
+      "meetingAttendance": 0.89,
+      "supportTicketTrend": "stable"
+    }
+  }
+}
+```
+
+### Get Client-Specific Insights
+
+Retrieve detailed insights for a specific client.
+
+```bash
+curl -X GET "https://api.gostanna.com/api/clients/client_123/insights?workspaceId=yourcompany.com" \
+  -H "Authorization: Bearer sk-your-api-key-here"
+```
+
+**Response:**
+```json
+{
+  "clientId": "client_123",
+  "name": "Example Corp",
+  "currentScore": 32,
+  "riskLevel": "high",
+  "insights": [
+    {
+      "type": "communication_gap",
+      "severity": "high",
+      "description": "No email response in 14 days - longest gap in 6 months",
+      "recommendation": "Schedule immediate check-in call",
+      "lastContact": "2024-01-17T10:30:00Z",
+      "previousPattern": "Usually responds within 2 days"
+    },
+    {
+      "type": "stakeholder_concentration",
+      "severity": "medium",
+      "description": "Only 1 active contact at organization",
+      "recommendation": "Identify and engage additional stakeholders",
+      "currentContacts": 1,
+      "recommendedContacts": 3
+    }
+  ],
+  "recommendations": [
+    {
+      "action": "immediate_outreach",
+      "priority": "urgent",
+      "description": "Contact primary stakeholder within 24 hours",
+      "suggestedApproach": "Phone call followed by summary email"
+    },
+    {
+      "action": "stakeholder_mapping",
+      "priority": "high",
+      "description": "Identify decision makers and influencers",
+      "suggestedApproach": "Ask current contact for introductions to team leads"
+    }
+  ]
+}
+```
+
+## Understanding Insight Types
+
+### Communication Insights
+
+**Email Engagement Analysis:**
+- Open rate trends and patterns
+- Response time analysis
+- Engagement depth (reply length, questions asked)
+- Communication frequency patterns
+
+**Meeting Participation:**
+- Attendance consistency
+- Meeting duration trends
+- Participant engagement levels
+- Follow-up completion rates
+
+### Relationship Insights
+
+**Stakeholder Mapping:**
+- Contact diversity across departments
+- Decision maker engagement levels
+- Champion identification
+- Influence network analysis
+
+**Relationship Depth:**
+- Interaction frequency per stakeholder
+- Cross-functional engagement
+- Executive-level relationships
+- Technical vs. business contact balance
+
+### Business Insights
+
+**Usage Pattern Analysis:**
+- Product adoption trends
+- Feature utilization changes
+- User activity patterns
+- Value realization indicators
+
+**Revenue Predictors:**
+- Contract renewal signals
+- Expansion opportunity indicators
+- Churn risk factors
+- Payment and billing patterns
+
+## Configuring Insight Alerts
+
+### Alert Thresholds
+
+You can customize when insights trigger alerts based on your business needs:
+
+```bash
+curl -X PUT "https://api.gostanna.com/api/settings/insight-thresholds?workspaceId=yourcompany.com" \
+  -H "Authorization: Bearer sk-your-api-key-here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "scoreDropThreshold": 15,
+    "responseDelayDays": 7,
+    "sentimentThreshold": 0.3,
+    "stakeholderMinimum": 2,
+    "enableEmailAlerts": true,
+    "alertFrequency": "daily"
+  }'
+```
+
+### Notification Preferences
+
+Set up how you want to receive insight alerts:
+
+- **Real-time alerts**: Immediate notifications for urgent insights
+- **Daily digest**: Summary of new insights each morning
+- **Weekly reports**: Comprehensive insight analysis and trends
+- **Custom alerts**: Specific thresholds for different client tiers
+
+## Using Insights Effectively
+
+### Daily Workflow Integration
+
+<Steps>
+  <Step title="Morning Insight Review">
+    Check new alerts and recommendations from the insights dashboard
+  </Step>
+
+  <Step title="Prioritize Actions">
+    Focus on high-severity insights with immediate revenue impact
+  </Step>
+
+  <Step title="Take Action">
+    Execute recommended actions (calls, emails, meetings)
+  </Step>
+
+  <Step title="Track Outcomes">
+    Monitor how insights and actions affect client health scores
+  </Step>
+</Steps>
+
+### Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Act on High-Severity Alerts" icon="exclamation-triangle">
+    Address urgent insights within 24 hours to prevent client churn
+  </Card>
+
+  <Card title="Look for Patterns" icon="chart-line">
+    Use insights to identify broader trends across your portfolio
+  </Card>
+
+  <Card title="Validate Recommendations" icon="check-circle">
+    Insights are suggestions - apply your client knowledge before acting
+  </Card>
+
+  <Card title="Track Success" icon="target">
+    Monitor which insight-driven actions have the biggest impact
+  </Card>
+</CardGroup>
+
+## Advanced Analytics
+
+### Cohort Analysis
+
+Track client health patterns across different segments:
+- New clients vs. established relationships
+- Industry-specific trends
+- Client size impact on engagement patterns
+- Seasonal variation analysis
+
+### Predictive Modeling
+
+Stanna's AI models can predict:
+- Churn probability 30-90 days in advance
+- Expansion opportunity likelihood
+- Optimal outreach timing
+- Stakeholder engagement patterns
+
+### Custom Insights
+
+Enterprise customers can configure custom insight rules based on:
+- Industry-specific metrics
+- Custom data fields
+- Integration-specific signals
+- Business process milestones
+
+<Info>
+**Advanced Features**: Contact [support@gostanna.com](mailto:support@gostanna.com) to learn about custom insight configuration and advanced analytics features.
+</Info>

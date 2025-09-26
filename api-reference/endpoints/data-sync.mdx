@@ -1,0 +1,461 @@
+---
+title: 'Data Sync & Ingestion'
+description: 'Manage data synchronization and ingestion processes'
+---
+
+## Trigger Data Sync
+
+Manually trigger a data synchronization process for your workspace.
+
+<ParamField path="workspaceId" type="string" required>
+  Your workspace domain (e.g., `yourcompany.com`)
+</ParamField>
+
+<ParamField body="syncType" type="string">
+  Type of sync to run: `quick` (default) or `full`
+</ParamField>
+
+<ParamField body="sources" type="array">
+  Specific integration sources to sync (optional). If not provided, all connected integrations will sync.
+</ParamField>
+
+### Request
+
+<CodeGroup>
+
+```bash cURL
+curl -X POST "https://api.gostanna.com/api/ingest/run?workspaceId=yourcompany.com" \
+  -H "Authorization: Bearer sk-your-api-key-here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "syncType": "quick",
+    "sources": ["google", "hubspot"]
+  }'
+```
+
+```javascript Node.js
+const response = await fetch('https://api.gostanna.com/api/ingest/run?workspaceId=yourcompany.com', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer sk-your-api-key-here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    syncType: 'quick',
+    sources: ['google', 'hubspot']
+  })
+});
+
+const result = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.post(
+    'https://api.gostanna.com/api/ingest/run',
+    params={'workspaceId': 'yourcompany.com'},
+    headers={
+        'Authorization': 'Bearer sk-your-api-key-here',
+        'Content-Type': 'application/json'
+    },
+    json={
+        'syncType': 'quick',
+        'sources': ['google', 'hubspot']
+    }
+)
+
+result = response.json()
+```
+
+</CodeGroup>
+
+### Response
+
+```json
+{
+  "success": true,
+  "jobId": "ingest_job_abc123",
+  "status": "started",
+  "estimatedDuration": "5-10 minutes",
+  "sources": ["google", "hubspot"]
+}
+```
+
+---
+
+## Get Sync Status
+
+Check the status of data synchronization processes.
+
+<ParamField path="workspaceId" type="string" required>
+  Your workspace domain
+</ParamField>
+
+<ParamField query="jobId" type="string">
+  Specific job ID to check (optional). If not provided, returns status of all recent sync jobs.
+</ParamField>
+
+### Request
+
+<CodeGroup>
+
+```bash cURL
+curl -X GET "https://api.gostanna.com/api/ingest/status?workspaceId=yourcompany.com" \
+  -H "Authorization: Bearer sk-your-api-key-here"
+```
+
+```javascript Node.js
+const response = await fetch('https://api.gostanna.com/api/ingest/status?workspaceId=yourcompany.com', {
+  headers: {
+    'Authorization': 'Bearer sk-your-api-key-here'
+  }
+});
+
+const status = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.get(
+    'https://api.gostanna.com/api/ingest/status',
+    params={'workspaceId': 'yourcompany.com'},
+    headers={'Authorization': 'Bearer sk-your-api-key-here'}
+)
+
+status = response.json()
+```
+
+</CodeGroup>
+
+### Response
+
+```json
+{
+  "currentJob": {
+    "jobId": "ingest_job_abc123",
+    "status": "running",
+    "progress": 65,
+    "startedAt": "2024-01-31T10:00:00Z",
+    "estimatedCompletion": "2024-01-31T10:15:00Z",
+    "sources": {
+      "google": {
+        "status": "completed",
+        "itemsProcessed": 245,
+        "lastSyncAt": "2024-01-31T10:05:00Z"
+      },
+      "hubspot": {
+        "status": "running",
+        "itemsProcessed": 128,
+        "totalItems": 200,
+        "progress": 64
+      }
+    }
+  },
+  "recentJobs": [
+    {
+      "jobId": "ingest_job_xyz789",
+      "status": "completed",
+      "completedAt": "2024-01-30T15:30:00Z",
+      "duration": "8 minutes",
+      "itemsProcessed": 892
+    }
+  ]
+}
+```
+
+---
+
+## Get Sync History
+
+Retrieve historical data synchronization logs and statistics.
+
+<ParamField path="workspaceId" type="string" required>
+  Your workspace domain
+</ParamField>
+
+<ParamField query="limit" type="number">
+  Maximum number of sync records to return (default: 20, max: 100)
+</ParamField>
+
+<ParamField query="source" type="string">
+  Filter by integration source: `google`, `hubspot`, `intercom`
+</ParamField>
+
+<ParamField query="status" type="string">
+  Filter by sync status: `completed`, `failed`, `running`
+</ParamField>
+
+### Request
+
+<CodeGroup>
+
+```bash cURL
+curl -X GET "https://api.gostanna.com/api/ingest/history?workspaceId=yourcompany.com&limit=10&source=google" \
+  -H "Authorization: Bearer sk-your-api-key-here"
+```
+
+```javascript Node.js
+const response = await fetch('https://api.gostanna.com/api/ingest/history?workspaceId=yourcompany.com&limit=10&source=google', {
+  headers: {
+    'Authorization': 'Bearer sk-your-api-key-here'
+  }
+});
+
+const history = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.get(
+    'https://api.gostanna.com/api/ingest/history',
+    params={
+        'workspaceId': 'yourcompany.com',
+        'limit': 10,
+        'source': 'google'
+    },
+    headers={'Authorization': 'Bearer sk-your-api-key-here'}
+)
+
+history = response.json()
+```
+
+</CodeGroup>
+
+### Response
+
+```json
+{
+  "syncHistory": [
+    {
+      "jobId": "ingest_job_abc123",
+      "source": "google",
+      "status": "completed",
+      "startedAt": "2024-01-31T10:00:00Z",
+      "completedAt": "2024-01-31T10:08:00Z",
+      "duration": "8 minutes",
+      "itemsProcessed": 245,
+      "itemsAdded": 12,
+      "itemsUpdated": 233,
+      "itemsSkipped": 0,
+      "errors": []
+    },
+    {
+      "jobId": "ingest_job_def456",
+      "source": "google",
+      "status": "completed",
+      "startedAt": "2024-01-30T10:00:00Z",
+      "completedAt": "2024-01-30T10:12:00Z",
+      "duration": "12 minutes",
+      "itemsProcessed": 289,
+      "itemsAdded": 15,
+      "itemsUpdated": 274,
+      "itemsSkipped": 2,
+      "errors": [
+        {
+          "message": "Email parsing failed for 2 items",
+          "count": 2,
+          "severity": "warning"
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "total": 45,
+    "limit": 10,
+    "offset": 0,
+    "hasMore": true
+  }
+}
+```
+
+---
+
+## Start Full Backfill
+
+Initiate a comprehensive data backfill from your integrations.
+
+<ParamField path="workspaceId" type="string" required>
+  Your workspace domain
+</ParamField>
+
+<ParamField body="source" type="string" required>
+  Integration source to backfill: `google`, `hubspot`, or `intercom`
+</ParamField>
+
+<ParamField body="fromDate" type="string" required>
+  Start date for backfill in ISO 8601 format (e.g., `2024-01-01T00:00:00Z`)
+</ParamField>
+
+<ParamField body="toDate" type="string">
+  End date for backfill (defaults to current date)
+</ParamField>
+
+<ParamField body="dataTypes" type="array">
+  Specific data types to backfill (e.g., `["emails", "meetings", "contacts"]`)
+</ParamField>
+
+### Request
+
+<CodeGroup>
+
+```bash cURL
+curl -X POST "https://api.gostanna.com/api/ingest/backfill?workspaceId=yourcompany.com" \
+  -H "Authorization: Bearer sk-your-api-key-here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "source": "google",
+    "fromDate": "2024-01-01T00:00:00Z",
+    "toDate": "2024-01-31T23:59:59Z",
+    "dataTypes": ["emails", "meetings"]
+  }'
+```
+
+```javascript Node.js
+const response = await fetch('https://api.gostanna.com/api/ingest/backfill?workspaceId=yourcompany.com', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer sk-your-api-key-here',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    source: 'google',
+    fromDate: '2024-01-01T00:00:00Z',
+    toDate: '2024-01-31T23:59:59Z',
+    dataTypes: ['emails', 'meetings']
+  })
+});
+
+const result = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.post(
+    'https://api.gostanna.com/api/ingest/backfill',
+    params={'workspaceId': 'yourcompany.com'},
+    headers={
+        'Authorization': 'Bearer sk-your-api-key-here',
+        'Content-Type': 'application/json'
+    },
+    json={
+        'source': 'google',
+        'fromDate': '2024-01-01T00:00:00Z',
+        'toDate': '2024-01-31T23:59:59Z',
+        'dataTypes': ['emails', 'meetings']
+    }
+)
+
+result = response.json()
+```
+
+</CodeGroup>
+
+### Response
+
+```json
+{
+  "success": true,
+  "backfillId": "backfill_ghi789",
+  "estimatedItems": 2500,
+  "estimatedDuration": "45-60 minutes",
+  "status": "queued",
+  "source": "google",
+  "dateRange": {
+    "from": "2024-01-01T00:00:00Z",
+    "to": "2024-01-31T23:59:59Z"
+  },
+  "dataTypes": ["emails", "meetings"]
+}
+```
+
+<Warning>
+  Full backfills can take significant time depending on the amount of historical data. Large backfills are processed in the background and won't affect your current workspace usage.
+</Warning>
+
+---
+
+## Get Email Ingestion Stats
+
+Retrieve statistics about email data ingestion and processing.
+
+<ParamField path="workspaceId" type="string" required>
+  Your workspace domain
+</ParamField>
+
+<ParamField query="windowDays" type="number">
+  Time window for statistics in days (default: 30, max: 90)
+</ParamField>
+
+### Request
+
+<CodeGroup>
+
+```bash cURL
+curl -X GET "https://api.gostanna.com/api/ingest/email-stats?workspaceId=yourcompany.com&windowDays=30" \
+  -H "Authorization: Bearer sk-your-api-key-here"
+```
+
+```javascript Node.js
+const response = await fetch('https://api.gostanna.com/api/ingest/email-stats?workspaceId=yourcompany.com&windowDays=30', {
+  headers: {
+    'Authorization': 'Bearer sk-your-api-key-here'
+  }
+});
+
+const stats = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.get(
+    'https://api.gostanna.com/api/ingest/email-stats',
+    params={
+        'workspaceId': 'yourcompany.com',
+        'windowDays': 30
+    },
+    headers={'Authorization': 'Bearer sk-your-api-key-here'}
+)
+
+stats = response.json()
+```
+
+</CodeGroup>
+
+### Response
+
+```json
+{
+  "windowDays": 30,
+  "emailsProcessed": 3450,
+  "emailsInbound": 2100,
+  "emailsOutbound": 1350,
+  "openTrackingEnabled": true,
+  "openRate": 0.72,
+  "responseRate": 0.45,
+  "avgSentimentScore": 0.68,
+  "topClients": [
+    {
+      "clientName": "Acme Corp",
+      "emailCount": 89,
+      "avgSentiment": 0.85,
+      "openRate": 0.95
+    },
+    {
+      "clientName": "TechStart Inc",
+      "emailCount": 67,
+      "avgSentiment": 0.72,
+      "openRate": 0.88
+    }
+  ],
+  "processingErrors": {
+    "parseErrors": 5,
+    "attachmentErrors": 2,
+    "sentimentErrors": 0
+  }
+}
+```

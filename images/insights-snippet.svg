@@ -1,0 +1,252 @@
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Page background gradient from globals.css -->
+    <linearGradient id="pageBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8fafc"/>
+      <stop offset="50%" style="stop-color:#e0f2fe"/>
+      <stop offset="100%" style="stop-color:#faf5ff"/>
+    </linearGradient>
+
+    <!-- Primary gradient -->
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+
+    <!-- Success gradient -->
+    <linearGradient id="successGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+
+    <!-- Warning gradient -->
+    <linearGradient id="warnGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
+    </linearGradient>
+
+    <!-- Danger gradient -->
+    <linearGradient id="dangerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444"/>
+      <stop offset="100%" style="stop-color:#dc2626"/>
+    </linearGradient>
+
+    <!-- Shadow effects -->
+    <filter id="shadow-xl">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-opacity="0.08"/>
+    </filter>
+
+    <!-- Floating orbs -->
+    <radialGradient id="orb1">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.05"/>
+    </radialGradient>
+
+    <radialGradient id="orb2">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#f87171;stop-opacity:0.05"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Page background -->
+  <rect width="1200" height="800" fill="url(#pageBg)"/>
+
+  <!-- Floating orbs -->
+  <circle cx="1050" cy="150" r="200" fill="url(#orb1)" opacity="0.6"/>
+  <circle cx="100" cy="600" r="180" fill="url(#orb2)" opacity="0.4"/>
+
+  <!-- Main container -->
+  <g transform="translate(40, 40)">
+
+    <!-- Header glass card -->
+    <rect x="0" y="0" width="1120" height="120" rx="24" fill="white" fill-opacity="0.8" filter="url(#shadow-xl)"/>
+    <rect x="0" y="0" width="1120" height="120" rx="24" fill="none" stroke="white" stroke-opacity="0.2"/>
+
+    <!-- AI insights header -->
+    <g transform="translate(30, 30)">
+      <rect x="0" y="0" width="40" height="40" rx="12" fill="url(#primaryGrad)"/>
+      <path d="M 20 15 C 15 15 11 19 11 24 C 11 29 15 33 20 33 C 25 33 29 29 29 24 C 29 19 25 15 20 15 Z M 17 21 L 17 27 M 20 18 L 20 30 M 23 21 L 23 27"
+            stroke="white" stroke-width="2" stroke-linecap="round"/>
+
+      <text x="55" y="30" font-family="Inter, -apple-system, system-ui" font-size="28" font-weight="700" fill="url(#primaryGrad)">AI Insights</text>
+      <text x="55" y="50" font-family="Inter" font-size="14" font-weight="500" fill="#64748b">Automated risk detection and recommendations</text>
+    </g>
+
+    <!-- Last updated info -->
+    <g transform="translate(30, 85)">
+      <text x="0" y="15" font-family="Inter" font-size="12" fill="#64748b">🔄 Last analysis: 2 minutes ago • Next update: 58 minutes</text>
+    </g>
+
+    <!-- Alert Summary Cards -->
+    <g transform="translate(0, 160)">
+      <!-- High Priority Alerts -->
+      <g>
+        <rect x="0" y="0" width="360" height="140" rx="20" fill="white" fill-opacity="0.95" filter="url(#shadow-xl)"/>
+        <rect x="0" y="0" width="360" height="140" rx="20" fill="url(#dangerGrad)" fill-opacity="0.05"/>
+
+        <!-- Alert icon -->
+        <rect x="20" y="20" width="40" height="40" rx="10" fill="url(#dangerGrad)"/>
+        <path d="M 40 30 L 40 42 M 40 46 L 40 48" stroke="white" stroke-width="3" stroke-linecap="round"/>
+
+        <text x="75" y="40" font-family="Inter" font-size="14" font-weight="500" fill="#64748b">High Priority Alerts</text>
+        <text x="75" y="65" font-family="Inter" font-size="32" font-weight="700" fill="#dc2626">5</text>
+        <text x="75" y="85" font-family="Inter" font-size="12" fill="#64748b">$45,200 MRR at risk</text>
+        <text x="75" y="105" font-family="Inter" font-size="11" fill="#64748b">Require immediate attention</text>
+
+        <!-- Trend indicator -->
+        <rect x="280" y="25" width="60" height="20" rx="10" fill="#fee2e2"/>
+        <text x="310" y="38" font-family="Inter" font-size="10" font-weight="600" fill="#dc2626" text-anchor="middle">+2 today</text>
+      </g>
+
+      <!-- Opportunities -->
+      <g transform="translate(380, 0)">
+        <rect x="0" y="0" width="360" height="140" rx="20" fill="white" fill-opacity="0.95" filter="url(#shadow-xl)"/>
+        <rect x="0" y="0" width="360" height="140" rx="20" fill="url(#successGrad)" fill-opacity="0.05"/>
+
+        <!-- Growth icon -->
+        <rect x="20" y="20" width="40" height="40" rx="10" fill="url(#successGrad)"/>
+        <path d="M 30 45 L 35 40 L 40 42 L 45 37 L 50 40 M 45 37 L 45 42 L 40 42"
+              stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+        <text x="75" y="40" font-family="Inter" font-size="14" font-weight="500" fill="#64748b">Growth Opportunities</text>
+        <text x="75" y="65" font-family="Inter" font-size="32" font-weight="700" fill="#059669">8</text>
+        <text x="75" y="85" font-family="Inter" font-size="12" fill="#64748b">$28,500 expansion potential</text>
+        <text x="75" y="105" font-family="Inter" font-size="11" fill="#64748b">High engagement signals</text>
+
+        <!-- Trend indicator -->
+        <rect x="280" y="25" width="60" height="20" rx="10" fill="#dcfce7"/>
+        <text x="310" y="38" font-family="Inter" font-size="10" font-weight="600" fill="#059669" text-anchor="middle">+3 this week</text>
+      </g>
+
+      <!-- Portfolio Health -->
+      <g transform="translate(760, 0)">
+        <rect x="0" y="0" width="340" height="140" rx="20" fill="white" fill-opacity="0.95" filter="url(#shadow-xl)"/>
+
+        <!-- Health icon -->
+        <rect x="20" y="20" width="40" height="40" rx="10" fill="#e0e7ff"/>
+        <path d="M 40 30 C 35 30 30 35 30 40 C 30 45 35 50 40 50 C 45 50 50 45 50 40 C 50 35 45 30 40 30 Z M 37 37 L 40 40 L 43 37"
+              stroke="#6366f1" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+        <text x="75" y="40" font-family="Inter" font-size="14" font-weight="500" fill="#64748b">Portfolio Health</text>
+        <text x="75" y="65" font-family="Inter" font-size="32" font-weight="700" fill="#334155">74.2</text>
+        <text x="75" y="85" font-family="Inter" font-size="12" fill="#64748b">Average score</text>
+
+        <!-- Mini trend chart -->
+        <polyline points="180,100 195,95 210,92 225,88 240,90 255,87 270,85"
+                  stroke="#6366f1" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+        <rect x="280" y="25" width="45" height="20" rx="10" fill="#dcfce7"/>
+        <text x="302" y="38" font-family="Inter" font-size="10" font-weight="600" fill="#059669" text-anchor="middle">+2.3%</text>
+      </g>
+    </g>
+
+    <!-- Main Content Area -->
+    <g transform="translate(0, 320)">
+      <!-- Risk Alerts List -->
+      <g>
+        <rect x="0" y="0" width="540" height="420" rx="24" fill="white" fill-opacity="0.8" filter="url(#shadow-xl)"/>
+
+        <!-- Header -->
+        <rect x="0" y="0" width="540" height="60" rx="24" fill="none"/>
+        <rect x="0" y="59" width="540" height="1" fill="#e2e8f0" opacity="0.5"/>
+        <text x="25" y="38" font-family="Inter" font-size="16" font-weight="600" fill="#1e293b">🚨 Risk Alerts</text>
+
+        <!-- Alert items -->
+        <g transform="translate(25, 80)">
+          <!-- High Risk Alert 1 -->
+          <rect x="0" y="0" width="490" height="70" rx="12" fill="#fef2f2" stroke="#fecaca" stroke-width="1"/>
+          <rect x="15" y="15" width="6" height="40" rx="3" fill="#dc2626"/>
+          <text x="35" y="30" font-family="Inter" font-size="13" font-weight="600" fill="#dc2626">Communication Gap</text>
+          <text x="35" y="45" font-family="Inter" font-size="12" fill="#64748b">Global Systems Corp • No response in 14 days</text>
+          <text x="35" y="60" font-family="Inter" font-size="11" fill="#64748b">$12,000 MRR • Score dropped from 68 to 32</text>
+
+          <rect x="410" y="20" width="65" height="20" rx="10" fill="#dc2626"/>
+          <text x="442" y="33" font-family="Inter" font-size="10" font-weight="500" fill="white" text-anchor="middle">URGENT</text>
+
+          <!-- Medium Risk Alert 2 -->
+          <rect x="0" y="85" width="490" height="70" rx="12" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
+          <rect x="15" y="100" width="6" height="40" rx="3" fill="#d97706"/>
+          <text x="35" y="115" font-family="Inter" font-size="13" font-weight="600" fill="#d97706">Stakeholder Risk</text>
+          <text x="35" y="130" font-family="Inter" font-size="12" fill="#64748b">TechFlow Solutions • Only 1 active contact</text>
+          <text x="35" y="145" font-family="Inter" font-size="11" fill="#64748b">$8,500 MRR • Key contact may be leaving</text>
+
+          <rect x="410" y="105" width="65" height="20" rx="10" fill="#d97706"/>
+          <text x="442" y="118" font-family="Inter" font-size="10" font-weight="500" fill="white" text-anchor="middle">HIGH</text>
+
+          <!-- Medium Risk Alert 3 -->
+          <rect x="0" y="170" width="490" height="70" rx="12" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
+          <rect x="15" y="185" width="6" height="40" rx="3" fill="#d97706"/>
+          <text x="35" y="200" font-family="Inter" font-size="13" font-weight="600" fill="#d97706">Sentiment Decline</text>
+          <text x="35" y="215" font-family="Inter" font-size="12" fill="#64748b">DataFlow Inc • Support escalations increased</text>
+          <text x="35" y="230" font-family="Inter" font-size="11" fill="#64748b">$15,800 MRR • 3 negative interactions this week</text>
+
+          <rect x="410" y="190" width="65" height="20" rx="10" fill="#d97706"/>
+          <text x="442" y="203" font-family="Inter" font-size="10" font-weight="500" fill="white" text-anchor="middle">HIGH</text>
+
+          <!-- Action buttons -->
+          <g transform="translate(0, 260)">
+            <rect x="0" y="0" width="120" height="32" rx="8" fill="url(#primaryGrad)"/>
+            <text x="60" y="21" font-family="Inter" font-size="12" font-weight="500" fill="white" text-anchor="middle">View All Alerts</text>
+
+            <rect x="140" y="0" width="100" height="32" rx="8" fill="white" stroke="#e5e7eb"/>
+            <text x="190" y="21" font-family="Inter" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">Export Report</text>
+          </g>
+        </g>
+      </g>
+
+      <!-- Opportunities & Recommendations -->
+      <g transform="translate(560, 0)">
+        <rect x="0" y="0" width="540" height="420" rx="24" fill="white" fill-opacity="0.8" filter="url(#shadow-xl)"/>
+
+        <!-- Header -->
+        <rect x="0" y="0" width="540" height="60" rx="24" fill="none"/>
+        <rect x="0" y="59" width="540" height="1" fill="#e2e8f0" opacity="0.5"/>
+        <text x="25" y="38" font-family="Inter" font-size="16" font-weight="600" fill="#1e293b">💡 Recommendations</text>
+
+        <!-- Recommendation items -->
+        <g transform="translate(25, 80)">
+          <!-- Expansion Opportunity -->
+          <rect x="0" y="0" width="490" height="80" rx="12" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+          <rect x="15" y="15" width="6" height="50" rx="3" fill="#10b981"/>
+          <text x="35" y="30" font-family="Inter" font-size="13" font-weight="600" fill="#059669">Expansion Opportunity</text>
+          <text x="35" y="45" font-family="Inter" font-size="12" fill="#64748b">Acme Corp • High engagement, increasing usage</text>
+          <text x="35" y="60" font-family="Inter" font-size="11" fill="#64748b">Current: $24,500 MRR • Potential: +$8,000 MRR</text>
+
+          <rect x="400" y="20" width="75" height="20" rx="10" fill="#dcfce7"/>
+          <text x="437" y="33" font-family="Inter" font-size="10" font-weight="500" fill="#059669" text-anchor="middle">OPPORTUNITY</text>
+
+          <!-- Proactive Outreach -->
+          <rect x="0" y="95" width="490" height="80" rx="12" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+          <rect x="15" y="110" width="6" height="50" rx="3" fill="#3b82f6"/>
+          <text x="35" y="125" font-family="Inter" font-size="13" font-weight="600" fill="#1d4ed8">Proactive Outreach</text>
+          <text x="35" y="140" font-family="Inter" font-size="12" fill="#64748b">Innovation Labs • Due for quarterly check-in</text>
+          <text x="35" y="155" font-family="Inter" font-size="11" fill="#64748b">$18,200 MRR • Last meeting 8 weeks ago</text>
+
+          <rect x="420" y="115" width="55" height="20" rx="10" fill="#dbeafe"/>
+          <text x="447" y="128" font-family="Inter" font-size="10" font-weight="500" fill="#1d4ed8" text-anchor="middle">TIMING</text>
+
+          <!-- Stakeholder Mapping -->
+          <rect x="0" y="190" width="490" height="80" rx="12" fill="#fef7ff" stroke="#e9d5ff" stroke-width="1"/>
+          <rect x="15" y="205" width="6" height="50" rx="3" fill="#8b5cf6"/>
+          <text x="35" y="220" font-family="Inter" font-size="13" font-weight="600" fill="#7c3aed">Stakeholder Expansion</text>
+          <text x="35" y="235" font-family="Inter" font-size="12" fill="#64748b">NextGen Solutions • Introduce new team members</text>
+          <text x="35" y="250" font-family="Inter" font-size="11" fill="#64748b">$22,100 MRR • Strong with current contacts</text>
+
+          <rect x="415" y="210" width="60" height="20" rx="10" fill="#e9d5ff"/>
+          <text x="445" y="223" font-family="Inter" font-size="10" font-weight="500" fill="#7c3aed" text-anchor="middle">GROWTH</text>
+
+          <!-- AI Summary -->
+          <g transform="translate(0, 285)">
+            <rect x="0" y="0" width="490" height="60" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+            <rect x="15" y="15" width="30" height="30" rx="8" fill="url(#primaryGrad)"/>
+            <path d="M 30 25 C 25 25 21 29 21 34 C 21 39 25 43 30 43 C 35 43 39 39 39 34 C 39 29 35 25 30 25 Z M 27 31 L 27 37 M 30 28 L 30 40 M 33 31 L 33 37"
+                  stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+
+            <text x="55" y="30" font-family="Inter" font-size="12" font-weight="600" fill="#1e293b">AI Analysis</text>
+            <text x="55" y="45" font-family="Inter" font-size="11" fill="#64748b">Portfolio trending positive. Focus on high-value at-risk accounts this week.</text>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

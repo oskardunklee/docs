@@ -72,7 +72,8 @@
           {
             "group": "Core Features",
             "pages": [
-              "features/client-management"
+              "features/client-management",
+              "features/insights-analytics"
             ]
           },
           {
@@ -103,6 +104,7 @@
               "api-reference/endpoints/clients",
               "api-reference/endpoints/metrics",
               "api-reference/endpoints/integrations",
+              "api-reference/endpoints/data-sync",
               "api-reference/endpoints/settings"
             ]
           },

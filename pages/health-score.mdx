@@ -92,6 +92,38 @@ View score attribution details:
 2. **API Access**: `GET /api/clients/:id/attributions`
 3. **Manual Attribution**: `POST /api/clients/:id/attribute` to add context
 
+**API Example:**
+```bash
+curl -X GET "https://api.gostanna.com/api/clients/client_123/attributions?workspaceId=yourcompany.com" \
+  -H "Authorization: Bearer sk-your-api-key-here"
+```
+
+**Response:**
+```json
+{
+  "attributions": [
+    {
+      "date": "2024-01-31T10:30:00Z",
+      "scoreDelta": -5,
+      "reason": "No email response in 7 days",
+      "factorType": "email_engagement",
+      "weight": 0.3,
+      "previousScore": 78,
+      "newScore": 73
+    },
+    {
+      "date": "2024-01-30T14:15:00Z",
+      "scoreDelta": 8,
+      "reason": "Positive meeting feedback",
+      "factorType": "meeting_sentiment",
+      "weight": 0.4,
+      "previousScore": 70,
+      "newScore": 78
+    }
+  ]
+}
+```
+
 ### Common Score Drivers
 
 **Positive Drivers:**
@@ -121,6 +153,26 @@ When automated scoring doesn't reflect reality:
 - **Manual Attribution**: Add context explaining score changes
 - **Temporary Adjustments**: Account for known circumstances
 - **Permanent Overrides**: For clients with unique situations
+
+**Adding Manual Attribution via API:**
+```bash
+curl -X POST "https://api.gostanna.com/api/clients/client_123/attribute?workspaceId=yourcompany.com" \
+  -H "Authorization: Bearer sk-your-api-key-here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "reason": "Client mentioned budget constraints but confirmed renewal",
+    "impact": "positive",
+    "weight": 0.2,
+    "notes": "Temporary concern, renewal confirmed in call"
+  }'
+```
+
+**Recalculating Health Scores:**
+If you need to trigger a recalculation of health scores (for example, after adding manual attributions):
+```bash
+curl -X POST "https://api.gostanna.com/api/clients/client_123/recalculate-score?workspaceId=yourcompany.com" \
+  -H "Authorization: Bearer sk-your-api-key-here"
+```
 
 ## Using Health Scores Effectively
 
