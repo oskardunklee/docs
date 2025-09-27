@@ -1,0 +1,236 @@
+<svg width="900" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Page background gradient -->
+    <linearGradient id="pageBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8fafc"/>
+      <stop offset="50%" style="stop-color:#e0f2fe"/>
+      <stop offset="100%" style="stop-color:#faf5ff"/>
+    </linearGradient>
+
+    <!-- Primary gradient -->
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+
+    <!-- Success gradient -->
+    <linearGradient id="successGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+
+    <!-- Warning gradient -->
+    <linearGradient id="warnGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
+    </linearGradient>
+
+    <!-- Danger gradient -->
+    <linearGradient id="dangerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444"/>
+      <stop offset="100%" style="stop-color:#dc2626"/>
+    </linearGradient>
+
+    <!-- Glass card background -->
+    <linearGradient id="glassCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.95)"/>
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0.85)"/>
+    </linearGradient>
+
+    <!-- Shadow effects -->
+    <filter id="shadow-xl">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-opacity="0.08"/>
+    </filter>
+
+    <!-- Floating orbs -->
+    <radialGradient id="orb1">
+      <stop offset="0%" style="stop-color:#ec4899;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#f472b6;stop-opacity:0.05"/>
+    </radialGradient>
+
+    <radialGradient id="orb2">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:#34d399;stop-opacity:0.05"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Page background -->
+  <rect width="900" height="600" fill="url(#pageBg)"/>
+
+  <!-- Floating orbs -->
+  <circle cx="750" cy="100" r="120" fill="url(#orb1)" opacity="0.6"/>
+  <circle cx="150" cy="500" r="100" fill="url(#orb2)" opacity="0.5"/>
+
+  <!-- Main container -->
+  <g transform="translate(40, 40)">
+
+    <!-- Header card -->
+    <rect x="0" y="0" width="820" height="100" rx="24" fill="url(#glassCard)" filter="url(#shadow-xl)"/>
+
+    <!-- Header content -->
+    <g transform="translate(30, 30)">
+      <rect x="0" y="0" width="40" height="40" rx="12" fill="url(#primaryGrad)"/>
+      <path d="M 20 15 C 15 15 11 19 11 24 C 11 29 15 33 20 33 C 25 33 29 29 29 24 C 29 19 25 15 20 15 Z M 17 21 C 17 21 19 23 20 24 C 21 23 23 21 23 21"
+            stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+      <text x="55" y="30" font-family="Inter, -apple-system, system-ui" font-size="24" font-weight="700" fill="url(#primaryGrad)">Sentiment Analysis</text>
+      <text x="55" y="50" font-family="Inter" font-size="14" font-weight="500" fill="#64748b">TechFlow Solutions • Client relationship sentiment over time</text>
+    </g>
+
+    <!-- Main content -->
+    <g transform="translate(0, 120)">
+
+      <!-- Sentiment Timeline Chart -->
+      <g>
+        <rect x="0" y="0" width="820" height="320" rx="20" fill="url(#glassCard)" filter="url(#shadow-xl)"/>
+
+        <!-- Chart header -->
+        <rect x="0" y="0" width="820" height="60" rx="20" fill="none"/>
+        <rect x="0" y="59" width="820" height="1" fill="#e2e8f0" opacity="0.5"/>
+        <text x="25" y="38" font-family="Inter" font-size="16" font-weight="600" fill="#1e293b">📈 Sentiment Timeline (90 Days)</text>
+
+        <!-- Time period selector -->
+        <g transform="translate(580, 20)">
+          <rect x="0" y="0" width="200" height="30" rx="8" fill="rgba(255,255,255,0.6)"/>
+          <rect x="2" y="2" width="46" height="26" rx="6" fill="url(#primaryGrad)"/>
+          <text x="25" y="19" font-family="Inter" font-size="11" font-weight="500" fill="white" text-anchor="middle">90d</text>
+          <text x="75" y="19" font-family="Inter" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">30d</text>
+          <text x="125" y="19" font-family="Inter" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">7d</text>
+        </g>
+
+        <!-- Chart area -->
+        <g transform="translate(40, 80)">
+          <!-- Y-axis labels -->
+          <text x="-15" y="20" font-family="Inter" font-size="10" fill="#64748b" text-anchor="end">1.0</text>
+          <text x="-15" y="60" font-family="Inter" font-size="10" fill="#64748b" text-anchor="end">0.5</text>
+          <text x="-15" y="100" font-family="Inter" font-size="10" fill="#64748b" text-anchor="end">0.0</text>
+          <text x="-15" y="140" font-family="Inter" font-size="10" fill="#64748b" text-anchor="end">-0.5</text>
+          <text x="-15" y="180" font-family="Inter" font-size="10" fill="#64748b" text-anchor="end">-1.0</text>
+
+          <!-- Grid lines -->
+          <line x1="0" y1="20" x2="720" y2="20" stroke="#e2e8f0" stroke-width="1" opacity="0.5"/>
+          <line x1="0" y1="60" x2="720" y2="60" stroke="#e2e8f0" stroke-width="1" opacity="0.5"/>
+          <line x1="0" y1="100" x2="720" y2="100" stroke="#e2e8f0" stroke-width="1" opacity="0.3"/>
+          <line x1="0" y1="140" x2="720" y2="140" stroke="#e2e8f0" stroke-width="1" opacity="0.5"/>
+          <line x1="0" y1="180" x2="720" y2="180" stroke="#e2e8f0" stroke-width="1" opacity="0.5"/>
+
+          <!-- Sentiment trend line (higher = more positive) -->
+          <polyline points="0,85 40,80 80,75 120,70 160,65 200,68 240,72 280,70 320,65 360,60 400,58 440,55 480,60 520,65 560,62 600,58 640,55 680,52 720,50"
+                    fill="none" stroke="url(#successGrad)" stroke-width="3" opacity="0.8"/>
+
+          <!-- Positive area fill -->
+          <polygon points="0,100 40,100 80,100 120,100 160,100 200,100 240,100 280,100 320,100 360,100 400,100 440,100 480,100 520,100 560,100 600,100 640,100 680,100 720,100 720,50 680,52 640,55 600,58 560,62 520,65 480,60 440,55 400,58 360,60 320,65 280,70 240,72 200,68 160,65 120,70 80,75 40,80 0,85"
+                    fill="url(#successGrad)" opacity="0.1"/>
+
+          <!-- Data points -->
+          <circle cx="0" cy="85" r="3" fill="#10b981"/>
+          <circle cx="200" cy="68" r="3" fill="#10b981"/>
+          <circle cx="400" cy="58" r="3" fill="#10b981"/>
+          <circle cx="600" cy="58" r="3" fill="#10b981"/>
+          <circle cx="720" cy="50" r="3" fill="#10b981"/>
+
+          <!-- X-axis labels -->
+          <text x="0" y="205" font-family="Inter" font-size="10" fill="#64748b" text-anchor="middle">90d ago</text>
+          <text x="180" y="205" font-family="Inter" font-size="10" fill="#64748b" text-anchor="middle">60d ago</text>
+          <text x="360" y="205" font-family="Inter" font-size="10" fill="#64748b" text-anchor="middle">30d ago</text>
+          <text x="540" y="205" font-family="Inter" font-size="10" fill="#64748b" text-anchor="middle">7d ago</text>
+          <text x="720" y="205" font-family="Inter" font-size="10" fill="#64748b" text-anchor="middle">Today</text>
+
+          <!-- Current sentiment indicator -->
+          <g transform="translate(720, 50)">
+            <rect x="10" y="-15" width="60" height="25" rx="12" fill="#dcfce7"/>
+            <text x="40" y="-2" font-family="Inter" font-size="11" font-weight="600" fill="#166534" text-anchor="middle">+0.75</text>
+          </g>
+        </g>
+      </g>
+
+      <!-- Sentiment Breakdown -->
+      <g transform="translate(0, 340)">
+        <!-- Interaction Types Card -->
+        <g>
+          <rect x="0" y="0" width="400" height="180" rx="20" fill="url(#glassCard)" filter="url(#shadow-xl)"/>
+
+          <!-- Header -->
+          <rect x="0" y="0" width="400" height="50" rx="20" fill="none"/>
+          <rect x="0" y="49" width="400" height="1" fill="#e2e8f0" opacity="0.5"/>
+          <text x="25" y="32" font-family="Inter" font-size="14" font-weight="600" fill="#1e293b">💬 Recent Interactions</text>
+
+          <!-- Interaction items -->
+          <g transform="translate(25, 65)">
+            <!-- Positive email -->
+            <rect x="0" y="0" width="350" height="35" rx="8" fill="rgba(16,185,129,0.05)"/>
+            <circle cx="15" cy="17" r="4" fill="#10b981"/>
+            <text x="30" y="15" font-family="Inter" font-size="11" font-weight="500" fill="#059669">Email • 2 days ago</text>
+            <text x="30" y="28" font-family="Inter" font-size="10" fill="#64748b">"Great progress on the implementation..."</text>
+            <rect x="290" y="8" width="45" height="18" rx="9" fill="#dcfce7"/>
+            <text x="312" y="20" font-family="Inter" font-size="9" font-weight="500" fill="#166534" text-anchor="middle">+0.85</text>
+
+            <!-- Neutral meeting -->
+            <rect x="0" y="45" width="350" height="35" rx="8" fill="rgba(100,116,139,0.03)"/>
+            <circle cx="15" cy="62" r="4" fill="#64748b"/>
+            <text x="30" y="60" font-family="Inter" font-size="11" font-weight="500" fill="#475569">Meeting • 5 days ago</text>
+            <text x="30" y="73" font-family="Inter" font-size="10" fill="#64748b">"Quarterly business review discussion"</text>
+            <rect x="290" y="53" width="45" height="18" rx="9" fill="#f1f5f9"/>
+            <text x="312" y="65" font-family="Inter" font-size="9" font-weight="500" fill="#64748b" text-anchor="middle">+0.12</text>
+
+            <!-- Support ticket -->
+            <rect x="0" y="90" width="350" height="35" rx="8" fill="rgba(251,191,36,0.05)"/>
+            <circle cx="15" cy="107" r="4" fill="#f59e0b"/>
+            <text x="30" y="105" font-family="Inter" font-size="11" font-weight="500" fill="#d97706">Support • 1 week ago</text>
+            <text x="30" y="118" font-family="Inter" font-size="10" fill="#64748b">"Integration setup question"</text>
+            <rect x="290" y="98" width="45" height="18" rx="9" fill="#fef3c7"/>
+            <text x="312" y="110" font-family="Inter" font-size="9" font-weight="500" fill="#d97706" text-anchor="middle">-0.05</text>
+          </g>
+        </g>
+
+        <!-- Sentiment Summary -->
+        <g transform="translate(420, 0)">
+          <rect x="0" y="0" width="400" height="180" rx="20" fill="url(#glassCard)" filter="url(#shadow-xl)"/>
+
+          <!-- Header -->
+          <rect x="0" y="0" width="400" height="50" rx="20" fill="none"/>
+          <rect x="0" y="49" width="400" height="1" fill="#e2e8f0" opacity="0.5"/>
+          <text x="25" y="32" font-family="Inter" font-size="14" font-weight="600" fill="#1e293b">📊 Sentiment Summary</text>
+
+          <!-- Summary stats -->
+          <g transform="translate(25, 65)">
+            <!-- Overall score -->
+            <g>
+              <text x="0" y="15" font-family="Inter" font-size="11" font-weight="500" fill="#64748b">Overall Sentiment</text>
+              <text x="0" y="35" font-family="Inter" font-size="24" font-weight="700" fill="#10b981">+0.75</text>
+              <text x="80" y="35" font-family="Inter" font-size="12" fill="#10b981">Positive</text>
+              <rect x="140" y="25" width="50" height="16" rx="8" fill="#dcfce7"/>
+              <text x="165" y="36" font-family="Inter" font-size="9" font-weight="600" fill="#166534" text-anchor="middle">+8% 30d</text>
+            </g>
+
+            <!-- Breakdown -->
+            <g transform="translate(0, 55)">
+              <text x="0" y="15" font-family="Inter" font-size="11" font-weight="500" fill="#64748b">Last 30 Days</text>
+
+              <!-- Positive interactions -->
+              <g transform="translate(0, 25)">
+                <circle cx="8" cy="8" r="3" fill="#10b981"/>
+                <text x="20" y="12" font-family="Inter" font-size="11" fill="#1e293b">Positive</text>
+                <text x="150" y="12" font-family="Inter" font-size="11" font-weight="600" fill="#10b981">18 interactions</text>
+              </g>
+
+              <!-- Neutral interactions -->
+              <g transform="translate(0, 45)">
+                <circle cx="8" cy="8" r="3" fill="#64748b"/>
+                <text x="20" y="12" font-family="Inter" font-size="11" fill="#1e293b">Neutral</text>
+                <text x="150" y="12" font-family="Inter" font-size="11" font-weight="600" fill="#64748b">7 interactions</text>
+              </g>
+
+              <!-- Negative interactions -->
+              <g transform="translate(0, 65)">
+                <circle cx="8" cy="8" r="3" fill="#f59e0b"/>
+                <text x="20" y="12" font-family="Inter" font-size="11" fill="#1e293b">Negative</text>
+                <text x="150" y="12" font-family="Inter" font-size="11" font-weight="600" fill="#f59e0b">2 interactions</text>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

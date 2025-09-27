@@ -1,0 +1,173 @@
+<svg width="1000" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Page background gradient -->
+    <linearGradient id="pageBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8fafc"/>
+      <stop offset="50%" style="stop-color:#e0f2fe"/>
+      <stop offset="100%" style="stop-color:#faf5ff"/>
+    </linearGradient>
+
+    <!-- Primary gradient -->
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+
+    <!-- Success gradient -->
+    <linearGradient id="successGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+
+    <!-- Glass card background -->
+    <linearGradient id="glassCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.95)"/>
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0.85)"/>
+    </linearGradient>
+
+    <!-- Shadow effects -->
+    <filter id="shadow-xl">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-opacity="0.08"/>
+    </filter>
+
+    <!-- Floating orbs -->
+    <radialGradient id="orb1">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.05"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Page background -->
+  <rect width="1000" height="600" fill="url(#pageBg)"/>
+
+  <!-- Floating orb -->
+  <circle cx="800" cy="120" r="150" fill="url(#orb1)" opacity="0.6"/>
+
+  <!-- Browser chrome -->
+  <rect x="50" y="50" width="900" height="500" rx="12" fill="#ffffff" filter="url(#shadow-xl)"/>
+  <rect x="50" y="50" width="900" height="40" rx="12" fill="#f8fafc"/>
+  <rect x="50" y="78" width="900" height="1" fill="#e2e8f0"/>
+
+  <!-- Browser controls -->
+  <circle cx="75" cy="70" r="6" fill="#ef4444"/>
+  <circle cx="95" cy="70" r="6" fill="#f59e0b"/>
+  <circle cx="115" cy="70" r="6" fill="#10b981"/>
+
+  <!-- URL bar -->
+  <rect x="150" y="60" width="300" height="20" rx="10" fill="#f1f5f9"/>
+  <text x="160" y="73" font-family="Inter" font-size="10" fill="#64748b">app.gostanna.com/dashboard</text>
+
+  <!-- Main app content -->
+  <g transform="translate(70, 110)">
+    <!-- Header -->
+    <rect x="0" y="0" width="860" height="60" rx="16" fill="url(#glassCard)"/>
+    <text x="20" y="35" font-family="Inter" font-size="20" font-weight="700" fill="url(#primaryGrad)">Customer Success Dashboard</text>
+    <text x="20" y="50" font-family="Inter" font-size="12" fill="#64748b">Monitor client health and drive revenue growth</text>
+
+    <!-- KPI Cards -->
+    <g transform="translate(0, 80)">
+      <!-- Health Score Card -->
+      <rect x="0" y="0" width="200" height="100" rx="12" fill="url(#glassCard)" filter="url(#shadow-xl)"/>
+      <rect x="0" y="0" width="200" height="100" rx="12" fill="url(#successGrad)" fill-opacity="0.05"/>
+
+      <text x="15" y="25" font-family="Inter" font-size="11" font-weight="500" fill="#64748b">AVG HEALTH SCORE</text>
+      <text x="15" y="50" font-family="Inter" font-size="28" font-weight="700" fill="#059669">74.2</text>
+      <text x="15" y="70" font-family="Inter" font-size="10" fill="#10b981">+2.3% this month</text>
+
+      <!-- MRR Card -->
+      <rect x="220" y="0" width="200" height="100" rx="12" fill="url(#glassCard)" filter="url(#shadow-xl)"/>
+
+      <text x="235" y="25" font-family="Inter" font-size="11" font-weight="500" fill="#64748b">TOTAL MRR</text>
+      <text x="235" y="50" font-family="Inter" font-size="28" font-weight="700" fill="#1e293b">$847K</text>
+      <text x="235" y="70" font-family="Inter" font-size="10" fill="#64748b">125 active clients</text>
+
+      <!-- At Risk Card -->
+      <rect x="440" y="0" width="200" height="100" rx="12" fill="url(#glassCard)" filter="url(#shadow-xl)"/>
+      <rect x="440" y="0" width="200" height="100" rx="12" fill="url(#dangerGrad)" fill-opacity="0.05"/>
+
+      <text x="455" y="25" font-family="Inter" font-size="11" font-weight="500" fill="#64748b">AT RISK CLIENTS</text>
+      <text x="455" y="50" font-family="Inter" font-size="28" font-weight="700" fill="#dc2626">8</text>
+      <text x="455" y="70" font-family="Inter" font-size="10" fill="#ef4444">$45.2K MRR</text>
+
+      <!-- Renewals Card -->
+      <rect x="660" y="0" width="200" height="100" rx="12" fill="url(#glassCard)" filter="url(#shadow-xl)"/>
+
+      <text x="675" y="25" font-family="Inter" font-size="11" font-weight="500" fill="#64748b">RENEWALS (30D)</text>
+      <text x="675" y="50" font-family="Inter" font-size="28" font-weight="700" fill="#1e293b">12</text>
+      <text x="675" y="70" font-family="Inter" font-size="10" fill="#64748b">$128.4K value</text>
+    </g>
+
+    <!-- Client List -->
+    <g transform="translate(0, 200)">
+      <rect x="0" y="0" width="860" height="220" rx="16" fill="url(#glassCard)" filter="url(#shadow-xl)"/>
+
+      <!-- Header -->
+      <text x="20" y="30" font-family="Inter" font-size="16" font-weight="600" fill="#1e293b">Recent Client Activity</text>
+
+      <!-- Search bar -->
+      <rect x="20" y="40" width="200" height="30" rx="8" fill="rgba(248,250,252,0.8)" stroke="#e2e8f0"/>
+      <text x="30" y="58" font-family="Inter" font-size="11" fill="#94a3b8">🔍 Search clients...</text>
+
+      <!-- Filter buttons -->
+      <rect x="240" y="40" width="60" height="30" rx="8" fill="url(#primaryGrad)"/>
+      <text x="270" y="58" font-family="Inter" font-size="11" font-weight="500" fill="white" text-anchor="middle">All</text>
+
+      <rect x="310" y="40" width="70" height="30" rx="8" fill="rgba(255,255,255,0.6)" stroke="#e2e8f0"/>
+      <text x="345" y="58" font-family="Inter" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">At Risk</text>
+
+      <!-- Client rows -->
+      <g transform="translate(20, 90)">
+        <!-- Client 1 - Healthy -->
+        <rect x="0" y="0" width="820" height="40" rx="8" fill="rgba(16,185,129,0.03)"/>
+        <circle cx="20" cy="20" r="8" fill="#dcfce7"/>
+        <text x="20" y="25" font-family="Inter" font-size="8" font-weight="600" fill="#059669" text-anchor="middle">89</text>
+
+        <text x="40" y="18" font-family="Inter" font-size="13" font-weight="600" fill="#1e293b">TechFlow Solutions</text>
+        <text x="40" y="30" font-family="Inter" font-size="10" fill="#64748b">techflow.com</text>
+
+        <text x="250" y="18" font-family="Inter" font-size="12" font-weight="600" fill="#1e293b">$24,500</text>
+        <text x="250" y="30" font-family="Inter" font-size="10" fill="#64748b">MRR</text>
+
+        <text x="350" y="18" font-family="Inter" font-size="12" fill="#1e293b">Sarah Johnson</text>
+        <text x="350" y="30" font-family="Inter" font-size="10" fill="#64748b">CSM</text>
+
+        <text x="500" y="18" font-family="Inter" font-size="12" fill="#10b981">2 days ago</text>
+        <text x="500" y="30" font-family="Inter" font-size="10" fill="#64748b">Last contact</text>
+
+        <!-- Client 2 - At Risk -->
+        <rect x="0" y="50" width="820" height="40" rx="8" fill="rgba(239,68,68,0.03)"/>
+        <circle cx="20" cy="70" r="8" fill="#fecaca"/>
+        <text x="20" y="75" font-family="Inter" font-size="8" font-weight="600" fill="#dc2626" text-anchor="middle">32</text>
+
+        <text x="40" y="68" font-family="Inter" font-size="13" font-weight="600" fill="#1e293b">Global Systems Corp</text>
+        <text x="40" y="80" font-family="Inter" font-size="10" fill="#64748b">globalsys.com</text>
+
+        <text x="250" y="68" font-family="Inter" font-size="12" font-weight="600" fill="#1e293b">$18,200</text>
+        <text x="250" y="80" font-family="Inter" font-size="10" fill="#64748b">MRR</text>
+
+        <text x="350" y="68" font-family="Inter" font-size="12" fill="#1e293b">Mike Chen</text>
+        <text x="350" y="80" font-family="Inter" font-size="10" fill="#64748b">CSM</text>
+
+        <text x="500" y="68" font-family="Inter" font-size="12" fill="#ef4444">14 days ago</text>
+        <text x="500" y="80" font-family="Inter" font-size="10" fill="#64748b">Last contact</text>
+
+        <!-- Client 3 - Warning -->
+        <rect x="0" y="100" width="820" height="40" rx="8" fill="rgba(251,191,36,0.03)"/>
+        <circle cx="20" cy="120" r="8" fill="#fde68a"/>
+        <text x="20" y="125" font-family="Inter" font-size="8" font-weight="600" fill="#d97706" text-anchor="middle">58</text>
+
+        <text x="40" y="118" font-family="Inter" font-size="13" font-weight="600" fill="#1e293b">Innovation Labs</text>
+        <text x="40" y="130" font-family="Inter" font-size="10" fill="#64748b">innovlabs.io</text>
+
+        <text x="250" y="118" font-family="Inter" font-size="12" font-weight="600" fill="#1e293b">$12,800</text>
+        <text x="250" y="130" font-family="Inter" font-size="10" fill="#64748b">MRR</text>
+
+        <text x="350" y="118" font-family="Inter" font-size="12" fill="#1e293b">Lisa Park</text>
+        <text x="350" y="130" font-family="Inter" font-size="10" fill="#64748b">CSM</text>
+
+        <text x="500" y="118" font-family="Inter" font-size="12" fill="#f59e0b">5 days ago</text>
+        <text x="500" y="130" font-family="Inter" font-size="10" fill="#64748b">Last contact</text>
+      </g>
+    </g>
+  </g>
+</svg>
