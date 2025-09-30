@@ -5,65 +5,123 @@ description: 'Understanding your Stanna dashboard and key metrics'
 
 ## Your Personalized Dashboard
 
-The Stanna dashboard is your command center, displaying the most important information for your role and responsibilities.
+The Stanna dashboard is your command center for customer success. Built with a modern glassmorphism design, it displays real-time insights, at-risk clients, and key metrics tailored to your role.
 
 <Frame>
-  <img src="/images/dashboard-snippet.svg" alt="Stanna dashboard showing client health scores and recent activity" />
+  <img src="/images/dashboard-modern.svg" alt="Stanna dashboard with real-time health metrics, at-risk client tracking, and sentiment analysis" />
 </Frame>
 
 ## Dashboard Layout
 
-Your dashboard features a modern glassmorphism design with floating background orbs and glass-effect cards for optimal visual clarity.
+Your dashboard features a modern glassmorphism design with ambient orbs, elevated cards, and intuitive data visualization.
 
 ### Key Performance Cards
-The main dashboard displays critical metrics in easy-to-scan cards:
+
+Four primary KPI cards give you instant visibility into portfolio health:
 
 <CardGroup cols={2}>
   <Card title="Average Health Score" icon="heart-pulse">
-    Your portfolio's overall health with trend indicators and percentage changes
+    Portfolio-wide health score (0-100) with trend indicators showing week-over-week changes
   </Card>
-  
-  <Card title="MRR at Risk" icon="exclamation-triangle">
-    Revenue from clients with health scores ≤40, showing immediate attention needed
+
+  <Card title="MRR at Risk" icon="triangle-exclamation">
+    Total revenue from at-risk clients (health ≤40) requiring immediate attention
   </Card>
-  
-  <Card title="Upcoming Renewals" icon="calendar">
-    Count and value of renewals in the next 30 days
+
+  <Card title="Upcoming Renewals" icon="calendar-check">
+    Number and total value of contract renewals in the next 30 days
   </Card>
-  
+
   <Card title="Integration Health" icon="link">
-    Status of your Gmail, HubSpot, and Intercom connections with last sync times
+    Real-time status of Gmail, HubSpot, and Intercom integrations with sync timestamps
   </Card>
 </CardGroup>
 
+Each card includes:
+- **Visual indicators**: Color-coded status (green for healthy, red for at-risk)
+- **Trend arrows**: Percentage change from previous period
+- **Quick actions**: Click any card to drill down into details
+
 ### At-Risk Clients Table
-A dedicated section highlights clients needing immediate attention:
-- **Health scores ≤40**: Color-coded danger indicators
-- **Client details**: Name, MRR, assigned CSM
-- **Quick actions**: Direct links to client profiles
 
-### Real-time Updates
-The dashboard refreshes automatically and shows:
-- **Last updated**: Timestamp showing data freshness
-- **Time filters**: Toggle between 7-day and 30-day views
-- **Interactive elements**: Click any metric to drill down into details
+The prominent **Clients Requiring Attention** table surfaces your most critical accounts:
 
-## Customizing Your Dashboard
+- **Color-coded rows**: Red (critical), orange (warning) background colors
+- **Health score badges**: Numerical scores with severity-based styling
+- **Last contact tracking**: Days since last meaningful interaction
+- **MRR visibility**: Revenue impact at a glance
+- **Quick actions**: One-click contact buttons to reach out immediately
 
-You can personalize your dashboard by:
-1. **Adding widgets**: Click the "+" button to add new metric displays
-2. **Rearranging layout**: Drag and drop widgets to your preferred positions
-3. **Filtering timeframes**: Adjust date ranges for trend analysis
-4. **Setting alerts**: Configure notifications for critical metrics
+The table automatically prioritizes clients by:
+1. Health score (lowest first)
+2. MRR value (highest revenue at risk)
+3. Time since last contact (stalest relationships)
+
+### Sentiment Trend Chart
+
+Track portfolio-wide sentiment over time with a beautiful line chart showing:
+- **Historical sentiment**: 7-day rolling sentiment scores
+- **Trend direction**: Visual indication of improving/declining relationships
+- **Data points**: Hover to see specific date and score details
+- **Smooth animations**: Real-time updates as new data syncs
+
+### Real-Time Intelligence
+
+Your dashboard updates automatically:
+- **Live data**: Refreshes every 5 minutes with latest client data
+- **Time filters**: Switch between 7-day, 30-day, and 90-day views
+- **Smart notifications**: Visual indicators when critical changes occur
+- **Last sync status**: Always know how fresh your data is
+
+## Keyboard Shortcuts
+
+Navigate faster with keyboard shortcuts:
+- **⌘K** (Ctrl+K): Quick search for clients, tasks, or features
+- **/** : Focus search bar
+- **G + D**: Go to Dashboard
+- **G + C**: Go to Clients
+- **G + T**: Go to Tasks
+
+## Role-Based Views
+
+Your dashboard automatically adapts based on your role:
+
+<Tabs>
+  <Tab title="CS Professional">
+    - **My assigned clients**: Only clients you manage
+    - **My tasks**: Personal action items
+    - **Team chat**: Collaboration with colleagues
+  </Tab>
+
+  <Tab title="CS Director">
+    - **Full portfolio**: All team clients
+    - **Team performance**: CSM effectiveness metrics
+    - **Workload distribution**: Task allocation across team
+  </Tab>
+
+  <Tab title="Leadership">
+    - **Executive summary**: High-level KPIs
+    - **Revenue forecasting**: Predictive renewal analytics
+    - **Strategic insights**: Cross-portfolio trends
+  </Tab>
+</Tabs>
 
 ## Next Steps
 
 <CardGroup cols={2}>
-  <Card title="Client Management" icon="users" href="/features/client-management">
-    Learn to manage your client portfolio
+  <Card title="Meet Lars AI" icon="sparkles" href="/ai-tools/ai-agent-overview">
+    Learn how your AI assistant can help automate workflows
   </Card>
-  
-  <Card title="Task Workflows" icon="workflow" href="/user-guides/cs-pro/task-management">
-    Master your daily task management
+
+  <Card title="Client Management" icon="users" href="/features/client-management">
+    Deep dive into managing your client portfolio
+  </Card>
+
+  <Card title="Sentiment Analysis" icon="heart" href="/pages/sentiment">
+    Understand how sentiment tracking works
+  </Card>
+
+  <Card title="Health Scoring" icon="chart-line" href="/pages/health-score">
+    Learn how client health scores are calculated
   </Card>
 </CardGroup>

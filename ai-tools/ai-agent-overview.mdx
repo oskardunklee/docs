@@ -1,0 +1,325 @@
+---
+title: 'AI Agent Overview'
+description: 'Comprehensive guide to Stanna\'s AI-powered assistant for customer success automation'
+---
+
+# Meet Lars - Your AI Assistant
+
+Lars is Stanna's intelligent AI assistant that transforms how you manage customer success. Using natural language, Lars analyzes client health, identifies risks, creates tasks, and provides actionable insights—all in real-time.
+
+<Frame>
+  <img src="/images/lars-ai-widget.svg" alt="Lars AI assistant analyzing at-risk clients and providing actionable recommendations" />
+</Frame>
+
+## Key Features
+
+<CardGroup cols={2}>
+  <Card title="Natural Language Interface" icon="messages">
+    Ask questions in plain English. Lars understands context and provides conversational, actionable responses
+  </Card>
+  <Card title="Intelligent Actions" icon="bolt">
+    Creates tasks, sends notifications, updates records, and generates insights automatically
+  </Card>
+  <Card title="Proactive Risk Detection" icon="triangle-exclamation">
+    Identifies at-risk clients before they churn by analyzing sentiment, engagement, and interaction patterns
+  </Card>
+  <Card title="Full Context Awareness" icon="brain">
+    Accesses complete client history including interactions, sentiment, health scores, and business metrics
+  </Card>
+</CardGroup>
+
+## What You Can Ask Lars
+
+Lars can help with a wide range of customer success tasks:
+
+<AccordionGroup>
+  <Accordion title="Client Analysis" icon="magnifying-glass-chart">
+    - "Which clients are at risk this month?"
+    - "Show me sentiment trends for TechFlow Inc"
+    - "What's the health score for DataCorp?"
+    - "Who hasn't been contacted in the last 2 weeks?"
+  </Accordion>
+
+  <Accordion title="Task Automation" icon="list-check">
+    - "Create a follow-up task for all at-risk clients"
+    - "Schedule check-ins for clients with declining sentiment"
+    - "Remind me to contact TechFlow next week"
+    - "Add a note to the CloudTech account"
+  </Accordion>
+
+  <Accordion title="Insights & Reports" icon="chart-line">
+    - "Summarize last week's client interactions"
+    - "What are the common themes in negative feedback?"
+    - "Show me MRR at risk this quarter"
+    - "Which clients have improved the most?"
+  </Accordion>
+
+  <Accordion title="Strategic Recommendations" icon="lightbulb">
+    - "What should I prioritize today?"
+    - "How can I improve engagement with at-risk clients?"
+    - "Which clients are expansion opportunities?"
+    - "What patterns do my churned clients have?"
+  </Accordion>
+</AccordionGroup>
+
+## How Lars Works
+
+Lars uses advanced AI to understand your needs and provide intelligent assistance:
+
+### 1. Natural Language Processing
+- **Understands context**: Recognizes what you're asking even with casual language
+- **Intent detection**: Identifies whether you want analysis, actions, or insights
+- **Multi-turn conversations**: Remembers previous messages in your conversation
+- **Smart clarification**: Asks follow-up questions when needed
+
+### 2. Real-Time Data Analysis
+- **Client health scoring**: Analyzes current and historical health metrics
+- **Sentiment analysis**: Reviews communication patterns and trends
+- **Engagement tracking**: Monitors interaction frequency and quality
+- **Risk prediction**: Identifies patterns that indicate churn risk
+
+### 3. Intelligent Recommendations
+Lars doesn't just show data—it provides actionable insights:
+- **Prioritized actions**: Suggests what to work on first
+- **Context-aware advice**: Recommendations based on your full client history
+- **Pattern recognition**: Identifies trends across your portfolio
+- **Success strategies**: Suggests approaches that worked for similar clients
+
+### 4. Automated Actions
+With your approval, Lars can:
+- ✅ Create and assign tasks
+- ✅ Send email notifications
+- ✅ Update client records
+- ✅ Generate reports
+- ✅ Schedule follow-ups
+- ✅ Add notes and attributions
+
+## Where to Find Lars
+
+Lars is available throughout the Stanna platform:
+
+### Chat Widget
+Floating AI assistant accessible from any page:
+- **Location**: Bottom-right corner of every screen
+- **Quick access**: Click the sparkle icon to open
+- **Persistent**: Remembers your conversation across pages
+- **Keyboard shortcut**: Press `⌘L` (Cmd+L) to open Lars instantly
+
+### Client Profiles
+Context-aware assistance on individual client pages:
+- **Client-specific insights**: Lars automatically knows which client you're viewing
+- **Smart suggestions**: Get recommendations based on that client's data
+- **Quick actions**: Create tasks or send emails without leaving the profile
+
+### Dashboard Insights
+Proactive alerts and recommendations:
+- **Risk notifications**: Lars highlights clients needing attention
+- **Trend analysis**: Automatic insights about portfolio changes
+- **Daily briefings**: Morning summary of what to prioritize
+
+## API Endpoints
+
+### Send Message
+```http
+POST /api/ai-agent/chat
+Content-Type: application/json
+X-API-Key: your-api-key
+X-Workspace-Id: your-workspace-id
+
+{
+  "content": "What's the status of Acme Corp?",
+  "conversationId": "optional-conversation-id"
+}
+```
+
+### Execute Action
+```http
+POST /api/ai-agent/actions/{actionId}/execute
+X-API-Key: your-api-key
+X-Workspace-Id: your-workspace-id
+
+{
+  "actionId": "action-uuid",
+  "autoApprove": true
+}
+```
+
+### Get Insights
+```http
+GET /api/ai-agent/insights?clientId=client-uuid&isResolved=false
+X-API-Key: your-api-key
+X-Workspace-Id: your-workspace-id
+```
+
+## Configuration
+
+### AI Preferences
+Users and workspaces can configure AI behavior:
+
+```typescript
+{
+  "autoExecuteActions": false,     // Auto-execute low-risk actions
+  "notificationLevel": "medium",   // low, medium, high
+  "preferences": {
+    "riskThreshold": 0.7,         // Risk assessment sensitivity
+    "responseStyle": "detailed",   // brief, detailed, technical
+    "actionConfirmation": true     // Require confirmation before execution
+  }
+}
+```
+
+### Risk Levels
+Actions are categorized by risk level:
+
+- **Low Risk**: Generate reports, create tasks, add tags
+- **Medium Risk**: Update scores, schedule meetings
+- **High Risk**: Send emails, update client status, modify critical data
+
+## Best Practices
+
+### Writing Effective Queries
+
+<Tip>
+Be specific and conversational. Lars understands natural language, so ask questions like you would to a colleague.
+</Tip>
+
+**Effective Examples:**
+- "Which clients are at risk this month and why?"
+- "Create tasks to follow up with clients I haven't contacted in 2 weeks"
+- "Show me sentiment trends for my Enterprise clients"
+- "What should I focus on today based on health scores?"
+
+**Less Effective Examples:**
+- "Help" (too vague)
+- "Clients" (no clear intent)
+- "Do something" (no specific action)
+
+### Getting the Most from Lars
+
+<Steps>
+  <Step title="Start with Simple Queries">
+    Begin with straightforward questions like "Show at-risk clients" to get familiar with Lars
+  </Step>
+
+  <Step title="Provide Context">
+    Add details like timeframes, client names, or specific metrics for more precise results
+  </Step>
+
+  <Step title="Review Suggestions">
+    Always review Lars's recommendations before approving automated actions
+  </Step>
+
+  <Step title="Give Feedback">
+    Use thumbs up/down reactions to help Lars learn and improve responses over time
+  </Step>
+</Steps>
+
+### Action Safety
+
+Lars categorizes actions by risk level:
+
+| Risk Level | Examples | Requires Approval |
+|------------|----------|-------------------|
+| **Low** | Create tasks, generate reports, add notes | Optional auto-approve |
+| **Medium** | Update health scores, schedule meetings | Always requires approval |
+| **High** | Send emails, modify client status | Always requires approval + confirmation |
+
+### Privacy and Security
+
+<Warning>
+**Data Protection**: Lars processes data securely within your workspace. No client information is shared with external AI services or third parties.
+</Warning>
+
+- **Workspace isolation**: Lars only accesses data within your workspace
+- **Permission-based**: Respects user roles and permissions
+- **Audit logging**: All actions are logged for compliance
+- **Data encryption**: All data in transit and at rest is encrypted
+- **No external sharing**: Client data never leaves Stanna's infrastructure
+
+## Common Use Cases
+
+<CardGroup cols={2}>
+  <Card title="Monday Morning Triage" icon="coffee">
+    "What clients need my attention this week?" Lars provides a prioritized list with context
+  </Card>
+
+  <Card title="Pre-Renewal Check-in" icon="calendar">
+    "Show me all renewals in the next 30 days and their health scores" Get a comprehensive renewal report
+  </Card>
+
+  <Card title="Risk Intervention" icon="shield-halved">
+    "Create urgent follow-up tasks for all clients with health below 35" Automate your risk response
+  </Card>
+
+  <Card title="Performance Review" icon="chart-pie">
+    "Summarize my portfolio health changes this month" Get executive-ready insights
+  </Card>
+</CardGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Lars isn't responding or loading">
+    **Quick fixes:**
+    - Refresh your browser
+    - Check your internet connection
+    - Clear browser cache and reload
+    - Try the keyboard shortcut `⌘/` to reopen
+
+    **If still not working:**
+    Contact support at support@gostanna.com with details about when the issue started
+  </Accordion>
+
+  <Accordion title="Responses seem inaccurate or incomplete">
+    **Improve response quality:**
+    - Be more specific in your questions
+    - Include timeframes (e.g., "last 30 days")
+    - Mention specific clients by name
+    - Break complex questions into smaller parts
+
+    **Example of better phrasing:**
+    Instead of: "Show clients"
+    Try: "Show me clients with health scores below 40 in the last week"
+  </Accordion>
+
+  <Accordion title="Actions aren't executing">
+    **Check these common causes:**
+    - Did you approve the action? (Look for the "Execute" button)
+    - Do you have permission for this action type?
+    - Is the client/workspace relationship valid?
+
+    **Review action status:**
+    Click on any suggested action to see its current state and any error messages
+  </Accordion>
+
+  <Accordion title="Lars doesn't understand my question">
+    **Try rephrasing:**
+    - Use simpler, more direct language
+    - Break compound questions into separate queries
+    - Provide more context about what you need
+
+    **Example:**
+    Instead of: "What's going on with my stuff?"
+    Try: "Which of my clients have declining health scores?"
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Lars Tutorial" icon="graduation-cap" href="/ai-tools/ai-agent-tutorials">
+    Step-by-step guide to using Lars effectively
+  </Card>
+
+  <Card title="Best Practices" icon="star" href="/ai-tools/ai-agent-best-practices">
+    Advanced tips for power users
+  </Card>
+
+  <Card title="API Documentation" icon="code" href="/ai-tools/ai-agent-api">
+    Integrate Lars into your custom workflows
+  </Card>
+
+  <Card title="Client Management" icon="users" href="/features/client-management">
+    Learn how Lars enhances client management
+  </Card>
+</CardGroup>

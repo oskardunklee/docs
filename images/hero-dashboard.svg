@@ -1,0 +1,208 @@
+<svg width="1400" height="700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Premium gradient background -->
+    <linearGradient id="heroBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f9ff"/>
+      <stop offset="50%" style="stop-color:#faf5ff"/>
+      <stop offset="100%" style="stop-color:#f0fdfa"/>
+    </linearGradient>
+
+    <!-- Glassmorphism backdrop blur -->
+    <filter id="glass">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="40"/>
+    </filter>
+
+    <!-- Elevated shadow -->
+    <filter id="elevated">
+      <feDropShadow dx="0" dy="20" stdDeviation="40" flood-opacity="0.12"/>
+    </filter>
+
+    <!-- Soft shadow -->
+    <filter id="soft">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-opacity="0.08"/>
+    </filter>
+
+    <!-- Accent gradients -->
+    <linearGradient id="primary" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0EA5E9"/>
+      <stop offset="100%" style="stop-color:#3b82f6"/>
+    </linearGradient>
+
+    <linearGradient id="success" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+
+    <linearGradient id="purple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#7c3aed"/>
+    </linearGradient>
+
+    <!-- Animated orbs -->
+    <radialGradient id="orb1">
+      <stop offset="0%" style="stop-color:#0EA5E9;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0"/>
+    </radialGradient>
+
+    <radialGradient id="orb2">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.35"/>
+      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:0"/>
+    </radialGradient>
+
+    <radialGradient id="orb3">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#34d399;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1400" height="700" fill="url(#heroBg)"/>
+
+  <!-- Ambient orbs -->
+  <circle cx="1200" cy="100" r="250" fill="url(#orb1)"/>
+  <circle cx="200" cy="550" r="200" fill="url(#orb2)"/>
+  <circle cx="700" cy="200" r="180" fill="url(#orb3)"/>
+
+  <!-- Main dashboard container -->
+  <g transform="translate(100, 80)">
+    <!-- Hero glass card with Lars AI widget -->
+    <rect x="0" y="0" width="1200" height="540" rx="32" fill="white" fill-opacity="0.7" filter="url(#elevated)"/>
+    <rect x="0" y="0" width="1200" height="540" rx="32" fill="none" stroke="white" stroke-width="2" stroke-opacity="0.5"/>
+
+    <!-- Lars AI Assistant - Floating widget (top right) -->
+    <g transform="translate(850, 20)">
+      <rect x="0" y="0" width="320" height="420" rx="24" fill="white" fill-opacity="0.95" filter="url(#soft)"/>
+      <rect x="0" y="0" width="320" height="420" rx="24" fill="url(#primary)" fill-opacity="0.03"/>
+
+      <!-- Lars header with sparkle icon -->
+      <rect x="0" y="0" width="320" height="70" rx="24" fill="url(#primary)" fill-opacity="0.1"/>
+      <circle cx="40" cy="35" r="22" fill="url(#primary)"/>
+      <text x="40" y="43" font-family="-apple-system, SF Pro Display, system-ui" font-size="20" fill="white" text-anchor="middle">✨</text>
+      <text x="75" y="32" font-family="-apple-system, SF Pro Display, system-ui" font-size="18" font-weight="600" fill="#0c4a6e">Lars</text>
+      <text x="75" y="50" font-family="-apple-system, SF Pro Display, system-ui" font-size="13" fill="#64748b">Your AI Assistant</text>
+
+      <!-- Chat messages -->
+      <g transform="translate(20, 90)">
+        <!-- User message -->
+        <rect x="40" y="0" width="240" height="65" rx="16" fill="#f1f5f9"/>
+        <text x="55" y="22" font-family="-apple-system, SF Pro Display, system-ui" font-size="13" font-weight="500" fill="#334155">Show me clients at risk</text>
+        <text x="55" y="42" font-family="-apple-system, SF Pro Display, system-ui" font-size="13" fill="#64748b">with declining sentiment</text>
+
+        <!-- Lars response -->
+        <rect x="0" y="80" width="280" height="220" rx="16" fill="url(#primary)" fill-opacity="0.06"/>
+        <text x="15" y="102" font-family="-apple-system, SF Pro Display, system-ui" font-size="13" font-weight="600" fill="#0c4a6e">Found 3 clients requiring attention:</text>
+
+        <!-- Client cards in Lars response -->
+        <g transform="translate(15, 115)">
+          <!-- Client 1 -->
+          <rect x="0" y="0" width="250" height="45" rx="10" fill="white"/>
+          <circle cx="15" cy="22" r="6" fill="#dc2626"/>
+          <text x="30" y="20" font-family="-apple-system, SF Pro Display, system-ui" font-size="12" font-weight="600" fill="#1e293b">TechFlow Inc</text>
+          <text x="30" y="34" font-family="-apple-system, SF Pro Display, system-ui" font-size="10" fill="#64748b">Score: 32 ↓ 18pts</text>
+          <rect x="190" y="8" width="50" height="18" rx="9" fill="#fee2e2"/>
+          <text x="215" y="20" font-family="-apple-system, SF Pro Display, system-ui" font-size="10" font-weight="600" fill="#dc2626" text-anchor="middle">At Risk</text>
+
+          <!-- Client 2 -->
+          <rect x="0" y="55" width="250" height="45" rx="10" fill="white"/>
+          <circle cx="15" cy="77" r="6" fill="#f59e0b"/>
+          <text x="30" y="75" font-family="-apple-system, SF Pro Display, system-ui" font-size="12" font-weight="600" fill="#1e293b">DataCorp</text>
+          <text x="30" y="89" font-family="-apple-system, SF Pro Display, system-ui" font-size="10" fill="#64748b">Score: 38 ↓ 12pts</text>
+          <rect x="190" y="63" width="50" height="18" rx="9" fill="#fef3c7"/>
+          <text x="215" y="75" font-family="-apple-system, SF Pro Display, system-ui" font-size="10" font-weight="600" fill="#d97706" text-anchor="middle">Warning</text>
+        </g>
+
+        <!-- Action buttons -->
+        <rect x="15" y="220" width="125" height="32" rx="8" fill="url(#primary)"/>
+        <text x="77" y="240" font-family="-apple-system, SF Pro Display, system-ui" font-size="12" font-weight="600" fill="white" text-anchor="middle">Create Tasks</text>
+
+        <rect x="150" y="220" width="115" height="32" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+        <text x="207" y="240" font-family="-apple-system, SF Pro Display, system-ui" font-size="12" font-weight="600" fill="#475569" text-anchor="middle">View Details</text>
+      </g>
+    </g>
+
+    <!-- Main Dashboard Content -->
+    <g transform="translate(40, 40)">
+      <!-- Header -->
+      <text x="0" y="0" font-family="-apple-system, SF Pro Display, system-ui" font-size="32" font-weight="700" fill="#0c4a6e">Dashboard</text>
+      <text x="0" y="30" font-family="-apple-system, SF Pro Display, system-ui" font-size="15" fill="#64748b">Your customer success command center</text>
+
+      <!-- KPI Cards -->
+      <g transform="translate(0, 60)">
+        <!-- Health Score Card -->
+        <g>
+          <rect x="0" y="0" width="240" height="120" rx="16" fill="white" fill-opacity="0.9" filter="url(#soft)"/>
+          <rect x="0" y="0" width="240" height="120" rx="16" fill="url(#success)" fill-opacity="0.06"/>
+
+          <circle cx="30" cy="30" r="18" fill="url(#success)"/>
+          <path d="M 30 24 L 30 30 L 35 35" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+          <text x="60" y="28" font-family="-apple-system, SF Pro Display, system-ui" font-size="13" font-weight="500" fill="#64748b">Avg Health</text>
+          <text x="20" y="75" font-family="-apple-system, SF Pro Display, system-ui" font-size="40" font-weight="700" fill="#059669">78</text>
+          <text x="20" y="100" font-family="-apple-system, SF Pro Display, system-ui" font-size="13" font-weight="500" fill="#10b981">↑ 5.2%</text>
+        </g>
+
+        <!-- MRR Card -->
+        <g transform="translate(260, 0)">
+          <rect x="0" y="0" width="240" height="120" rx="16" fill="white" fill-opacity="0.9" filter="url(#soft)"/>
+          <rect x="0" y="0" width="240" height="120" rx="16" fill="url(#primary)" fill-opacity="0.06"/>
+
+          <circle cx="30" cy="30" r="18" fill="url(#primary)"/>
+          <text x="30" y="36" font-family="-apple-system, SF Pro Display, system-ui" font-size="18" font-weight="700" fill="white" text-anchor="middle">$</text>
+
+          <text x="60" y="28" font-family="-apple-system, SF Pro Display, system-ui" font-size="13" font-weight="500" fill="#64748b">Total MRR</text>
+          <text x="20" y="75" font-family="-apple-system, SF Pro Display, system-ui" font-size="32" font-weight="700" fill="#0369a1">$847K</text>
+          <text x="20" y="100" font-family="-apple-system, SF Pro Display, system-ui" font-size="13" font-weight="500" fill="#0EA5E9">↑ 12.3%</text>
+        </g>
+
+        <!-- Renewals Card -->
+        <g transform="translate(520, 0)">
+          <rect x="0" y="0" width="240" height="120" rx="16" fill="white" fill-opacity="0.9" filter="url(#soft)"/>
+          <rect x="0" y="0" width="240" height="120" rx="16" fill="url(#purple)" fill-opacity="0.06"/>
+
+          <circle cx="30" cy="30" r="18" fill="url(#purple)"/>
+          <path d="M 25 30 C 25 25 35 25 35 30 C 35 35 25 35 25 30" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+          <text x="60" y="28" font-family="-apple-system, SF Pro Display, system-ui" font-size="13" font-weight="500" fill="#64748b">Renewals (30d)</text>
+          <text x="20" y="75" font-family="-apple-system, SF Pro Display, system-ui" font-size="40" font-weight="700" fill="#7c3aed">24</text>
+          <text x="20" y="100" font-family="-apple-system, SF Pro Display, system-ui" font-size="13" font-weight="500" fill="#8b5cf6">$312K value</text>
+        </g>
+      </g>
+
+      <!-- Client health chart -->
+      <g transform="translate(0, 210)">
+        <rect x="0" y="0" width="760" height="240" rx="16" fill="white" fill-opacity="0.9" filter="url(#soft)"/>
+
+        <text x="20" y="32" font-family="-apple-system, SF Pro Display, system-ui" font-size="16" font-weight="600" fill="#1e293b">Portfolio Health Trend</text>
+        <text x="20" y="52" font-family="-apple-system, SF Pro Display, system-ui" font-size="12" fill="#94a3b8">Last 90 days</text>
+
+        <!-- Chart area -->
+        <g transform="translate(40, 90)">
+          <!-- Grid lines -->
+          <line x1="0" y1="0" x2="680" y2="0" stroke="#f1f5f9" stroke-width="1"/>
+          <line x1="0" y1="40" x2="680" y2="40" stroke="#f1f5f9" stroke-width="1"/>
+          <line x1="0" y1="80" x2="680" y2="80" stroke="#f1f5f9" stroke-width="1"/>
+          <line x1="0" y1="120" x2="680" y2="120" stroke="#f1f5f9" stroke-width="1"/>
+
+          <!-- Area gradient -->
+          <linearGradient id="chartGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#0EA5E9;stop-opacity:0.3"/>
+            <stop offset="100%" style="stop-color:#0EA5E9;stop-opacity:0.05"/>
+          </linearGradient>
+
+          <!-- Chart path -->
+          <path d="M 0,90 L 85,85 L 170,75 L 255,78 L 340,70 L 425,60 L 510,55 L 595,50 L 680,45 L 680,120 L 0,120 Z"
+                fill="url(#chartGrad)"/>
+          <path d="M 0,90 L 85,85 L 170,75 L 255,78 L 340,70 L 425,60 L 510,55 L 595,50 L 680,45"
+                stroke="url(#primary)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+          <!-- Data points -->
+          <circle cx="0" cy="90" r="4" fill="#0EA5E9"/>
+          <circle cx="170" cy="75" r="4" fill="#0EA5E9"/>
+          <circle cx="340" cy="70" r="4" fill="#0EA5E9"/>
+          <circle cx="510" cy="55" r="4" fill="#0EA5E9"/>
+          <circle cx="680" cy="45" r="5" fill="#0EA5E9"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

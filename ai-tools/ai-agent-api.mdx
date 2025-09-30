@@ -1,0 +1,565 @@
+---
+title: 'AI Agent API Reference'
+description: 'Complete API documentation for Stanna\'s AI Agent system'
+---
+
+# AI Agent API Reference
+
+The AI Agent API provides programmatic access to Stanna's intelligent assistant capabilities, allowing you to integrate AI-powered customer success automation into your workflows.
+
+## Authentication
+
+All AI Agent API requests require authentication using your workspace API key.
+
+```http
+X-API-Key: your-api-key
+X-Workspace-Id: your-workspace-id
+```
+
+## Chat API
+
+### Send Message
+
+Send a message to the AI agent and receive an intelligent response with suggested actions.
+
+```http
+POST /api/ai-agent/chat
+```
+
+#### Request Body
+
+```json
+{
+  "content": "What's the current status of Acme Corp?",
+  "conversationId": "optional-conversation-uuid",
+  "metadata": {
+    "userId": "user-uuid",
+    "clientContext": ["client-uuid-1", "client-uuid-2"]
+  }
+}
+```
+
+#### Query Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `userId` | string | Optional. User ID for personalized responses |
+| `autoExecute` | boolean | Auto-execute low-risk actions. Default: false |
+| `includeHistory` | boolean | Include conversation history. Default: false |
+
+#### Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "content": "Acme Corp is currently showing healthy metrics...",
+    "conversationId": "conversation-uuid",
+    "suggestedActions": [
+      {
+        "id": "action-uuid",
+        "type": "CREATE_TASK",
+        "title": "Follow up with Acme Corp",
+        "description": "Schedule a check-in call",
+        "status": "SUGGESTED",
+        "riskLevel": "low",
+        "params": {
+          "clientId": "client-uuid",
+          "title": "Check-in call",
+          "dueAt": "2024-02-01T10:00:00Z"
+        }
+      }
+    ],
+    "insights": [
+      {
+        "id": "insight-uuid",
+        "type": "opportunity",
+        "title": "Expansion opportunity detected",
+        "description": "Client showing increased engagement",
+        "priority": "MEDIUM",
+        "confidence": 0.85
+      }
+    ],
+    "clientReferences": [
+      {
+        "id": "client-uuid",
+        "name": "Acme Corp",
+        "domain": "acme.com",
+        "sentimentScore": 85,
+        "churnStatus": "ACTIVE"
+      }
+    ],
+    "metadata": {
+      "intent": "client_inquiry",
+      "confidence": 0.9,
+      "riskLevel": "low"
+    }
+  }
+}
+```
+
+### Get Conversations
+
+Retrieve a list of AI agent conversations for the workspace.
+
+```http
+GET /api/ai-agent/conversations
+```
+
+#### Query Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `userId` | string | Optional. Filter by user ID |
+| `limit` | number | Number of conversations to return. Default: 20 |
+
+#### Response
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "conversation-uuid",
+      "title": "Client Analysis Discussion",
+      "lastMessage": "What's the status of our Enterprise clients?",
+      "messageCount": 12,
+      "actionCount": 3,
+      "createdAt": "2024-01-15T10:30:00Z",
+      "updatedAt": "2024-01-15T14:20:00Z"
+    }
+  ]
+}
+```
+
+### Get Conversation Details
+
+Retrieve full details of a specific conversation.
+
+```http
+GET /api/ai-agent/conversations/{conversationId}
+```
+
+#### Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "conversation-uuid",
+    "title": "Client Analysis Discussion",
+    "messages": [
+      {
+        "id": "message-uuid",
+        "role": "USER",
+        "content": "What's the status of Acme Corp?",
+        "metadata": {
+          "intent": "client_inquiry"
+        },
+        "createdAt": "2024-01-15T10:30:00Z"
+      },
+      {
+        "id": "message-uuid-2",
+        "role": "ASSISTANT",
+        "content": "Acme Corp is showing healthy metrics...",
+        "metadata": {
+          "confidence": 0.9
+        },
+        "createdAt": "2024-01-15T10:30:15Z"
+      }
+    ],
+    "actions": [
+      {
+        "id": "action-uuid",
+        "type": "CREATE_TASK",
+        "status": "EXECUTED",
+        "input": {
+          "clientId": "client-uuid",
+          "title": "Follow up with Acme Corp"
+        },
+        "output": {
+          "taskId": "task-uuid"
+        },
+        "createdAt": "2024-01-15T10:31:00Z",
+        "executedAt": "2024-01-15T10:32:00Z"
+      }
+    ],
+    "createdAt": "2024-01-15T10:30:00Z",
+    "updatedAt": "2024-01-15T14:20:00Z"
+  }
+}
+```
+
+## Actions API
+
+### Execute Action
+
+Execute a suggested AI action.
+
+```http
+POST /api/ai-agent/actions/{actionId}/execute
+```
+
+#### Request Body
+
+```json
+{
+  "actionId": "action-uuid",
+  "autoApprove": true
+}
+```
+
+#### Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "success": true,
+    "result": {
+      "taskId": "task-uuid",
+      "title": "Follow up with Acme Corp"
+    },
+    "metadata": {
+      "actionType": "create_task",
+      "clientId": "client-uuid"
+    }
+  }
+}
+```
+
+### Get Action Suggestions
+
+Get AI-generated action suggestions for a workspace or specific client.
+
+```http
+GET /api/ai-agent/suggestions
+```
+
+#### Query Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `clientId` | string | Optional. Get suggestions for specific client |
+
+#### Response
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "type": "CREATE_TASK",
+      "title": "Schedule urgent check-in call",
+      "description": "Client sentiment has dropped below threshold",
+      "priority": "high",
+      "params": {
+        "clientId": "client-uuid",
+        "title": "Urgent: Check-in with TechCorp",
+        "priority": "high",
+        "dueAt": "2024-01-16T10:00:00Z"
+      }
+    }
+  ]
+}
+```
+
+## Insights API
+
+### Get Insights
+
+Retrieve AI-generated insights for the workspace.
+
+```http
+GET /api/ai-agent/insights
+```
+
+#### Query Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `clientId` | string | Optional. Filter by client ID |
+| `isResolved` | boolean | Filter by resolution status |
+| `priority` | string | Filter by priority (LOW, MEDIUM, HIGH, CRITICAL) |
+| `limit` | number | Number of insights to return. Default: 50 |
+
+#### Response
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "insight-uuid",
+      "workspaceId": "workspace-uuid",
+      "clientId": "client-uuid",
+      "type": "churn_risk",
+      "title": "TechCorp showing high churn risk",
+      "description": "Sentiment score has declined 25% over the last 2 weeks",
+      "priority": "CRITICAL",
+      "confidence": 0.92,
+      "metadata": {
+        "sentimentScore": 35,
+        "previousScore": 60,
+        "daysSinceLastContact": 14
+      },
+      "isResolved": false,
+      "createdAt": "2024-01-15T09:00:00Z"
+    }
+  ]
+}
+```
+
+### Create Insight
+
+Create a custom AI insight.
+
+```http
+POST /api/ai-agent/insights
+```
+
+#### Request Body
+
+```json
+{
+  "clientId": "client-uuid",
+  "type": "opportunity",
+  "title": "Expansion opportunity identified",
+  "description": "Client has increased usage by 40% this month",
+  "priority": "MEDIUM",
+  "confidence": 0.8,
+  "metadata": {
+    "usageIncrease": 0.4,
+    "timeframe": "30_days"
+  }
+}
+```
+
+### Resolve Insight
+
+Mark an insight as resolved.
+
+```http
+PUT /api/ai-agent/insights/{insightId}/resolve
+```
+
+#### Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "insight-uuid",
+    "isResolved": true,
+    "resolvedAt": "2024-01-15T15:30:00Z"
+  }
+}
+```
+
+## Client Analysis API
+
+### Analyze Client
+
+Get AI analysis for a specific client with natural language query.
+
+```http
+POST /api/ai-agent/analyze-client
+```
+
+#### Request Body
+
+```json
+{
+  "query": "Analyze TechCorp's health and suggest next steps",
+  "clientIds": ["client-uuid"],
+  "includeActions": true
+}
+```
+
+#### Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "analysis": "TechCorp is currently showing mixed signals...",
+    "suggestions": [
+      {
+        "type": "CREATE_TASK",
+        "title": "Schedule health check call",
+        "description": "Review recent concerns with stakeholders"
+      }
+    ],
+    "insights": [
+      {
+        "type": "action_needed",
+        "title": "Follow-up required",
+        "description": "No contact in 14 days"
+      }
+    ],
+    "clientReferences": [
+      {
+        "id": "client-uuid",
+        "name": "TechCorp",
+        "sentimentScore": 65,
+        "churnStatus": "ACTIVE"
+      }
+    ],
+    "riskLevel": "medium"
+  }
+}
+```
+
+## Preferences API
+
+### Get Preferences
+
+Get AI agent preferences for user or workspace.
+
+```http
+GET /api/ai-agent/preferences
+```
+
+#### Query Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `userId` | string | Optional. Get user-specific preferences |
+
+#### Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "autoExecuteActions": false,
+    "notificationLevel": "medium",
+    "preferences": {
+      "riskThreshold": 0.7,
+      "responseStyle": "detailed",
+      "actionConfirmation": true
+    }
+  }
+}
+```
+
+### Update Preferences
+
+Update AI agent preferences.
+
+```http
+PUT /api/ai-agent/preferences
+```
+
+#### Request Body
+
+```json
+{
+  "autoExecuteActions": true,
+  "notificationLevel": "high",
+  "preferences": {
+    "riskThreshold": 0.8,
+    "responseStyle": "brief",
+    "actionConfirmation": false
+  }
+}
+```
+
+## Statistics API
+
+### Get AI Usage Stats
+
+Get usage statistics for the AI agent.
+
+```http
+GET /api/ai-agent/stats
+```
+
+#### Query Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `days` | number | Number of days to include. Default: 30 |
+
+#### Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "period": "Last 30 days",
+    "conversations": 45,
+    "messages": 234,
+    "actions": {
+      "total": 67,
+      "executed": 52,
+      "successRate": 78
+    },
+    "insights": 23
+  }
+}
+```
+
+## Health Check
+
+### System Health
+
+Check the health of the AI agent system.
+
+```http
+GET /api/ai-agent/health
+```
+
+#### Response
+
+```json
+{
+  "success": true,
+  "status": "healthy",
+  "timestamp": "2024-01-15T10:30:00Z",
+  "components": {
+    "database": "healthy",
+    "aiAgent": "healthy",
+    "llm": "healthy"
+  }
+}
+```
+
+## Error Responses
+
+All endpoints return consistent error responses:
+
+```json
+{
+  "success": false,
+  "error": "Action not found or unauthorized",
+  "code": "ACTION_NOT_FOUND",
+  "timestamp": "2024-01-15T10:30:00Z"
+}
+```
+
+### Common Error Codes
+
+| Code | Status | Description |
+|------|--------|-------------|
+| `CONVERSATION_NOT_FOUND` | 404 | Conversation ID not found |
+| `ACTION_NOT_FOUND` | 404 | Action ID not found |
+| `INVALID_ACTION_STATUS` | 400 | Action cannot be executed in current status |
+| `CLIENT_NOT_FOUND` | 404 | Client ID not found |
+| `RATE_LIMIT_EXCEEDED` | 429 | Too many requests |
+| `VALIDATION_ERROR` | 400 | Request validation failed |
+| `LLM_SERVICE_ERROR` | 503 | AI service temporarily unavailable |
+
+## Rate Limiting
+
+API requests are rate-limited per workspace:
+- **Chat API**: 60 requests per minute
+- **Actions API**: 30 requests per minute
+- **Other endpoints**: 120 requests per minute
+
+Rate limit headers are included in responses:
+```http
+X-RateLimit-Limit: 60
+X-RateLimit-Remaining: 45
+X-RateLimit-Reset: 1642248000
+```

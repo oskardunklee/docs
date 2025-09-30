@@ -1,0 +1,381 @@
+---
+title: 'AI Agent Setup Guide'
+description: 'Step-by-step guide to set up and configure Stanna\'s AI Agent system'
+---
+
+# AI Agent Setup Guide
+
+This guide walks you through setting up Stanna's AI Agent system from database migration to frontend integration.
+
+## Prerequisites
+
+Before setting up the AI Agent, ensure you have:
+
+- Stanna API running with PostgreSQL database
+- Node.js 20+ for the API
+- Next.js frontend application
+- Valid API keys for your workspace
+
+## Backend Setup
+
+### 1. Database Migration
+
+Run the Prisma migration to add AI Agent models to your database:
+
+```bash
+cd api
+npx prisma migrate dev --name add-ai-agent-models
+```
+
+This adds the following models:
+- `AiAgentConversation`
+- `AiAgentMessage`
+- `AiAgentAction`
+- `AiAgentInsight`
+- `AiAgentPreference`
+
+### 2. Environment Variables
+
+No additional environment variables are required for basic functionality. For production, consider adding:
+
+```bash
+# Optional: External LLM service configuration
+OPENAI_API_KEY=your-openai-key
+ANTHROPIC_API_KEY=your-anthropic-key
+
+# Optional: AI service configuration
+AI_RESPONSE_TIMEOUT=30000
+AI_MAX_TOKENS=2048
+```
+
+### 3. Verify API Installation
+
+The AI Agent module is automatically included in `app.module.ts`. Verify the API is working:
+
+```bash
+# Start the API server
+npm run start:dev
+
+# Test the health endpoint
+curl http://localhost:3001/api/ai-agent/health
+```
+
+Expected response:
+```json
+{
+  "success": true,
+  "status": "healthy",
+  "components": {
+    "database": "healthy",
+    "aiAgent": "healthy",
+    "llm": "healthy"
+  }
+}
+```
+
+## Frontend Setup
+
+### 1. Install Components
+
+The AI Agent components are already included in the web application. Verify they exist:
+
+```bash
+ls web/components/ai-agent/
+# Should show: AiChatWidget.tsx, AiInsightsPanel.tsx, AiActionCard.tsx, ClientAiSection.tsx
+```
+
+### 2. Add Chat Widget
+
+Add the AI chat widget to your main layout:
+
+```typescript
+// pages/_app.tsx or layout component
+import { AiChatWidget } from '@/components/ai-agent/AiChatWidget';
+
+export default function Layout({ children }) {
+  return (
+    <div>
+      {children}
+
+      {/* AI Chat Widget - appears on all pages */}
+      <AiChatWidget
+        apiKey={process.env.NEXT_PUBLIC_API_KEY}
+        workspaceId={workspaceId}
+        userId={userId}
+        position="bottom-right"
+      />
+    </div>
+  );
+}
+```
+
+### 3. Integrate with Client Profiles
+
+Add AI assistance to client profile pages:
+
+```typescript
+// pages/clients/[id].tsx
+import { ClientAiSection } from '@/components/ai-agent/ClientAiSection';
+
+export default function ClientProfile({ client }) {
+  return (
+    <div className="space-y-6">
+      {/* Existing client profile content */}
+      <ClientOverview client={client} />
+      <ClientMetrics client={client} />
+
+      {/* AI Assistant Section */}
+      <ClientAiSection
+        clientId={client.id}
+        clientName={client.name}
+        apiKey={process.env.NEXT_PUBLIC_API_KEY}
+        workspaceId={client.workspaceId}
+      />
+    </div>
+  );
+}
+```
+
+### 4. Add Insights Dashboard
+
+Create a dedicated AI insights page:
+
+```typescript
+// pages/insights.tsx
+import { AiInsightsPanel } from '@/components/ai-agent/AiInsightsPanel';
+
+export default function InsightsPage() {
+  return (
+    <div className="max-w-6xl mx-auto p-6">
+      <h1 className="text-2xl font-bold mb-6">AI Insights</h1>
+
+      <AiInsightsPanel
+        apiKey={process.env.NEXT_PUBLIC_API_KEY}
+        workspaceId={workspaceId}
+        showResolved={false}
+        limit={20}
+      />
+    </div>
+  );
+}
+```
+
+## Configuration
+
+### 1. AI Preferences
+
+Set up default preferences for your workspace:
+
+```bash
+curl -X PUT http://localhost:3001/api/ai-agent/preferences \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: your-api-key" \
+  -H "X-Workspace-Id: your-workspace-id" \
+  -d '{
+    "autoExecuteActions": false,
+    "notificationLevel": "medium",
+    "preferences": {
+      "riskThreshold": 0.7,
+      "responseStyle": "detailed",
+      "actionConfirmation": true
+    }
+  }'
+```
+
+### 2. Risk Level Configuration
+
+Configure risk thresholds for different action types by modifying the `assessActionRisk` method in `action-executor.service.ts`:
+
+```typescript
+private assessActionRisk(type: string, params: any): 'low' | 'medium' | 'high' {
+  switch (type) {
+    case 'GENERATE_REPORT':
+    case 'CREATE_TASK':
+      return 'low';
+    case 'UPDATE_CLIENT_SCORE':
+    case 'SCHEDULE_MEETING':
+      return 'medium';
+    case 'SEND_EMAIL':
+    case 'UPDATE_CLIENT_STATUS':
+      return 'high';
+    default:
+      return 'medium';
+  }
+}
+```
+
+## Testing
+
+### 1. Unit Tests
+
+Run the AI Agent test suite:
+
+```bash
+cd api
+npm test src/ai-agent/tests/
+```
+
+### 2. Integration Testing
+
+Test the complete flow:
+
+```bash
+# 1. Send a test message
+curl -X POST http://localhost:3001/api/ai-agent/chat \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: your-api-key" \
+  -H "X-Workspace-Id: your-workspace-id" \
+  -d '{"content": "What is the status of our clients?"}'
+
+# 2. Check for suggested actions in the response
+# 3. Execute a low-risk action if suggested
+
+# 4. Verify insights are generated
+curl http://localhost:3001/api/ai-agent/insights \
+  -H "X-API-Key: your-api-key" \
+  -H "X-Workspace-Id: your-workspace-id"
+```
+
+### 3. Frontend Testing
+
+1. **Chat Widget**: Click the AI assistant button and send a test message
+2. **Client Analysis**: Visit a client profile and use the quick analysis buttons
+3. **Action Execution**: Execute a suggested action and verify it completes
+4. **Insights**: Check that insights appear in the insights panel
+
+## Production Deployment
+
+### 1. LLM Service Integration
+
+For production, integrate with a real LLM service. Update `llm.service.ts`:
+
+```typescript
+async generateResponse(messages: LlmMessage[], context?: any): Promise<LlmResponse> {
+  // Replace mock implementation with actual LLM API calls
+
+  if (process.env.OPENAI_API_KEY) {
+    return await this.generateOpenAIResponse(messages, context);
+  } else if (process.env.ANTHROPIC_API_KEY) {
+    return await this.generateAnthropicResponse(messages, context);
+  } else {
+    // Fallback to mock implementation for development
+    return await this.generateMockResponse(userMessage, context);
+  }
+}
+```
+
+### 2. Database Performance
+
+Add indexes for better performance:
+
+```sql
+-- Add indexes for AI Agent queries
+CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_ai_conversations_workspace_updated
+ON "AiAgentConversation" ("workspaceId", "updatedAt" DESC);
+
+CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_ai_insights_workspace_priority
+ON "AiAgentInsight" ("workspaceId", "priority", "isResolved", "createdAt" DESC);
+
+CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_ai_actions_status_created
+ON "AiAgentAction" ("status", "createdAt" DESC);
+```
+
+### 3. Monitoring and Logging
+
+Enable structured logging for production:
+
+```typescript
+// In production, send logs to your logging service
+private async storeLogEvent(event: AiLogEvent): Promise<void> {
+  if (process.env.NODE_ENV === 'production') {
+    // Send to DataDog, New Relic, or your logging service
+    await this.loggingService.send(event);
+  } else {
+    console.log('[AI_AGENT_LOG]', JSON.stringify(event));
+  }
+}
+```
+
+### 4. Rate Limiting
+
+Configure appropriate rate limits in production:
+
+```typescript
+// app.module.ts
+ThrottlerModule.forRoot([
+  {
+    name: 'chat',
+    ttl: 60000,      // 1 minute
+    limit: 30,       // 30 chat messages per minute
+  },
+  {
+    name: 'actions',
+    ttl: 60000,      // 1 minute
+    limit: 10,       // 10 action executions per minute
+  }
+])
+```
+
+## Troubleshooting
+
+### Common Issues
+
+**AI Agent not responding**
+```bash
+# Check API health
+curl http://localhost:3001/api/ai-agent/health
+
+# Check database connection
+curl http://localhost:3001/api/health/db
+```
+
+**Actions failing to execute**
+```bash
+# Check action status
+curl http://localhost:3001/api/ai-agent/conversations/{conversationId} \
+  -H "X-API-Key: your-api-key" \
+  -H "X-Workspace-Id: your-workspace-id"
+
+# Verify client permissions
+```
+
+**Frontend components not loading**
+```bash
+# Verify component imports
+npm run build
+
+# Check console for errors
+# Verify API key configuration
+```
+
+### Performance Issues
+
+**Slow response times**
+1. Check database query performance
+2. Consider caching client context
+3. Optimize LLM API calls
+4. Add request timeout handling
+
+**Memory usage**
+1. Monitor conversation storage
+2. Implement conversation cleanup
+3. Limit context size for LLM calls
+
+## Next Steps
+
+After successful setup:
+
+1. **Train your team** on effective AI query writing
+2. **Monitor usage patterns** through the stats API
+3. **Collect feedback** to improve AI responses
+4. **Customize action types** for your specific workflows
+5. **Integrate with external tools** (CRM, email, calendar)
+
+## Support
+
+If you encounter issues during setup:
+
+1. Check the [troubleshooting guide](/support/troubleshooting/common-issues)
+2. Review API logs for specific error messages
+3. Test individual components separately
+4. Contact support with setup details and error logs

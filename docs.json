@@ -77,6 +77,16 @@
             ]
           },
           {
+            "group": "AI Assistant",
+            "pages": [
+              "ai-tools/ai-agent-overview",
+              "ai-tools/ai-agent-onboarding",
+              "ai-tools/ai-agent-tutorials",
+              "ai-tools/ai-agent-best-practices",
+              "ai-tools/ai-agent-api"
+            ]
+          },
+          {
             "group": "Integrations",
             "pages": [
               "integrations/overview",

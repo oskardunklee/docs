@@ -1,0 +1,267 @@
+---
+title: 'AI Agent Onboarding'
+description: 'Step-by-step guide to getting started with Stanna\'s AI assistant'
+icon: 'rocket'
+---
+
+# Getting Started with Lars
+
+Welcome to Lars, Stanna's AI-powered assistant! This guide will walk you through your first interaction and help you understand how to leverage AI for more effective customer success management.
+
+## Quick Start
+
+### 1. Find the AI Chat Widget
+
+The AI assistant is accessible through a floating chat widget that appears on most pages in Stanna:
+
+<Frame>
+  <img src="/images/ai-tools/chat-widget-location.png" alt="AI Chat Widget Location" />
+</Frame>
+
+**Location**: Bottom-right corner of your screen
+**Icon**: 🤖 with "Lars" label
+**State**: Minimized by default, click to expand
+
+### 2. Your First Question
+
+Let's start with a simple question to get familiar with the AI:
+
+<Steps>
+  <Step title="Open the Chat">
+    Click on the AI chat widget to open the conversation interface.
+  </Step>
+
+  <Step title="Ask About Your Clients">
+    Type: "Which clients are at risk of churning?"
+
+    <Note>
+    Don't worry about exact wording - the AI understands natural language!
+    </Note>
+  </Step>
+
+  <Step title="Review the Response">
+    The AI will analyze your client portfolio and provide:
+    - List of at-risk clients with health scores
+    - Risk factors for each client
+    - Suggested actions to mitigate churn risk
+  </Step>
+
+  <Step title="Explore Suggested Actions">
+    Look for the "Suggested Actions" section in the response. Each action has:
+    - **Title**: What the action will do
+    - **Description**: More details about the action
+    - **Risk Level**: Safety indicator (Low/Medium/High)
+    - **Execute Button**: Click to perform the action
+  </Step>
+</Steps>
+
+## Understanding AI Responses
+
+### Response Structure
+
+Every AI response includes several key components:
+
+<CardGroup cols={2}>
+  <Card title="Analysis" icon="chart-line">
+    Data-driven insights about your clients or specific situations
+  </Card>
+  <Card title="Suggested Actions" icon="bolt">
+    Specific, actionable recommendations you can execute
+  </Card>
+  <Card title="Context" icon="info-circle">
+    Relevant background information and data sources
+  </Card>
+  <Card title="Next Steps" icon="arrow-right">
+    Guidance on what to do after reviewing the response
+  </Card>
+</CardGroup>
+
+### Action Risk Levels
+
+All AI-suggested actions are categorized by risk level:
+
+<Accordion title="🟢 Low Risk Actions">
+  **Automatically executable** - These are safe actions that won't negatively impact client relationships:
+  - Generate reports and summaries
+  - Create internal tasks and reminders
+  - Add tags or notes to client records
+  - Update health scores based on data
+
+  **Example**: "Create a follow-up task for next week"
+</Accordion>
+
+<Accordion title="🟡 Medium Risk Actions">
+  **Require confirmation** - These actions affect client visibility but are generally safe:
+  - Schedule meetings with clients
+  - Update client status or tier
+  - Send templated check-in emails
+  - Modify client lifecycle stage
+
+  **Example**: "Schedule a health check meeting with ClientCorp"
+</Accordion>
+
+<Accordion title="🔴 High Risk Actions">
+  **Manual review required** - These actions have significant impact and need careful consideration:
+  - Send custom emails to clients
+  - Update critical client information
+  - Modify contract details
+  - Escalate to support or leadership
+
+  **Example**: "Send a personalized retention offer email"
+</Accordion>
+
+## Common Question Types
+
+### Client Health Analysis
+
+Ask about overall client health and trends:
+
+```
+"What's the health status of my enterprise clients?"
+"Show me clients with declining sentiment scores"
+"Which accounts have the highest engagement this month?"
+```
+
+### Risk Assessment
+
+Identify potential churn risks and opportunities:
+
+```
+"Identify clients at risk of churning this quarter"
+"Show me clients who might be ready for upselling"
+"Which clients haven't been contacted recently?"
+```
+
+### Action Planning
+
+Get specific recommendations for client management:
+
+```
+"What should I do about TechCorp's declining health score?"
+"Create tasks for following up with at-risk accounts"
+"Generate a report of client health trends"
+```
+
+### Data Analysis
+
+Analyze patterns and trends across your portfolio:
+
+```
+"What are the main factors affecting client satisfaction?"
+"Show me communication patterns with high-value clients"
+"Analyze the effectiveness of our outreach campaigns"
+```
+
+## Best Practices for AI Interaction
+
+### ✅ Do's
+
+<AccordionGroup>
+  <Accordion title="Be Specific">
+    Instead of "Help me with clients," try "Show me clients with health scores below 60 who haven't been contacted in 2 weeks"
+  </Accordion>
+
+  <Accordion title="Provide Context">
+    Include relevant timeframes, client types, or specific concerns: "For our enterprise clients this quarter..."
+  </Accordion>
+
+  <Accordion title="Ask Follow-up Questions">
+    Build on previous responses: "Can you create tasks for the at-risk clients you just identified?"
+  </Accordion>
+
+  <Accordion title="Review Before Executing">
+    Always review suggested actions before clicking execute, especially for medium and high-risk actions
+  </Accordion>
+</AccordionGroup>
+
+### ❌ Don'ts
+
+<AccordionGroup>
+  <Accordion title="Don't Be Too Vague">
+    Avoid questions like "What should I do?" or "Help me" without context
+  </Accordion>
+
+  <Accordion title="Don't Skip Action Review">
+    Even low-risk actions should be reviewed to ensure they align with your strategy
+  </Accordion>
+
+  <Accordion title="Don't Expect Perfection">
+    The AI is continuously learning - provide feedback when responses aren't helpful
+  </Accordion>
+</AccordionGroup>
+
+## Personalization Settings
+
+### AI Preferences
+
+Configure how the AI assistant behaves for your workflow:
+
+<Steps>
+  <Step title="Open Settings">
+    Click the gear icon in the AI chat widget header
+  </Step>
+
+  <Step title="Adjust Behavior">
+    - **Auto-execute low-risk actions**: Enable for faster workflow
+    - **Response detail level**: Choose brief, detailed, or technical
+    - **Notification preferences**: Set when to be notified about insights
+  </Step>
+
+  <Step title="Risk Tolerance">
+    - **Conservative**: Require approval for all actions
+    - **Balanced**: Auto-execute only low-risk actions (recommended)
+    - **Aggressive**: Auto-execute low and some medium-risk actions
+  </Step>
+</Steps>
+
+### Workspace-Wide Settings
+
+Administrators can configure AI behavior for the entire workspace:
+
+- **Default risk thresholds** for action execution
+- **Approved action types** that can be auto-executed
+- **Data access permissions** for AI analysis
+- **Integration settings** with external tools
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Try Interactive Tutorials" icon="graduation-cap" href="/ai-tools/ai-agent-tutorials">
+    Hands-on tutorials that guide you through specific workflows
+  </Card>
+  <Card title="Learn Best Practices" icon="star" href="/ai-tools/ai-agent-best-practices">
+    Advanced tips and strategies for maximizing AI effectiveness
+  </Card>
+  <Card title="API Integration" icon="code" href="/ai-tools/ai-agent-api">
+    Integrate AI capabilities into your custom applications
+  </Card>
+  <Card title="Get Support" icon="life-ring" href="/support/faq/general">
+    Find answers to common questions and troubleshooting tips
+  </Card>
+</CardGroup>
+
+## Feedback and Improvement
+
+The AI assistant learns from your interactions and feedback:
+
+### Providing Feedback
+
+- **👍 Thumbs Up**: Response was helpful and accurate
+- **👎 Thumbs Down**: Response needs improvement
+- **📝 Comments**: Specific feedback about what could be better
+
+### Continuous Learning
+
+Your feedback helps improve:
+- **Response accuracy** for similar questions
+- **Action suggestions** relevance
+- **Intent understanding** for your specific use cases
+- **Personalization** of AI behavior
+
+<Tip>
+The AI assistant is most effective when you provide regular feedback. Even quick thumbs up/down ratings help improve future responses!
+</Tip>
+
+---
+
+Ready to explore more? Check out our [Interactive Tutorials](/ai-tools/ai-agent-tutorials) for hands-on practice with specific AI workflows.
