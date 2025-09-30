@@ -127,6 +127,25 @@
         ]
       },
       {
+        "tab": "Security",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "security/overview"
+            ]
+          },
+          {
+            "group": "Documentation",
+            "pages": [
+              "security/whitepaper",
+              "security/compliance",
+              "security/faq"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Support",
         "groups": [
           {
