@@ -1,11 +1,11 @@
 ---
-title: 'AI Agent Overview'
-description: 'Comprehensive guide to Stanna\'s AI-powered assistant for customer success automation'
+title: 'Lars - AI Assistant'
+description: 'Your AI-powered assistant for customer success automation'
 ---
 
-# Meet Lars - Your AI Assistant
+# Meet Lars
 
-Lars is Stanna's intelligent AI assistant that transforms how you manage customer success. Using natural language, Lars analyzes client health, identifies risks, creates tasks, and provides actionable insights—all in real-time.
+Lars is Stanna's AI assistant that helps you manage customer success more effectively. Ask questions in plain English to analyze client health, identify risks, and get actionable recommendations.
 
 <Frame>
   <img src="/images/lars-ai-widget.svg" alt="Lars AI assistant analyzing at-risk clients and providing actionable recommendations" />
@@ -94,86 +94,33 @@ With your approval, Lars can:
 - ✅ Schedule follow-ups
 - ✅ Add notes and attributions
 
-## Where to Find Lars
+## How to Use Lars
 
-Lars is available throughout the Stanna platform:
+### Access Lars
+Find the chat widget in the bottom-right corner of any page in Stanna. Click the sparkle icon to open or press `⌘L` (Cmd+L).
 
-### Chat Widget
-Floating AI assistant accessible from any page:
-- **Location**: Bottom-right corner of every screen
-- **Quick access**: Click the sparkle icon to open
-- **Persistent**: Remembers your conversation across pages
-- **Keyboard shortcut**: Press `⌘L` (Cmd+L) to open Lars instantly
+### Ask Questions
+Type your question in plain English:
+- "Which clients are at risk this month?"
+- "Show me sentiment trends for TechFlow Inc"
+- "Create follow-up tasks for clients I haven't contacted in 2 weeks"
+- "What should I prioritize today?"
 
-### Client Profiles
-Context-aware assistance on individual client pages:
-- **Client-specific insights**: Lars automatically knows which client you're viewing
-- **Smart suggestions**: Get recommendations based on that client's data
-- **Quick actions**: Create tasks or send emails without leaving the profile
+### Review Suggestions
+Lars provides actionable recommendations with each response. Review suggested actions before executing them.
 
-### Dashboard Insights
-Proactive alerts and recommendations:
-- **Risk notifications**: Lars highlights clients needing attention
-- **Trend analysis**: Automatic insights about portfolio changes
-- **Daily briefings**: Morning summary of what to prioritize
-
-## API Endpoints
-
-### Send Message
-```http
-POST /api/ai-agent/chat
-Content-Type: application/json
-X-API-Key: your-api-key
-X-Workspace-Id: your-workspace-id
-
-{
-  "content": "What's the status of Acme Corp?",
-  "conversationId": "optional-conversation-id"
-}
-```
-
-### Execute Action
-```http
-POST /api/ai-agent/actions/{actionId}/execute
-X-API-Key: your-api-key
-X-Workspace-Id: your-workspace-id
-
-{
-  "actionId": "action-uuid",
-  "autoApprove": true
-}
-```
-
-### Get Insights
-```http
-GET /api/ai-agent/insights?clientId=client-uuid&isResolved=false
-X-API-Key: your-api-key
-X-Workspace-Id: your-workspace-id
-```
+### Execute Actions
+Click "Execute" on any suggested action. Actions are categorized by risk level:
+- **Low Risk**: Generate reports, create tasks (can auto-execute)
+- **Medium Risk**: Update scores, schedule meetings (requires approval)
+- **High Risk**: Send emails, modify client data (requires confirmation)
 
 ## Configuration
 
-### AI Preferences
-Users and workspaces can configure AI behavior:
-
-```typescript
-{
-  "autoExecuteActions": false,     // Auto-execute low-risk actions
-  "notificationLevel": "medium",   // low, medium, high
-  "preferences": {
-    "riskThreshold": 0.7,         // Risk assessment sensitivity
-    "responseStyle": "detailed",   // brief, detailed, technical
-    "actionConfirmation": true     // Require confirmation before execution
-  }
-}
-```
-
-### Risk Levels
-Actions are categorized by risk level:
-
-- **Low Risk**: Generate reports, create tasks, add tags
-- **Medium Risk**: Update scores, schedule meetings
-- **High Risk**: Send emails, update client status, modify critical data
+Configure Lars behavior in Settings:
+- **Auto-execute low-risk actions**: Enable for faster workflow
+- **Response style**: Choose brief, detailed, or technical responses
+- **Risk threshold**: Set sensitivity for risk detection
 
 ## Best Practices
 
@@ -214,27 +161,16 @@ Be specific and conversational. Lars understands natural language, so ask questi
   </Step>
 </Steps>
 
-### Action Safety
-
-Lars categorizes actions by risk level:
-
-| Risk Level | Examples | Requires Approval |
-|------------|----------|-------------------|
-| **Low** | Create tasks, generate reports, add notes | Optional auto-approve |
-| **Medium** | Update health scores, schedule meetings | Always requires approval |
-| **High** | Send emails, modify client status | Always requires approval + confirmation |
-
 ### Privacy and Security
 
 <Warning>
-**Data Protection**: Lars processes data securely within your workspace. No client information is shared with external AI services or third parties.
+Lars processes data securely within your workspace. No client information is shared with external AI services or third parties.
 </Warning>
 
-- **Workspace isolation**: Lars only accesses data within your workspace
+- **Workspace isolation**: Only accesses data within your workspace
 - **Permission-based**: Respects user roles and permissions
 - **Audit logging**: All actions are logged for compliance
-- **Data encryption**: All data in transit and at rest is encrypted
-- **No external sharing**: Client data never leaves Stanna's infrastructure
+- **Data encryption**: Data is encrypted in transit and at rest
 
 ## Common Use Cases
 
@@ -307,19 +243,11 @@ Lars categorizes actions by risk level:
 ## Next Steps
 
 <CardGroup cols={2}>
-  <Card title="Lars Tutorial" icon="graduation-cap" href="/ai-tools/ai-agent-tutorials">
-    Step-by-step guide to using Lars effectively
-  </Card>
-
   <Card title="Best Practices" icon="star" href="/ai-tools/ai-agent-best-practices">
-    Advanced tips for power users
-  </Card>
-
-  <Card title="API Documentation" icon="code" href="/ai-tools/ai-agent-api">
-    Integrate Lars into your custom workflows
+    Tips for getting the most out of Lars
   </Card>
 
   <Card title="Client Management" icon="users" href="/features/client-management">
-    Learn how Lars enhances client management
+    Learn about client management features
   </Card>
 </CardGroup>

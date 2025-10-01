@@ -13,10 +13,10 @@ This whitepaper provides a technical overview of Stanna's security architecture,
 ### Key Security Highlights
 
 - **Architecture**: Defense-in-depth with multiple security layers
-- **Compliance**: SOC 2 Type II in progress, GDPR/CCPA compliant
+- **Compliance**: GDPR/CCPA compliant
 - **Encryption**: TLS 1.3 in transit, AES-256 at rest
-- **Authentication**: OAuth 2.0, RBAC, MFA-ready
-- **Monitoring**: 24/7 security monitoring with automated alerting
+- **Authentication**: OAuth 2.0 with Google, RBAC implemented
+- **Monitoring**: Automated security monitoring with audit logging
 - **Incidents**: Zero security breaches since inception
 
 ---
@@ -57,11 +57,7 @@ This whitepaper provides a technical overview of Stanna's security architecture,
 
 ### 1.2 Infrastructure Security
 
-**Cloud Provider**: Industry-leading cloud infrastructure
-- SOC 2 Type II certified
-- ISO 27001 certified
-- PCI DSS Level 1 compliant
-- Physical security at data center locations
+**Cloud Provider**: Industry-leading cloud infrastructure with enterprise-grade security
 
 **Network Architecture**:
 - Virtual Private Cloud (VPC) isolation
@@ -106,7 +102,6 @@ Access Granted
 - ✅ Audit logging of all authentication events
 - ✅ Blocked consumer email domains (gmail, yahoo, etc.)
 - ✅ Account lockout after failed attempts
-- ✅ MFA support (Q2 2025)
 
 ### 2.2 Authorization Model
 
@@ -129,7 +124,6 @@ Access Granted
 **Permission Enforcement**:
 - Middleware-level checks on all routes
 - API-level checks on all endpoints
-- Database-level row security (planned Q2 2025)
 - Real-time permission updates
 
 ---
@@ -151,7 +145,6 @@ Access Granted
 - Database: AES-256 encryption
 - Backups: Encrypted with separate keys
 - File storage: Server-side encryption (SSE)
-- Encryption key management: HSM-backed (Enterprise)
 
 **In Use** (Memory):
 - Sensitive data cleared from memory after use
@@ -175,14 +168,13 @@ CREATE POLICY workspace_isolation ON clients
 - Database-level isolation
 - API-level authorization checks
 - No cross-workspace queries possible
-- Separate encryption keys (Enterprise tier)
 
 ### 3.3 Data Retention & Deletion
 
 **Retention Periods**:
 - Production data: Retained while account active
 - Backups: 30-day rolling retention
-- Audit logs: 90-day retention (365 days for Enterprise)
+- Audit logs: 90-day retention
 - Deleted data: 30-day soft delete, then permanent
 
 **Data Deletion Process**:
@@ -277,89 +269,39 @@ X-XSS-Protection: 1; mode=block
 
 ---
 
-## 5. Monitoring & Incident Response
+## 5. Security Monitoring
 
-### 5.1 Security Monitoring
+### 5.1 Audit Logging
 
-**Real-time Monitoring**:
-- Failed authentication attempts
-- Authorization failures
-- Rate limit violations
-- Abnormal API usage patterns
-- Database query anomalies
-- Error rate spikes
+**What We Log**:
+- Authentication events (login, logout, failures)
+- Authorization events (access granted/denied)
+- Admin actions (impersonation, config changes)
+- Data access (views, exports)
 
-**Audit Logging**:
+**Audit Log Format**:
 ```typescript
-// All security events logged
 {
   timestamp: "2025-01-30T10:30:45Z",
   eventType: "AUTH_LOGIN_SUCCESS",
   actor: { userId: "user_123", email: "[EMAIL_REDACTED]" },
   outcome: "success",
-  ipAddress: "203.0.113.42",
-  userAgent: "Mozilla/5.0..."
+  ipAddress: "203.0.113.42"
 }
 ```
-
-**Log Categories**:
-- Authentication events (login, logout, failures)
-- Authorization events (access granted/denied)
-- Admin actions (impersonation, config changes)
-- Data access (views, exports)
-- Security incidents (suspicious activity)
 
 **PII Redaction**:
 - Email addresses → [EMAIL_REDACTED]
 - API keys/tokens → [TOKEN_REDACTED]
-- SSNs → [SSN_REDACTED]
-- Credit cards → [CARD_REDACTED]
+- Sensitive data automatically redacted from logs
 
-### 5.2 Incident Response
-
-**Response Times**:
-- **Critical** (data breach, system compromise): 1 hour
-- **High** (service disruption, vulnerability): 4 hours
-- **Medium** (performance issue, minor bug): 24 hours
-- **Low** (feature request, enhancement): 5 business days
-
-**Incident Response Process**:
-1. **Detection** - Automated monitoring + manual reports
-2. **Triage** - Severity assessment within 15 minutes
-3. **Containment** - Isolate affected systems
-4. **Eradication** - Remove threat and fix vulnerability
-5. **Recovery** - Restore service to normal operation
-6. **Notification** - Customer notification within 24 hours
-7. **Post-Mortem** - Root cause analysis and prevention
-
-**Customer Communication**:
-- Initial notification: Within 24 hours of confirmed incident
-- Status updates: Every 4 hours during active incident
-- Final report: Within 7 days of resolution
-- Preventive measures: Detailed in post-mortem
+**Retention**: 90 days
 
 ---
 
-## 6. Compliance & Certifications
+## 6. Compliance
 
-### 6.1 SOC 2 Type II (In Progress)
-
-**Trust Service Criteria**:
-
-| Criterion | Status | Implementation |
-|-----------|--------|----------------|
-| CC6.1 - Logical Access | ✅ Compliant | RBAC, authentication, MFA-ready |
-| CC6.2 - Access Management | ✅ Compliant | User provisioning/deprovisioning |
-| CC6.6 - Logical Access Removal | ✅ Compliant | Immediate access revocation |
-| CC6.7 - Audit Logging | ✅ Compliant | Comprehensive audit trail |
-| CC7.2 - System Monitoring | ✅ Compliant | 24/7 monitoring, alerting |
-| CC7.3 - Security Incidents | ✅ Compliant | Incident response plan |
-| CC7.4 - Vulnerability Management | ✅ Compliant | Regular scanning, patching |
-
-**Expected Completion**: Q2 2025
-**Audit Firm**: [To be announced]
-
-### 6.2 GDPR Compliance
+### 6.1 GDPR Compliance
 
 **Data Protection Principles**:
 - ✅ Lawfulness, fairness, transparency
@@ -380,9 +322,8 @@ X-XSS-Protection: 1; mode=block
 **Data Processing Agreements**:
 - Standard DPA available for all customers
 - EU Standard Contractual Clauses (SCCs)
-- Data Processing Impact Assessment (DPIA) completed
 
-### 6.3 CCPA Compliance
+### 6.2 CCPA Compliance
 
 **Consumer Rights**:
 - ✅ Right to know what data is collected
@@ -410,18 +351,19 @@ X-XSS-Protection: 1; mode=block
 
 **Current Vendors**:
 
-| Vendor | Purpose | Certifications | Data Shared |
-|--------|---------|----------------|-------------|
-| Google Cloud | Authentication | SOC 2, ISO 27001 | Email only |
-| Groq | AI inference | Enterprise security | Client data (encrypted) |
-| Resend | Email delivery | GDPR compliant | Email addresses |
-| Cloud Provider | Infrastructure | SOC 2, ISO 27001, PCI | All application data |
+| Vendor | Purpose | Data Shared | Certifications |
+|--------|---------|-------------|----------------|
+| Stripe | Payment processing | Payment information (never stored by Stanna) | PCI DSS L1, SOC 1, SOC 2, ISO 27001 |
+| Google Cloud | Authentication | Email only | - |
+| Groq | AI inference | Client data (encrypted) | - |
+| Resend | Email delivery | Email addresses | GDPR compliant |
+
+**Payment Security**: All billing and payment processing is handled exclusively by Stripe. Stanna never stores, processes, or has access to credit card information. Stripe maintains the highest level of payment security certification (PCI DSS Level 1) along with SOC 1, SOC 2 Type II, and ISO 27001 compliance.
 
 **Vendor Monitoring**:
-- Annual security reviews
-- Continuous monitoring of certifications
-- Regular audits of data processing
-- Immediate notification of any issues
+- Regular security reviews
+- Continuous monitoring of security posture
+- Data processing audits
 
 ### 7.2 API Integrations
 
@@ -435,7 +377,6 @@ X-XSS-Protection: 1; mode=block
 **API Security**:
 - API keys with fine-grained permissions
 - Rate limiting per integration
-- IP whitelisting available (Enterprise)
 - Webhook signature verification
 - Request/response logging
 
@@ -453,27 +394,17 @@ X-XSS-Protection: 1; mode=block
 **Retention**:
 - Daily backups: 30 days
 - Weekly backups: 90 days
-- Monthly backups: 1 year (Enterprise)
 
 **Testing**:
 - Backup integrity verified daily
 - Restore testing: Monthly
-- Full disaster recovery drill: Quarterly
 
 ### 8.2 High Availability
 
-**Uptime SLA**: 99.9% (Enterprise: 99.95%)
-
-**Redundancy**:
+**Infrastructure**:
 - Multi-zone database replication
 - Load-balanced application servers
 - Auto-scaling based on demand
-- Geographic redundancy (Enterprise)
-
-**Recovery Objectives**:
-- Recovery Time Objective (RTO): 4 hours
-- Recovery Point Objective (RPO): 1 hour
-- Zero data loss for Enterprise tier
 
 ---
 
@@ -502,61 +433,24 @@ X-XSS-Protection: 1; mode=block
 
 ### 9.2 Vulnerability Management
 
-**Scanning Schedule**:
-- Dependency scanning: Every commit
-- SAST (Static Analysis): Every pull request
-- DAST (Dynamic Analysis): Daily
-- Penetration testing: Quarterly
-- Third-party audit: Annually
-
-**Response Times**:
-- **Critical** (CVSS 9.0-10.0): 24 hours
-- **High** (CVSS 7.0-8.9): 7 days
-- **Medium** (CVSS 4.0-6.9): 30 days
-- **Low** (CVSS 0.1-3.9): Next release
+**Scanning**:
+- Dependency scanning: Automated on every commit
+- Static analysis: On every pull request
+- Continuous vulnerability monitoring
 
 **Disclosure**:
 - Responsible disclosure policy
-- Bug bounty program (Q2 2025)
-- CVE assignment for vulnerabilities
-- Public security advisories when appropriate
+- Security advisories for significant issues
 
 ---
 
-## 10. Future Security Roadmap
+## 10. Contact
 
-### Q2 2025
-- ✅ SOC 2 Type II certification complete
-- ✅ Multi-factor authentication (MFA)
-- ✅ Enhanced audit logging
-- ✅ Bug bounty program launch
+**Security**: security@gostanna.com
+**Compliance**: compliance@gostanna.com
+**Privacy**: privacy@gostanna.com
 
-### Q3 2025
-- ✅ ISO 27001 certification
-- ✅ SAML-based SSO
-- ✅ Advanced threat detection
-- ✅ Customer-managed encryption keys (CMEK)
-
-### Q4 2025
-- ✅ Data residency options (EU, US, APAC)
-- ✅ Database query audit logging
-- ✅ Zero-trust network architecture
-- ✅ Behavioral anomaly detection
-
----
-
-## 11. Security Contact Information
-
-**Security Team**: security@gostanna.com
-**Response Time**: 24 hours for vulnerabilities
-**PGP Key**: [Available upon request]
-
-**Bug Bounty Program**: Coming Q2 2025
-**Scope**: All Stanna production services
-**Excluded**: Third-party services, social engineering
-
-**Emergency Contact**: +1 (XXX) XXX-XXXX
-**Available**: 24/7 for critical security issues
+Report security vulnerabilities to security@gostanna.com
 
 ---
 
@@ -599,8 +493,6 @@ X-XSS-Protection: 1; mode=block
 
 **Document Classification**: Public
 **Version**: 1.0
-**Last Updated**: January 2025
-**Next Review**: April 2025
-**Approved By**: Security Team, Engineering Leadership
+**Last Updated**: September 2024
 
-*This whitepaper reflects Stanna's current security posture and is updated quarterly. For the most recent version, visit help.gostanna.com/security*
+*This whitepaper reflects Stanna's current security implementation. For questions, contact security@gostanna.com*

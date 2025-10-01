@@ -2,7 +2,7 @@
 
 ## Our Commitment to Security
 
-At Stanna, security is not just a feature—it's a fundamental principle that guides everything we build. We understand that you're trusting us with your customer success data, and we take that responsibility seriously.
+Stanna implements enterprise security controls to protect your customer success data.
 
 ## Security Principles
 
@@ -54,9 +54,9 @@ We're open about our security practices and quickly communicate any issues to ou
 ### Infrastructure Security
 
 **Secure Hosting**
-- Cloud infrastructure hosted on industry-leading platforms with SOC 2 Type II certification
+- Cloud infrastructure hosted on industry-leading platforms
 - Automated security patching and updates
-- Regular vulnerability scanning and penetration testing
+- Regular vulnerability scanning
 
 **Network Security**
 - Advanced DDoS protection to ensure service availability
@@ -64,10 +64,9 @@ We're open about our security practices and quickly communicate any issues to ou
 - Content Security Policy (CSP) prevents XSS attacks
 
 **Monitoring & Logging**
-- 24/7 security monitoring for suspicious activity
+- Automated security monitoring for suspicious activity
 - Comprehensive audit logs track all system access and changes
-- Automated alerting for security events
-- Logs retained for compliance requirements (30+ days)
+- Logs retained for 90 days
 
 ### Application Security
 
@@ -93,23 +92,21 @@ We're open about our security practices and quickly communicate any issues to ou
 
 ### Current Status
 
-**SOC 2 Type II** (In Progress)
-- Expected completion: Q2 2025
-- Independent audit of security controls
-- Demonstrates commitment to security, availability, and confidentiality
-
-**ISO 27001** (Planned)
-- Information security management system
-- International standard for security best practices
-
-**GDPR Compliant**
+**GDPR Compliant** ✅
 - EU data protection regulation compliance
 - User rights: access, deletion, portability
 - Data processing agreements available
 
-**CCPA Compliant**
+**CCPA Compliant** ✅
 - California Consumer Privacy Act compliance
 - Transparent data collection and usage practices
+
+**SOC 2 Type II**
+- Status: Not Certified
+- Stanna has implemented SOC 2 controls but has not undergone independent audit
+
+**ISO 27001**
+- Status: Not Certified
 
 ### Security Standards We Follow
 
@@ -126,8 +123,13 @@ We're open about our security practices and quickly communicate any issues to ou
 
 We carefully select our service providers and ensure they meet our security standards:
 
+**Stripe**
+- PCI DSS Level 1 certified (highest level of payment security)
+- SOC 1, SOC 2 Type II, ISO 27001 certified
+- Used for: Payment processing and billing
+- Stanna never handles or stores payment information
+
 **Google Cloud Platform**
-- SOC 2/3, ISO 27001, PCI DSS certified
 - Used for: Authentication (OAuth)
 
 **Groq AI**
@@ -148,33 +150,13 @@ All third-party integrations:
 
 ---
 
-## Incident Response
+## Reporting Security Issues
 
-### Our Commitment
-
-In the unlikely event of a security incident:
-
-1. **Detection** - 24/7 monitoring detects issues immediately
-2. **Response** - Security team responds within 1 hour
-3. **Containment** - Affected systems isolated to prevent spread
-4. **Investigation** - Root cause analysis conducted
-5. **Notification** - Affected customers notified within 24 hours
-6. **Resolution** - Issue resolved and preventive measures implemented
-7. **Post-Mortem** - Detailed report shared with affected customers
-
-### How to Report Security Issues
-
-Found a potential security issue? We appreciate responsible disclosure:
+Found a potential security issue? Report it to:
 
 **Email**: security@gostanna.com
-**Expected Response**: Within 24 hours
-**Bug Bounty**: Contact us for details
 
-We commit to:
-- Acknowledging your report within 24 hours
-- Keeping you informed of our progress
-- Crediting you for the discovery (if desired)
-- Not pursuing legal action for good-faith research
+We appreciate responsible disclosure and will work to address valid security concerns.
 
 ---
 
@@ -200,11 +182,22 @@ We commit to:
 
 ### What We Don't Collect
 
-- ❌ Credit card information (handled by Stripe)
+- ❌ Credit card information (handled securely by Stripe)
 - ❌ Social security numbers or government IDs
 - ❌ Personal health information
 - ❌ Financial account details
 - ❌ Biometric data
+
+### Payment Processing
+
+All billing and payment processing is handled by **Stripe**, a PCI DSS Level 1 certified payment processor. Stanna never stores or processes credit card information. Stripe maintains:
+- PCI DSS Level 1 certification (highest level of payment security)
+- SOC 1 and SOC 2 Type II compliance
+- ISO 27001 certification
+- Advanced fraud detection
+- End-to-end encryption for all payment data
+
+Your payment information is protected by Stripe's industry-leading security infrastructure.
 
 ### How We Use Your Data
 
@@ -228,40 +221,34 @@ Contact privacy@gostanna.com to exercise your rights.
 
 ---
 
-## Security Features for Administrators
+## Security Features
 
 ### Admin Controls
 
 **User Management**
-- Add/remove users instantly
-- Assign granular permissions
+- Add/remove users
+- Assign granular permissions (RBAC)
 - View audit logs of all user actions
-- Force password reset for all users
 
 **Access Controls**
-- IP whitelisting (Enterprise plan)
 - Session timeout configuration
-- Device management and logout
 - API key management
 
-**Audit & Compliance**
+**Audit Logging**
 - Comprehensive audit logs
-- Export logs for compliance review
-- User activity reports
-- Data access history
+- Export logs for compliance
+- 90-day retention
 
 ### Workspace Security
 
 **Data Isolation**
 - Complete separation between workspaces
 - No cross-workspace data visibility
-- Separate encryption keys per workspace (Enterprise)
+- Database-level isolation
 
 **Backup & Recovery**
 - Automated daily backups
 - 30-day backup retention
-- Point-in-time recovery available
-- Disaster recovery procedures tested quarterly
 
 ---
 
@@ -270,114 +257,53 @@ Contact privacy@gostanna.com to exercise your rights.
 ### Authentication
 
 - API keys with fine-grained permissions
-- OAuth 2.0 support for integrations
-- Short-lived tokens with automatic refresh
 - Ability to revoke API keys instantly
 
 ### Rate Limiting
 
-To ensure fair usage and prevent abuse:
+To prevent abuse:
 - Authentication endpoints: 5 requests/minute
 - Standard API calls: 100 requests/minute
 - AI endpoints: 20 requests/minute
 - Export operations: 5 requests/5 minutes
 
-### Best Practices
-
-We recommend:
-- Rotate API keys every 90 days
-- Use separate keys for different integrations
-- Never commit API keys to version control
-- Use environment variables for key storage
-
 ---
 
-## Security Roadmap
+## What We've Built
 
-### Recently Completed (Q4 2024 - Q1 2025)
-
-- ✅ Comprehensive security audit and hardening
-- ✅ Implementation of rate limiting
-- ✅ Advanced XSS protection
+- ✅ Comprehensive security hardening
+- ✅ Rate limiting on all endpoints
+- ✅ XSS protection with content sanitization
 - ✅ PII redaction in logs
 - ✅ Role-based access control (RBAC)
-- ✅ Security headers implementation
-
-### In Progress (Q1-Q2 2025)
-
-- 🔄 SOC 2 Type II certification
-- 🔄 Third-party penetration testing
-- 🔄 Bug bounty program launch
-- 🔄 Enhanced audit logging
-- 🔄 Multi-factor authentication (MFA)
-
-### Planned (Q2-Q3 2025)
-
-- 📋 ISO 27001 certification
-- 📋 SAML-based SSO
-- 📋 Advanced threat detection
-- 📋 Customer-managed encryption keys (CMEK)
-- 📋 Data residency options (EU, US regions)
+- ✅ Security headers (CSP, HSTS, etc.)
+- ✅ OAuth 2.0 authentication
+- ✅ TLS 1.3 encryption
+- ✅ AES-256 database encryption
+- ✅ Audit logging (90-day retention)
 
 ---
 
-## Security Best Practices for Customers
+## Security Best Practices
 
 ### For Your Team
 
-1. **Strong Passwords**: Use unique, complex passwords (or better yet, a password manager)
-2. **Enable MFA**: Add an extra layer of security (available Q2 2025)
+1. **Enable MFA on Google**: Use multi-factor authentication on your Google account
+2. **Strong Passwords**: Use unique, complex passwords
 3. **Review Access**: Regularly audit who has access to your workspace
 4. **Remove Inactive Users**: Disable accounts for team members who've left
 5. **Secure API Keys**: Store them securely and rotate regularly
 
-### For Your Workspace
-
-1. **Configure Permissions**: Follow principle of least privilege
-2. **Monitor Audit Logs**: Review regularly for suspicious activity
-3. **Backup Important Data**: Export critical data regularly
-4. **Train Your Team**: Ensure everyone understands security best practices
-5. **Report Issues**: Contact us immediately if you notice anything suspicious
-
 ---
 
-## Contact Our Security Team
+## Contact
 
-**General Security Inquiries**: security@gostanna.com
-**Privacy Questions**: privacy@gostanna.com
-**Report a Vulnerability**: security@gostanna.com (encrypted PGP available)
-**Compliance Questions**: compliance@gostanna.com
-
-**Response Time Commitment**:
-- Security vulnerabilities: 24 hours
-- Privacy requests: 48 hours
-- General inquiries: 3 business days
-
----
-
-## Additional Resources
-
-- [Security Whitepaper](./whitepaper.md) - Technical deep-dive
-- [Compliance Documentation](./compliance.md) - Certifications and standards
-- [Privacy Policy](./privacy-policy.md) - Detailed privacy practices
-- [Terms of Service](./terms-of-service.md) - Service agreement
-- [Data Processing Agreement](./dpa.md) - GDPR compliance
-
----
-
-## Transparency Report
-
-We publish an annual transparency report detailing:
-- Security incidents and response
-- Data requests from law enforcement
-- Service uptime and reliability
-- Security improvements made
-
-**Latest Report**: [Coming Q2 2025]
+**Security**: security@gostanna.com
+**Privacy**: privacy@gostanna.com
+**Compliance**: compliance@gostanna.com
 
 ---
 
 **Last Updated**: January 2025
-**Next Review**: April 2025
 
-*Stanna is committed to maintaining the highest security standards. This document is regularly updated to reflect our current practices and capabilities.*
+For technical security details, see the [Security Whitepaper](./whitepaper.md).

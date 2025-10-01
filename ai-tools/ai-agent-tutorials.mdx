@@ -1,335 +1,181 @@
 ---
-title: 'Interactive Tutorials'
-description: 'Hands-on tutorials to master AI assistant workflows and features'
+title: 'Lars Tips & Examples'
+description: 'Practical examples for using Lars effectively'
 icon: 'graduation-cap'
 ---
 
-# AI Agent Tutorials
+# Lars Tips & Examples
 
-Learn AI assistant capabilities through guided, interactive tutorials that walk you through real customer success scenarios.
+Learn how to use Lars effectively with these practical examples.
 
-## Tutorial Categories
+## Common Workflows
 
-<CardGroup cols={3}>
-  <Card title="🚀 Beginner" icon="user-graduate">
-    **5-10 minutes each**
+### Monday Morning Triage
 
-    Basic AI interaction and fundamental workflows
-  </Card>
-  <Card title="⚡ Intermediate" icon="chart-line">
-    **10-15 minutes each**
+**Goal**: Get a prioritized list of clients needing attention
 
-    Advanced features and automation strategies
-  </Card>
-  <Card title="🎯 Advanced" icon="trophy">
-    **15-20 minutes each**
+**Ask Lars**:
+```
+"What clients need my attention this week?"
+```
 
-    Complex scenarios and API integration
-  </Card>
-</CardGroup>
+Lars will provide:
+- Clients with declining health scores
+- At-risk clients approaching renewal
+- Clients you haven't contacted recently
+- Suggested actions for each client
 
-## Available Tutorials
+**Follow-up**:
+```
+"Create tasks for the top 5 priority clients"
+```
 
-### 🚀 Beginner Level
+### Pre-Renewal Check
 
-<AccordionGroup>
-  <Accordion title="Tutorial 1: Your First AI Query" icon="message-circle">
-    **Duration**: 5 minutes | **Prerequisites**: None
+**Goal**: Review renewals and their health status
 
-    Learn the basics of communicating with your AI assistant:
-    - Opening the AI chat interface
-    - Asking your first question about client risk
-    - Understanding AI responses and suggested actions
-    - Executing your first automated action
+**Ask Lars**:
+```
+"Show me all renewals in the next 30 days and their health scores"
+```
 
-    **What you'll learn:**
-    - How to phrase questions naturally
-    - Understanding AI response components
-    - Action risk levels and safety features
-    - Basic troubleshooting tips
+Lars will provide:
+- List of upcoming renewals
+- Current health score for each
+- Risk assessment
+- Recommended actions
 
-    <Button>Start Tutorial</Button>
-  </Accordion>
+**Follow-up**:
+```
+"Create check-in tasks for any renewals with health below 60"
+```
 
-  <Accordion title="Tutorial 2: Client Health Analysis" icon="heart-pulse">
-    **Duration**: 8 minutes | **Prerequisites**: Tutorial 1
+### Risk Intervention
 
-    Master client health assessment with AI assistance:
-    - Analyzing individual client health scores
-    - Identifying trends and patterns
-    - Understanding health score components
-    - Getting actionable recommendations
+**Goal**: Identify and address at-risk clients
 
-    **What you'll learn:**
-    - How to ask specific health-related questions
-    - Interpreting health score breakdowns
-    - Identifying early warning signs
-    - Creating health improvement plans
+**Ask Lars**:
+```
+"Which clients are at high risk of churning this quarter?"
+```
 
-    <Button>Start Tutorial</Button>
-  </Accordion>
+Lars will provide:
+- List of high-risk clients
+- Risk factors for each
+- Historical context
+- Intervention suggestions
 
-  <Accordion title="Tutorial 3: Risk Identification & Mitigation" icon="shield-alert">
-    **Duration**: 10 minutes | **Prerequisites**: Tutorials 1-2
+**Follow-up**:
+```
+"Create urgent follow-up tasks for clients with health below 35"
+```
 
-    Learn to identify and address client risks proactively:
-    - Finding at-risk clients using AI analysis
-    - Understanding different types of risk factors
-    - Creating intervention strategies
-    - Tracking risk mitigation progress
+### Portfolio Analysis
 
-    **What you'll learn:**
-    - Advanced risk assessment queries
-    - Interpreting AI risk predictions
-    - Creating targeted action plans
-    - Monitoring intervention effectiveness
+**Goal**: Understand overall portfolio health
 
-    <Button>Start Tutorial</Button>
-  </Accordion>
-</AccordionGroup>
+**Ask Lars**:
+```
+"Summarize my portfolio health changes this month"
+```
 
-### ⚡ Intermediate Level
+Lars will provide:
+- Overall health trends
+- Clients with significant changes
+- Common risk patterns
+- Improvement opportunities
 
-<AccordionGroup>
-  <Accordion title="Tutorial 4: Automated Action Workflows" icon="zap">
-    **Duration**: 12 minutes | **Prerequisites**: Beginner tutorials
+## Tips for Better Results
 
-    Build efficient workflows using AI automation:
-    - Setting up automated task creation
-    - Configuring email outreach sequences
-    - Creating custom action templates
-    - Managing action approval workflows
+### Be Specific
 
-    **What you'll learn:**
-    - How to configure automation preferences
-    - Creating reusable action workflows
-    - Setting up approval chains for risky actions
-    - Monitoring automated action results
+❌ **Vague**: "Help me with clients"
 
-    <Button>Start Tutorial</Button>
-  </Accordion>
+✅ **Specific**: "Show me enterprise clients with declining sentiment in the last 30 days"
 
-  <Accordion title="Tutorial 5: Portfolio Analysis & Reporting" icon="chart-bar">
-    **Duration**: 15 minutes | **Prerequisites**: Tutorials 1-3
+### Include Timeframes
 
-    Generate insights across your entire client portfolio:
-    - Creating comprehensive portfolio reports
-    - Identifying trends and patterns
-    - Benchmarking performance metrics
-    - Setting up recurring analysis
+❌ **No timeframe**: "Which clients need attention?"
 
-    **What you'll learn:**
-    - Advanced portfolio analysis techniques
-    - Creating custom report templates
-    - Setting up automated insights delivery
-    - Interpreting portfolio health trends
+✅ **With timeframe**: "Which clients need attention this week based on recent activity?"
 
-    <Button>Start Tutorial</Button>
-  </Accordion>
+### Ask Follow-ups
 
-  <Accordion title="Tutorial 6: Integration & Data Enrichment" icon="link">
-    **Duration**: 18 minutes | **Prerequisites**: Tutorials 1-4
+Build on previous responses to get more done:
 
-    Enhance AI capabilities with external data sources:
-    - Connecting CRM and support tool integrations
-    - Enriching AI analysis with external data
-    - Creating unified client views
-    - Setting up data synchronization
+1. "Which clients are at risk?"
+2. "Create tasks for the top 3"
+3. "What factors are causing the risk for TechCorp?"
 
-    **What you'll learn:**
-    - How to configure data integrations
-    - Leveraging external data for better insights
-    - Creating comprehensive client profiles
-    - Troubleshooting integration issues
+### Use Client Names
 
-    <Button>Start Tutorial</Button>
-  </Accordion>
-</AccordionGroup>
+When asking about specific clients, use their name:
 
-### 🎯 Advanced Level
+```
+"What's the health status of Acme Corp?"
+"Show me recent interactions with TechFlow Inc"
+"What should I do about DataCorp's declining sentiment?"
+```
 
-<AccordionGroup>
-  <Accordion title="Tutorial 7: Custom AI Workflows" icon="workflow">
-    **Duration**: 20 minutes | **Prerequisites**: Intermediate tutorials
+## Action Types
 
-    Build sophisticated, multi-step AI workflows:
-    - Creating complex decision trees
-    - Building conditional action sequences
-    - Setting up escalation procedures
-    - Implementing feedback loops
+### Low Risk Actions
+These can be auto-executed:
+- Generate reports
+- Create tasks
+- Add notes
+- Update tags
 
-    **What you'll learn:**
-    - Advanced workflow design principles
-    - Creating conditional logic for actions
-    - Building escalation and fallback procedures
-    - Implementing continuous improvement cycles
+### Medium Risk Actions
+These require approval:
+- Update health scores
+- Schedule meetings
+- Modify client status
 
-    <Button>Start Tutorial</Button>
-  </Accordion>
+### High Risk Actions
+These require confirmation:
+- Send emails
+- Modify client data
+- Update contract information
 
-  <Accordion title="Tutorial 8: API Integration & Custom Development" icon="code">
-    **Duration**: 25 minutes | **Prerequisites**: All previous tutorials
+## Troubleshooting
 
-    Integrate AI capabilities into custom applications:
-    - Using the AI Agent API
-    - Building custom interfaces
-    - Creating specialized analysis tools
-    - Implementing security best practices
+### Lars gives generic responses
 
-    **What you'll learn:**
-    - AI Agent API fundamentals
-    - Authentication and security
-    - Building custom AI interfaces
-    - Advanced integration patterns
+**Solution**: Add more context to your question
+- Include timeframes
+- Specify client segments (enterprise, SMB, etc.)
+- Mention specific metrics (health score, sentiment, etc.)
 
-    <Button>Start Tutorial</Button>
-  </Accordion>
-</AccordionGroup>
+### Actions don't execute
 
-## Tutorial Features
+**Check**:
+- Did you click "Execute"?
+- Do you have permission for this action?
+- Is the client relationship valid?
 
-### Interactive Learning
+### Response doesn't address your question
 
-Each tutorial includes:
+**Try**:
+- Rephrase your question
+- Break complex questions into smaller parts
+- Ask for clarification on specific points
+
+## Best Practices
+
+1. **Start simple**: Begin with straightforward questions
+2. **Be specific**: Include details like timeframes and client types
+3. **Review actions**: Always check suggested actions before executing
+4. **Use follow-ups**: Build on previous responses
+5. **Provide context**: Help Lars understand your specific needs
+
+## Next Steps
 
 <CardGroup cols={2}>
-  <Card title="Guided Steps" icon="route">
-    Step-by-step instructions with visual highlights and progress tracking
+  <Card title="Overview" icon="book" href="/ai-tools/ai-agent-overview">
+    Learn more about Lars capabilities
   </Card>
-  <Card title="Hands-on Practice" icon="hands">
-    Real exercises using your actual Stanna data (safely sandboxed)
-  </Card>
-  <Card title="Instant Feedback" icon="bolt">
-    Immediate validation and correction when you make mistakes
-  </Card>
-  <Card title="Progress Tracking" icon="chart-line">
-    Track completion status and revisit tutorials anytime
+  <Card title="Best Practices" icon="star" href="/ai-tools/ai-agent-best-practices">
+    Advanced tips for power users
   </Card>
 </CardGroup>
-
-### Adaptive Learning
-
-The tutorial system adapts to your learning style:
-
-- **Pacing Control**: Go at your own speed, pause and resume anytime
-- **Difficulty Adjustment**: Skip ahead if you're comfortable, or get extra help
-- **Personalized Paths**: Recommended tutorials based on your role and usage
-- **Practice Mode**: Repeat tutorials or specific sections for mastery
-
-## Starting Your First Tutorial
-
-<Steps>
-  <Step title="Choose Your Level">
-    Start with beginner tutorials if you're new to AI assistants, or jump to intermediate/advanced based on your experience.
-  </Step>
-
-  <Step title="Prepare Your Environment">
-    - Ensure you have some client data in your Stanna workspace
-    - Close unnecessary browser tabs for better focus
-    - Have about 15-20 minutes of uninterrupted time
-  </Step>
-
-  <Step title="Launch the Tutorial">
-    Click "Start Tutorial" on any tutorial card. The interactive guide will overlay your actual Stanna interface.
-  </Step>
-
-  <Step title="Follow the Guide">
-    The tutorial will highlight specific areas of the interface and guide you through each step with clear instructions.
-  </Step>
-
-  <Step title="Practice and Experiment">
-    After completing guided steps, take time to experiment with variations and ask follow-up questions.
-  </Step>
-</Steps>
-
-## Tutorial Best Practices
-
-### Before Starting
-
-<Checklist>
-  - [ ] Have at least 3-5 clients in your workspace for meaningful analysis
-  - [ ] Ensure you have appropriate permissions for the actions you'll be practicing
-  - [ ] Set aside uninterrupted time for the full tutorial
-  - [ ] Have a notepad ready for jotting down insights or questions
-</Checklist>
-
-### During the Tutorial
-
-- **Take your time** - The tutorial will wait for you to complete each step
-- **Read all instructions** - Important tips are included in each step
-- **Ask questions** - Use the AI chat to explore beyond the tutorial steps
-- **Make mistakes** - The tutorial environment is safe for experimentation
-
-### After Completion
-
-- **Practice independently** - Try similar queries without tutorial guidance
-- **Share learnings** - Discuss insights with your team
-- **Provide feedback** - Rate the tutorial and suggest improvements
-- **Explore related features** - Use the "Next Steps" recommendations
-
-## Progress Tracking
-
-### Completion Status
-
-Track your learning progress across all tutorials:
-
-- ✅ **Completed**: Tutorial finished successfully
-- 🔄 **In Progress**: Tutorial started but not finished
-- 🔒 **Locked**: Prerequisites not yet met
-- ⭐ **Mastered**: Completed with high proficiency score
-
-### Certificates and Badges
-
-Earn recognition for your AI proficiency:
-
-<CardGroup cols={2}>
-  <Card title="Completion Certificates" icon="award">
-    Digital certificates for completing tutorial tracks
-  </Card>
-  <Card title="Skill Badges" icon="badge">
-    Micro-credentials for specific AI assistant capabilities
-  </Card>
-</CardGroup>
-
-### Learning Analytics
-
-Track your AI assistant usage and improvement:
-
-- **Response quality trends** - How your AI interactions improve over time
-- **Feature adoption** - Which AI capabilities you use most
-- **Efficiency gains** - Time saved through AI automation
-- **Accuracy metrics** - Success rate of AI-suggested actions
-
-## Getting Help
-
-### During Tutorials
-
-If you get stuck during a tutorial:
-
-1. **Use the hint system** - Click "Need help?" for contextual tips
-2. **Ask the AI directly** - The chat is available throughout tutorials
-3. **Access the help center** - Click the help icon for detailed guides
-4. **Skip and return** - Mark difficult steps for later review
-
-### After Tutorials
-
-Continue learning with these resources:
-
-<CardGroup cols={2}>
-  <Card title="Best Practices Guide" icon="star" href="/ai-tools/ai-agent-best-practices">
-    Advanced strategies and optimization tips
-  </Card>
-  <Card title="API Documentation" icon="code" href="/ai-tools/ai-agent-api">
-    Technical integration and development guides
-  </Card>
-  <Card title="Community Forum" icon="users" href="https://community.gostanna.com">
-    Connect with other users and share experiences
-  </Card>
-  <Card title="Office Hours" icon="calendar" href="/support/office-hours">
-    Weekly sessions with AI product specialists
-  </Card>
-</CardGroup>
-
----
-
-Ready to start your AI learning journey? Begin with [Tutorial 1: Your First AI Query](#tutorial-1-your-first-ai-query) and work your way through the beginner track!

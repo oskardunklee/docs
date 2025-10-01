@@ -12,10 +12,8 @@ Yes. Stanna implements enterprise-grade security controls including:
 - TLS 1.3 encryption for all data in transit
 - AES-256 encryption for data at rest
 - Role-based access control (RBAC)
-- 24/7 security monitoring
-- Regular security audits and penetration testing
-
-We're currently pursuing SOC 2 Type II certification (expected Q2 2025).
+- Automated security monitoring
+- Regular security assessments
 
 ### Has Stanna ever been breached?
 
@@ -23,7 +21,7 @@ No. Since our inception, we have had zero security breaches affecting customer d
 
 ### Where is my data stored?
 
-Your data is stored in secure, SOC 2 certified data centers. By default, data is stored in the United States. Enterprise customers can choose EU data residency.
+Your data is stored in secure data centers in the United States.
 
 ---
 
@@ -35,6 +33,17 @@ Yes, always:
 - **In Transit**: TLS 1.3 encryption (the latest standard)
 - **At Rest**: AES-256 encryption in our database
 - **Backups**: Encrypted with separate keys
+
+### How is payment information secured?
+
+All payment processing is handled by **Stripe**, not Stanna. Stripe maintains:
+- PCI DSS Level 1 certification (highest level of payment security)
+- SOC 1 and SOC 2 Type II compliance
+- ISO 27001 certification
+- Advanced fraud detection
+- End-to-end encryption
+
+Stanna never stores, processes, or has access to your credit card information. Your payment data is protected by Stripe's industry-leading security infrastructure.
 
 ### Can Stanna employees see my data?
 
@@ -48,12 +57,12 @@ Stanna employees have minimal access to customer data:
 Each workspace is completely isolated:
 - Database-level separation with workspace IDs
 - No cross-workspace queries possible
-- Separate encryption keys for Enterprise customers
 - API-level authorization checks on every request
 
 ### Do you share my data with third parties?
 
 No, we never sell or share your data with third parties except:
+- **Payment processing**: Stripe handles all billing (PCI DSS Level 1 certified - Stanna never stores payment info)
 - **Service providers**: Minimal data shared with vendors (e.g., email delivery, AI processing) under strict DPAs
 - **Legal requirements**: Only when required by valid court order
 
@@ -68,7 +77,7 @@ See our [Privacy Policy](./privacy-policy.md) for details.
 Stanna uses OAuth 2.0 with Google for secure authentication:
 - No passwords stored by Stanna
 - Delegated to Google's enterprise security
-- Multi-factor authentication supported (Q2 2025)
+- Use MFA on your Google account for additional security
 
 ### What if I lose my login credentials?
 
@@ -84,10 +93,7 @@ Workspace Owners can:
 
 ### Can I use Single Sign-On (SSO)?
 
-Yes, Enterprise customers can use:
-- Google OAuth (available now)
-- SAML-based SSO (Q3 2025)
-- Azure AD, Okta, OneLogin (Q3 2025)
+Yes, Stanna uses Google OAuth for authentication. All users authenticate via their Google account.
 
 ---
 
@@ -95,34 +101,26 @@ Yes, Enterprise customers can use:
 
 ### Is Stanna GDPR compliant?
 
-Yes. Stanna is fully GDPR compliant:
+Yes. Stanna is GDPR compliant:
 - Data Processing Agreements available
 - Right to access, deletion, portability supported
-- Privacy by Design principles
-- EU data residency option for Enterprise
 - Breach notification within 72 hours
 
 ### Is Stanna HIPAA compliant?
 
-Not currently, but we're working on it (Q4 2025). If you need to process Protected Health Information (PHI), contact us at compliance@gostanna.com for our Healthcare offering timeline.
+No. Do not use Stanna to process Protected Health Information (PHI).
 
 ### What about SOC 2?
 
-We're currently pursuing SOC 2 Type II certification:
-- All controls implemented
-- Audit in progress
-- Expected completion: Q2 2025
-- Report available upon request (with NDA)
+Stanna is not currently SOC 2 certified. We have implemented many SOC 2 controls but have not completed an independent audit.
 
-### Can I get a copy of your security certifications?
+### Can I get security documentation?
 
-Yes. Contact compliance@gostanna.com for:
-- SOC 2 report (when available)
-- Penetration test summaries
+Contact compliance@gostanna.com for:
+- Security overview and FAQ
+- Data Processing Agreement (DPA)
+- Subprocessor list
 - Security questionnaire responses
-- DPA and subprocessor list
-
-Most documents require an NDA.
 
 ---
 
@@ -132,15 +130,14 @@ Most documents require an NDA.
 
 - **Active data**: Retained while your account is active
 - **Deleted data**: 30-day grace period, then permanent deletion
-- **Backups**: 30-day rolling retention (Enterprise: 1 year)
-- **Audit logs**: 90 days (Enterprise: 365 days)
+- **Backups**: 30-day rolling retention
+- **Audit logs**: 90 days
 
 ### Can I export my data?
 
 Yes, at any time:
 - CSV export for all data
 - JSON export for API integration
-- Full workspace export (Enterprise)
 - No lock-in—your data is always accessible
 
 ### What happens if I cancel my account?
@@ -158,7 +155,7 @@ Request expedited deletion: privacy@gostanna.com
 
 Yes:
 - **Frequency**: Continuous replication + daily snapshots
-- **Retention**: 30 days rolling (Enterprise: 1 year)
+- **Retention**: 30 days rolling
 - **Testing**: Restore tested monthly
 - **Encryption**: All backups encrypted
 
@@ -189,7 +186,7 @@ Currently:
 
 ### Can I opt out of AI features?
 
-Yes. Contact support@gostanna.com to disable AI features for your workspace. Note: Some features (health predictions, insights) will be unavailable.
+Contact support@gostanna.com to discuss disabling AI features for your workspace. Note: Some features (health predictions, insights) will be unavailable.
 
 ---
 
@@ -237,31 +234,15 @@ Logs available in your dashboard (Admin → Audit Logs).
 
 ---
 
-## Incident Response
+## Security Status
 
-### What if there's a security incident?
+### Has Stanna had any security incidents?
 
-Our incident response process:
-1. **Detection**: Automated monitoring (24/7)
-2. **Response**: Security team alerted within minutes
-3. **Containment**: Affected systems isolated
-4. **Notification**: Customers notified within 24 hours
-5. **Resolution**: Issue fixed and preventive measures implemented
-6. **Post-Mortem**: Detailed report shared
+No. We have had zero security breaches since inception.
 
-### How will I be notified?
+### Where can I check system status?
 
-Multiple channels:
-- Email to workspace admin and compliance contacts
-- In-app notification
-- Status page update (status.gostanna.com)
-- Dedicated incident page with updates
-
-### What's your uptime guarantee?
-
-**SLA**: 99.9% uptime (Enterprise: 99.95%)
-**Current uptime**: Check status.gostanna.com
-**Credits**: Automatic for SLA violations (Enterprise)
+Check status.gostanna.com for current system status and uptime.
 
 ---
 
@@ -270,7 +251,7 @@ Multiple channels:
 ### How can I make my account more secure?
 
 1. **Use a work email** (not personal Gmail/Yahoo)
-2. **Enable MFA** when available (Q2 2025)
+2. **Enable MFA on Google** for additional security
 3. **Review permissions** regularly
 4. **Remove inactive users** promptly
 5. **Monitor audit logs** for suspicious activity
@@ -279,59 +260,24 @@ Multiple channels:
 
 ### What should I do if I suspect a security issue?
 
-Immediately:
-1. **Don't panic** - document what you observed
-2. **Contact us**: security@gostanna.com or (XXX) XXX-XXXX
-3. **Don't publicize** until we've investigated
-4. **Change credentials** if compromised
-5. **Review audit logs** for unauthorized access
-
-We respond within 1 hour for critical issues.
+Contact us at security@gostanna.com with details about what you observed.
 
 ### How do I report a vulnerability?
 
-**Email**: security@gostanna.com
-**Subject**: "Security Vulnerability Report"
-
-Include:
+Email security@gostanna.com with:
 - Description of the vulnerability
 - Steps to reproduce
 - Potential impact
-- Your contact information
 
-We commit to:
-- Response within 24 hours
-- Regular updates on progress
-- Credit for discovery (if desired)
-- No legal action for good-faith research
+We appreciate responsible disclosure.
 
 ---
 
-## Enterprise Features
-
-### What additional security do Enterprise customers get?
-
-Enterprise tier includes:
-- Customer-managed encryption keys (CMEK)
-- EU/US data residency choice
-- Extended audit log retention (365 days)
-- Advanced threat detection
-- Dedicated security contact
-- Priority incident response
-- Custom security controls
-- IP whitelisting
+## Custom Requirements
 
 ### Do you offer custom security controls?
 
-Yes, Enterprise customers can request:
-- Custom authentication flows
-- Additional audit logging
-- Enhanced encryption
-- Dedicated infrastructure
-- Custom data retention policies
-- Private cloud deployment (case-by-case)
-
-Contact sales@gostanna.com for details.
+For enterprise customers with specific security requirements, contact sales@gostanna.com to discuss custom solutions.
 
 ---
 
@@ -341,8 +287,7 @@ Contact sales@gostanna.com for details.
 
 - [Security Overview](./overview.md) - Customer-facing overview
 - [Security Whitepaper](./whitepaper.md) - Technical details
-- [Compliance Documentation](./compliance.md) - Certifications
-- Help Center: help.gostanna.com/security
+- [Compliance Documentation](./compliance.md) - Compliance status
 
 ### Who do I contact for security questions?
 
@@ -350,19 +295,7 @@ Contact sales@gostanna.com for details.
 **Compliance**: compliance@gostanna.com
 **Privacy**: privacy@gostanna.com
 **Support**: support@gostanna.com
-**Emergency**: +1 (XXX) XXX-XXXX (24/7)
-
-### Can I get a demo of security features?
-
-Yes! Contact sales@gostanna.com to schedule a security-focused demo covering:
-- Authentication and access control
-- Audit logging
-- Data encryption
-- Compliance features
-- Admin security controls
 
 ---
 
-**Last Updated**: January 2025
-
-*For the most current information, visit help.gostanna.com/security*
+**Last Updated**: September 2024
